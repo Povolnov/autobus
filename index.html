@@ -147,6 +147,6 @@ $("places").onclick=e=>{const d=e.target.dataset.d;if(d){S.dir=d;render()}};
 $("flip").onclick=()=>{const n=madrid(),cur=S.override||dayType(new Date(Date.UTC(n.year,n.month-1,n.day)));S.override=cur==="fest"?"lab":"fest";render()};
 $("margin").onchange=e=>{S.margin=+e.target.value;store.set("margin",S.margin);render()};
 render();setInterval(render,20000);locate();
-if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+if("serviceWorker" in navigator){const had=!!navigator.serviceWorker.controller;let done=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(had&&!done){done=true;location.reload()}});navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{})}
 </script>
 </body></html>
