@@ -1,0 +1,152 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0f3d3e"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><style>*{box-sizing:border-box}:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}[hidden]{display:none!important}</style></head><body><title>Автобус Алагон–Сарагоса</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Golos+Text:wght@400;500;600&display=swap">
+<style>
+/* Layout: one phone column; a departure board on top, the next buses below it */
+:root{--bg:#e9efec;--surface:#fff;--fg:#14282a;--muted:#55686a;--line:#cbd7d3;--board:#0f3d3e;--board-fg:#f3f7f4;--board-muted:#a9c4bf;--amber:#ffc247;--accent:#0b6b62;--warn:#8f4a00;--warn-bg:#fdf0dc;
+--display:"Oswald","Arial Narrow",Impact,sans-serif;--body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1718;--surface:#172426;--fg:#e8f0ee;--muted:#9db0ad;--line:#2b3c3e;--board:#123f40;--accent:#5fd0c2;--warn:#ffc98a;--warn-bg:#35270f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1718;--surface:#172426;--fg:#e8f0ee;--muted:#9db0ad;--line:#2b3c3e;--board:#123f40;--accent:#5fd0c2;--warn:#ffc98a;--warn-bg:#35270f;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:400 1rem/1.45 var(--body);padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:30rem;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+button,a.btn{font:inherit;cursor:pointer;border-radius:10px;min-height:48px;display:flex;align-items:center;justify-content:center;text-decoration:none;padding:8px 14px;text-align:center}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.route{display:flex;align-items:center;gap:10px}
+.route h1{flex:1;min-width:0;margin:0;font:600 1.6rem/1.15 var(--display);letter-spacing:.01em;text-wrap:balance}
+.swap{flex:none;background:var(--surface);color:var(--fg);border:1px solid var(--line);font-weight:500}
+.board{background:var(--board);color:var(--board-fg);border-radius:14px;padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px}
+.lab{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--board-muted)}
+.timerow{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.time{font:600 clamp(4.4rem,25vw,6.4rem)/1 var(--display);color:var(--amber);font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding-bottom:8px;font-size:.92rem}
+.chip{font:600 1.05rem/1 var(--display);border:1.5px solid var(--board-muted);border-radius:6px;padding:4px 8px}
+.go{font:500 1.5rem/1.2 var(--display);margin-top:6px}
+.detail{color:var(--board-muted);font-size:.95rem}
+.run{color:var(--amber);font-size:.92rem;margin-top:4px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.primary{background:var(--accent);color:var(--bg);border:0;font-weight:600}
+.btn.ghost{background:var(--surface);color:var(--fg);border:1px solid var(--line);font-weight:500}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:.92rem}
+.places{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.places button{background:var(--surface);color:var(--fg);border:1px solid var(--line);font-weight:500}
+h2{margin:6px 0 0;font:500 1.1rem/1.2 var(--display);letter-spacing:.02em}
+ul{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+li{display:grid;grid-template-columns:4.2rem 3.2rem 1fr;gap:6px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+li:first-child{border-top:0}
+li b{font:500 1.25rem/1 var(--display)}
+li span{min-width:0}
+li .r{text-align:right;color:var(--muted);font-size:.9rem}
+.status{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;color:var(--muted);font-size:.9rem}
+.status label{display:flex;gap:6px;align-items:center}
+select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px}
+.link{background:none;border:0;color:var(--accent);min-height:36px;padding:4px 0;text-decoration:underline}
+</style>
+<main>
+  <div class="route"><h1 id="route"></h1><button class="swap" id="swap" type="button">⇄ Обратно</button></div>
+  <section class="board" aria-live="polite">
+    <div class="lab" id="heroLab"></div>
+    <div class="timerow"><div class="time" id="time"></div><div class="meta"><span class="chip" id="line"></span><span id="arr"></span></div></div>
+    <div class="go" id="go"></div>
+    <div class="detail" id="detail"></div>
+    <div class="run" id="run" hidden></div>
+  </section>
+  <div class="note" id="note" hidden></div>
+  <div class="places" id="places" hidden><button type="button" data-d="toZ">Я в Алагоне</button><button type="button" data-d="toA">Я в Сарагосе</button></div>
+  <div class="actions"><button class="primary" id="locate" type="button">Где я? Обновить</button><a class="btn ghost" id="maps" target="_blank" rel="noopener">Путь в Google Картах</a></div>
+  <h2>Следующие автобусы</h2>
+  <ul id="list"></ul>
+  <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
+    <label for="margin">Запас<select id="margin"><option value="0">0 мин</option><option value="2">2 мин</option><option value="5">5 мин</option><option value="10">10 мин</option></select></label></div>
+</main>
+<script>
+// Timetable CTAZ v-202508: [line, Zaragoza→ departure, Alagón arrival] and [line, Alagón departure, Zaragoza arrival]
+const T={lab:{toA:[["619B","7:15","8:00"],["620","7:30","8:10"],["620","9:00","9:40"],["620B","10:15","11:00"],["619","11:45","12:25"],["619","12:45","13:25"],["620B","14:30","15:15"],["619","15:30","16:10"],["620","16:15","16:55"],["620","17:20","18:00"],["620B","18:45","19:30"],["619","20:15","20:55"],["620","21:15","21:55"],["619","22:30","23:10"]],
+toZ:[["619","6:50","7:30"],["620B","8:10","8:55"],["619","8:40","9:20"],["620","9:40","10:20"],["620B","11:00","11:45"],["619","13:05","13:45"],["619","14:05","14:45"],["620B","15:15","16:00"],["619","16:50","17:30"],["620","18:00","18:40"],["620B","19:30","20:15"],["620","20:30","21:10"],["619","21:35","22:15"],["620","22:00","22:40"]]},
+fest:{toA:[["620B","8:00","8:45"],["619","9:30","10:10"],["620B","11:30","12:10"],["619","13:00","13:40"],["619B","15:00","15:40"],["619","17:00","17:40"],["620","19:00","19:40"],["620B","20:30","21:10"],["619","22:00","22:40"]],
+toZ:[["620B","8:45","9:30"],["619B","10:50","11:30"],["620","12:15","12:55"],["619","14:20","15:00"],["619B","16:20","17:00"],["619","18:20","19:00"],["620B","19:40","20:25"],["620","21:15","21:55"],["619","23:20","0:00"]]}};
+// off = minutes after the listed time. Av. Navarra is the 2nd stop after Mª Agustín; +3 is a cautious estimate.
+const STOPS={toZ:[{n:"Plaza Fueros de Aragón",lat:41.7664374,lng:-1.126042,off:0},{n:"C/ Mayor esq. Fernando el Católico",lat:41.7692772,lng:-1.1195697,off:0}],
+toA:[{n:"Pº María Agustín, 50",lat:41.6536809,lng:-0.8925917,off:0},{n:"Av. Navarra, 54",lat:41.6556185,lng:-0.9064294,off:3}]};
+const NAME={toZ:"Алагон → Сарагоса",toA:"Сарагоса → Алагон"},FAR_M=3500;
+const $=id=>document.getElementById(id);
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const S={dir:"toZ",pos:null,walk:null,loc:"idle",far:null,override:null,margin:+(store.get("margin")??2)};
+
+function madrid(){const p={};new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Madrid",year:"numeric",month:"numeric",day:"numeric",hour:"numeric",minute:"numeric",hourCycle:"h23"}).formatToParts(new Date()).forEach(x=>p[x.type]=+x.value);return p}
+const key=d=>String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
+function easter(y){const a=y%19,b=y>>>0,c=Math.floor(b/100),e=b%100,d=Math.floor(c/4),f=c%4,g=Math.floor((c+8)/25),h=Math.floor((c-g+1)/3),i=(19*a+c-d-h+15)%30,k=Math.floor(e/4),l=e%4,m=(32+2*f+2*k-i-l)%7,n=Math.floor((a+11*i+22*m)/451),mo=Math.floor((i+2*m-7*n+114)/31),da=((i+2*m-7*n+114)%31)+1;return Date.UTC(y,mo-1,da)}
+function isHoliday(d){const y=d.getUTCFullYear(),t=d.getTime(),e=easter(y),DAY=864e5;
+  if(t===e-3*DAY||t===e-2*DAY)return true;
+  const fixed=["01-01","01-06","04-23","05-01","08-15","10-12","11-01","12-06","12-08","12-25"];
+  if(fixed.includes(key(d)))return true;
+  const prev=new Date(t-DAY);return d.getUTCDay()===1&&fixed.includes(key(prev));} // moved from Sunday
+function dayType(d){return d.getUTCDay()===0||isHoliday(d)?"fest":"lab"}
+function localHoliday(d){const k=key(d);return ["01-29","03-05"].includes(k)?"Сарагосе":(d.getUTCFullYear()===2026&&["06-12","09-08"].includes(k))?"Алагоне":null}
+const toMin=s=>{const[a,b]=s.split(":");return +a*60+ +b};
+const fmt=m=>{m=((m%1440)+1440)%1440;return Math.floor(m/60)+":"+String(m%60).padStart(2,"0")};
+const dur=m=>m<60?m+" мин":Math.floor(m/60)+" ч"+(m%60?" "+(m%60)+" мин":"");
+function dist(a,b){const R=6371e3,r=Math.PI/180,x=(b.lat-a.lat)*r,y=(b.lng-a.lng)*r,h=Math.sin(x/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
+
+function buses(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=new Date(today.getTime()+864e5),t0=S.override||dayType(today);
+  const mk=(tp,add,tag)=>T[tp][S.dir].map(([l,d,a])=>({line:l,dep:toMin(d)+add,arr:toMin(a)+add+(toMin(a)<toMin(d)?1440:0),tag}));
+  return{list:[...mk(t0,0,""),...mk(dayType(tom),1440,"завтра")],today,t0}}
+function plan(b,now){ // pick the stop that lets you leave latest for this bus
+  if(!S.walk)return{leave:b.dep,stop:null,walk:null};
+  let best=null;STOPS[S.dir].forEach((s,i)=>{const w=S.walk[S.dir][i].min,leave=b.dep+s.off-w-S.margin;if(!best||leave>best.leave)best={leave,stop:s,walk:w,meth:S.walk[S.dir][i].meth,i}});return best}
+const nearby=()=>S.walk&&S.walk[S.dir]&&S.walk[S.dir].some(w=>w.m<=FAR_M);
+
+function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=buses(n);
+  $("route").textContent=NAME[S.dir];$("swap").textContent=S.dir==="toZ"?"⇄ Я в Сарагосе":"⇄ Я в Алагоне";
+  const useWalk=nearby();
+  const saved=S.walk;if(!useWalk)S.walk=null;
+  const fut=list.map(b=>({...b,p:plan(b,now)}));S.walk=saved;
+  const i=fut.findIndex(b=>b.p.leave>=now),h=fut[i];
+  $("heroLab").textContent=useWalk?"Ближайший, на который успеваешь":"Ближайший автобус";
+  $("time").textContent=fmt(h.dep+(h.p.stop?h.p.stop.off:0));
+  $("line").textContent=h.line;
+  $("arr").textContent=(h.tag?h.tag+", ":"")+"прибытие "+fmt(h.arr);
+  if(useWalk){const wait=h.p.leave-now;$("go").textContent=wait<=0?"Выходи сейчас":"Выходи через "+dur(wait)+", в "+fmt(h.p.leave);
+    $("detail").textContent="Пешком "+dur(h.p.walk)+(h.p.meth==="route"?"":" (примерно)")+" до "+h.p.stop.n+". Запас "+S.margin+" мин.";
+  }else{const w=h.dep-now;$("go").textContent="Через "+dur(w);$("detail").textContent="Отправление с "+STOPS[S.dir][0].n+". Путь до остановки не учтён."}
+  // a bus still ahead but too close to walk to
+  const r=$("run");r.hidden=true;
+  if(useWalk&&i>0){const m=fut[i-1],c=m.p.stop;if(c&&m.dep+c.off>=now){const t=m.dep+c.off-now;const run=Math.ceil(m.p.walk*.6);r.hidden=false;
+    r.textContent=run<=t?`Автобус ${fmt(m.dep+c.off)} (${m.line}) можно успеть, если бежать: ${dur(t)} до отправления.`:`Автобус ${fmt(m.dep+c.off)} (${m.line}) уже не успеть.`}}
+  // notes
+  const nt=$("note"),msgs=[];const lh=localHoliday(today);
+  if(lh)msgs.push(`Сегодня местный праздник в ${lh}. Расписание могло измениться, проверь на остановке или в CTAZ.`);
+  if(S.loc==="denied")msgs.push("Геолокация здесь недоступна. Выбери, где ты, и я покажу ближайший автобус.");
+  if(S.loc==="error")msgs.push("Не получилось определить место. Выбери город вручную или попробуй ещё раз.");
+  if(S.loc==="far")msgs.push(`Ты далеко от остановок: ${Math.round(S.far/1000)} км до ближайшей. Показываю расписание без пути пешком.`);
+  nt.textContent=msgs.join(" ");nt.hidden=!msgs.length;
+  $("places").hidden=!(S.loc==="denied"||S.loc==="error");
+  const b=$("locate");b.textContent=S.loc==="loading"?"Определяю…":"Где я? Обновить";b.disabled=S.loc==="loading";
+  const st=h.p.stop||STOPS[S.dir][0];
+  $("maps").href="https://www.google.com/maps/dir/?api=1"+(S.pos?`&origin=${S.pos.lat},${S.pos.lng}`:"")+`&destination=${st.lat},${st.lng}&travelmode=walking`;
+  $("list").innerHTML=fut.slice(i+1,i+5).map(x=>{const o=x.p.stop?x.p.stop.off:0;return `<li><b>${fmt(x.dep+o)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+", ":""}прибытие ${fmt(x.arr)}</span></li>`}).join("");
+  $("dayt").textContent="Сегодня: "+(t0==="fest"?"воскресное и праздничное":"будни и суббота")+".";
+  $("flip").textContent=t0==="fest"?"Показать будничное":"Показать праздничное";
+  $("margin").value=String(S.margin);
+}
+async function walkTo(p,s){const m=dist(p,s),approx={min:Math.max(1,Math.ceil(m*1.3/80)),m,meth:"approx"};
+  if(m>FAR_M)return approx;
+  try{const c=new AbortController(),tm=setTimeout(()=>c.abort(),4000);
+    const r=await fetch(`https://routing.openstreetmap.de/routed-foot/route/v1/foot/${p.lng},${p.lat};${s.lng},${s.lat}?overview=false`,{signal:c.signal});clearTimeout(tm);
+    const j=await r.json();const sec=j.routes[0].duration;return{min:Math.max(1,Math.ceil(sec/60)),m,meth:"route"}}catch(e){return approx}}
+async function onPos(g){const p={lat:g.coords.latitude,lng:g.coords.longitude};S.pos=p;
+  const nearest=k=>Math.min(...STOPS[k].map(s=>dist(p,s)));const dz=nearest("toZ"),da=nearest("toA");
+  S.dir=dz<=da?"toZ":"toA";const d=Math.min(dz,da);
+  S.walk={toZ:await Promise.all(STOPS.toZ.map(s=>walkTo(p,s))),toA:await Promise.all(STOPS.toA.map(s=>walkTo(p,s)))};
+  if(d>FAR_M){S.loc="far";S.far=d}else S.loc="ok";render()}
+function locate(){if(!navigator.geolocation){S.loc="denied";render();return}
+  S.loc="loading";render();
+  try{navigator.geolocation.getCurrentPosition(onPos,e=>{S.loc=e.code===1?"denied":"error";render()},{enableHighAccuracy:true,timeout:12000,maximumAge:30000})}catch(e){S.loc="denied";render()}}
+$("locate").onclick=locate;
+$("swap").onclick=()=>{S.dir=S.dir==="toZ"?"toA":"toZ";render()};
+$("places").onclick=e=>{const d=e.target.dataset.d;if(d){S.dir=d;render()}};
+$("flip").onclick=()=>{const n=madrid(),cur=S.override||dayType(new Date(Date.UTC(n.year,n.month-1,n.day)));S.override=cur==="fest"?"lab":"fest";render()};
+$("margin").onchange=e=>{S.margin=+e.target.value;store.set("margin",S.margin);render()};
+render();setInterval(render,20000);locate();
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body></html>
