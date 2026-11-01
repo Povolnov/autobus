@@ -1,4 +1,4 @@
-# Автобус Алагон–Сарагоса
+# Alagón–Zaragoza Bus
 
-Страница показывает ближайший автобус линий CTAZ 619/620, на который можно успеть пешком.
-Расписание: CTAZ v-202508.
+Shows the next CTAZ 619/620 bus you can catch on foot.
+Timetable: CTAZ v-202508.

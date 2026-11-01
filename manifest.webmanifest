@@ -1,12 +1,12 @@
 {
- "name": "Автобус Алагон–Сарагоса",
- "short_name": "Автобус",
+ "name": "Alagón–Zaragoza Bus",
+ "short_name": "Bus",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
  "background_color": "#0f3d3e",
  "theme_color": "#0f3d3e",
- "lang": "ru",
+ "lang": "en",
  "icons": [
   {
    "src": "icon-192.png",
