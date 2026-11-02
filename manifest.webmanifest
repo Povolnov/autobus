@@ -1,6 +1,6 @@
 {
- "name": "Autobús Alagón–Zaragoza",
- "short_name": "Autobús",
+ "name": "Bus y tren Alagón–Zaragoza",
+ "short_name": "Bus y tren",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
