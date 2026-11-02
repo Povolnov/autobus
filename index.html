@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0f3d3e"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><style>*{box-sizing:border-box}:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}[hidden]{display:none!important}</style></head><body><title>Alagón–Zaragoza Bus</title>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0f3d3e"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><style>*{box-sizing:border-box}:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}[hidden]{display:none!important}</style></head><body><title>Autobús Alagón–Zaragoza</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Golos+Text:wght@400;500;600&display=swap">
 <style>
@@ -13,6 +13,12 @@ button,a.btn{font:inherit;cursor:pointer;border-radius:10px;min-height:48px;disp
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .route{display:flex;align-items:center;gap:10px}
 .route h1{flex:1;min-width:0;margin:0;font:600 1.6rem/1.15 var(--display);letter-spacing:.01em;text-wrap:balance}
+.flag{flex:none;width:48px;height:32px;border:1px solid var(--line);border-radius:3px}
+.gift{margin:6px 0 0;font-weight:500;text-wrap:balance}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:.9rem}
+.info-btn{width:44px;min-height:44px;padding:0;flex:none;border-radius:50%;background:var(--surface);color:var(--accent);border:1px solid var(--line);font:600 1.15rem/1 Georgia,serif}
+.info{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.95rem}
+.info h2{margin:12px 0 4px}.info h2:first-child{margin-top:0}.info p{margin:0 0 8px}.info a{color:var(--accent)}
 .swap{flex:none;background:var(--surface);color:var(--fg);border:1px solid var(--line);font-weight:500}
 .board{background:var(--board);color:var(--board-fg);border-radius:14px;padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px}
 .lab{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--board-muted)}
@@ -42,7 +48,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
 .link{background:none;border:0;color:var(--accent);min-height:36px;padding:4px 0;text-decoration:underline}
 </style>
 <main>
-  <div class="route"><h1 id="route"></h1><button class="swap" id="swap" type="button">⇄ Reverse</button></div>
+  <div class="route"><img class="flag" src="https://commons.wikimedia.org/wiki/Special:FilePath/Bandera_de_Alag%C3%B3n-Zaragoza.svg?width=120" alt="Bandera de Alagón" width="48" height="32" onerror="this.hidden=true"><h1 id="route"></h1><button class="swap" id="swap" type="button">⇄ Invertir</button></div>
   <section class="board" aria-live="polite">
     <div class="lab" id="heroLab"></div>
     <div class="timerow"><div class="time" id="time"></div><div class="meta"><span class="chip" id="line"></span><span id="arr"></span></div></div>
@@ -51,12 +57,28 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
     <div class="run" id="run" hidden></div>
   </section>
   <div class="note" id="note" hidden></div>
-  <div class="places" id="places" hidden><button type="button" data-d="toZ">I'm in Alagón</button><button type="button" data-d="toA">I'm in Zaragoza</button></div>
-  <div class="actions"><button class="primary" id="locate" type="button">Find me & refresh</button><a class="btn ghost" id="maps" target="_blank" rel="noopener">Directions in Google Maps</a></div>
-  <h2>Next buses</h2>
+  <div class="places" id="places" hidden><button type="button" data-d="toZ">Estoy en Alagón</button><button type="button" data-d="toA">Estoy en Zaragoza</button></div>
+  <div class="actions"><button class="primary" id="locate" type="button">Dónde estoy / Actualizar</button><a class="btn ghost" id="maps" target="_blank" rel="noopener">Ruta en Google Maps</a></div>
+  <h2>Próximos autobuses</h2>
   <ul id="list"></ul>
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
-    <label for="margin">Buffer<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
+    <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
+  <p class="gift">Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
+  <div class="foot"><span>Versión 1.0</span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <section class="info" id="info" hidden>
+    <h2>Próximamente</h2>
+    <p>Queremos integrar el saldo de la tarjeta Lazo, con un aviso para recargar cuando se esté acabando. Hemos contactado con el soporte de Lazo para estudiar la integración.</p>
+    <h2>Preguntas, ideas y críticas</h2>
+    <p>WhatsApp: <a href="https://wa.me/34633816232" target="_blank" rel="noopener">633 816 232</a><br>Correo: <a href="mailto:andres@idaa.uk">andres@idaa.uk</a></p>
+    <h2>Aviso</h2>
+    <p>Aplicación no oficial, sin vínculo con CTAZ, Lazo ni el Ayuntamiento de Alagón. Horarios según CTAZ, versión 08/2025. Compruébalos antes de viajar.</p>
+    <h2>Privacidad</h2>
+    <p>Cada vez que abres la aplicación guardamos la fecha, tu dirección IP y tu país para contar visitas. Los datos se borran a los 90 días. Para pedir su acceso o eliminación, escribe a andres@idaa.uk.</p>
+    <p>Tu ubicación no se guarda. Se usa en tu teléfono y se envía a OpenStreetMap solo para calcular el tiempo a pie.</p>
+    <h2>Créditos</h2>
+    <p>Bandera: <a href="https://commons.wikimedia.org/wiki/File:Bandera_de_Alag%C3%B3n-Zaragoza.svg" target="_blank" rel="noopener">Ecelan, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.es" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p>
+    <p>© International Digital Asset Association (IDAA)</p>
+  </section>
 </main>
 <script>
 // Timetable CTAZ v-202508: [line, Zaragoza→ departure, Alagón arrival] and [line, Alagón departure, Zaragoza arrival]
@@ -89,43 +111,43 @@ function dist(a,b){const R=6371e3,r=Math.PI/180,x=(b.lat-a.lat)*r,y=(b.lng-a.lng
 
 function buses(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=new Date(today.getTime()+864e5),t0=S.override||dayType(today);
   const mk=(tp,add,tag)=>T[tp][S.dir].map(([l,d,a])=>({line:l,dep:toMin(d)+add,arr:toMin(a)+add+(toMin(a)<toMin(d)?1440:0),tag}));
-  return{list:[...mk(t0,0,""),...mk(dayType(tom),1440,"tomorrow")],today,t0}}
+  return{list:[...mk(t0,0,""),...mk(dayType(tom),1440,"mañana")],today,t0}}
 function plan(b,now){ // pick the stop that lets you leave latest for this bus
   if(!S.walk)return{leave:b.dep,stop:null,walk:null};
   let best=null;STOPS[S.dir].forEach((s,i)=>{const w=S.walk[S.dir][i].min,leave=b.dep+s.off-w-S.margin;if(!best||leave>best.leave)best={leave,stop:s,walk:w,meth:S.walk[S.dir][i].meth,i}});return best}
 const nearby=()=>S.walk&&S.walk[S.dir]&&S.walk[S.dir].some(w=>w.m<=FAR_M);
 
 function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=buses(n);
-  $("route").textContent=NAME[S.dir];$("swap").textContent=S.dir==="toZ"?"⇄ I'm in Zaragoza":"⇄ I'm in Alagón";
+  $("route").textContent=NAME[S.dir];$("swap").textContent=S.dir==="toZ"?"⇄ Estoy en Zaragoza":"⇄ Estoy en Alagón";
   const useWalk=nearby();
   const saved=S.walk;if(!useWalk)S.walk=null;
   const fut=list.map(b=>({...b,p:plan(b,now)}));S.walk=saved;
   const i=fut.findIndex(b=>b.p.leave>=now),h=fut[i];
-  $("heroLab").textContent=useWalk?"Next bus you can catch":"Next bus";
+  $("heroLab").textContent=useWalk?"Próximo que puedes coger":"Próximo autobús";
   $("time").textContent=fmt(h.dep+(h.p.stop?h.p.stop.off:0));
   $("line").textContent=h.line;
-  $("arr").textContent=(h.tag?h.tag+", ":"")+"arrives "+fmt(h.arr);
-  if(useWalk){const wait=h.p.leave-now;$("go").textContent=wait<=0?"Leave now":"Leave in "+dur(wait)+", at "+fmt(h.p.leave);
-    $("detail").textContent=dur(h.p.walk)+(h.p.meth==="route"?"":" (approx.)")+" walk to "+h.p.stop.n+". Buffer: "+S.margin+" min.";
-  }else{const w=h.dep-now;$("go").textContent="In "+dur(w);$("detail").textContent="Departs from "+STOPS[S.dir][0].n+". Walking time isn't included."}
+  $("arr").textContent=(h.tag?h.tag+", ":"")+"llega a las "+fmt(h.arr);
+  if(useWalk){const wait=h.p.leave-now;$("go").textContent=wait<=0?"Sal ahora":"Sal en "+dur(wait)+", a las "+fmt(h.p.leave);
+    $("detail").textContent=dur(h.p.walk)+(h.p.meth==="route"?"":" (aprox.)")+" a pie hasta "+h.p.stop.n+". Margen: "+S.margin+" min.";
+  }else{const w=h.dep-now;$("go").textContent="En "+dur(w);$("detail").textContent="Sale de "+STOPS[S.dir][0].n+". No incluye el tiempo a pie."}
   // a bus still ahead but too close to walk to
   const r=$("run");r.hidden=true;
   if(useWalk&&i>0){const m=fut[i-1],c=m.p.stop;if(c&&m.dep+c.off>=now){const t=m.dep+c.off-now;const run=Math.ceil(m.p.walk*.6);r.hidden=false;
-    r.textContent=run<=t?`You could catch the ${fmt(m.dep+c.off)} (${m.line}) if you run: it leaves in ${dur(t)}.`:`Too late for the ${fmt(m.dep+c.off)} (${m.line}).`}}
+    r.textContent=run<=t?`Puedes coger el de las ${fmt(m.dep+c.off)} (${m.line}) si corres: sale en ${dur(t)}.`:`Ya no llegas al de las ${fmt(m.dep+c.off)} (${m.line}).`}}
   // notes
   const nt=$("note"),msgs=[];const lh=localHoliday(today);
-  if(lh)msgs.push(`Today is a local holiday in ${lh}. The schedule may differ, so check at the stop or with CTAZ.`);
-  if(S.loc==="denied")msgs.push("Location isn't available here. Choose where you are to see the next bus.");
-  if(S.loc==="error")msgs.push("Couldn't get your location. Choose your town or try again.");
-  if(S.loc==="far")msgs.push(`You're far from the stops: ${Math.round(S.far/1000)} km to the nearest. Showing the schedule without walking time.`);
+  if(lh)msgs.push(`Hoy es festivo local en ${lh}. El horario puede cambiar: compruébalo en la parada o con CTAZ.`);
+  if(S.loc==="denied")msgs.push("La ubicación no está disponible. Elige dónde estás para ver el próximo autobús.");
+  if(S.loc==="error")msgs.push("No se ha podido obtener tu ubicación. Elige tu municipio o inténtalo de nuevo.");
+  if(S.loc==="far")msgs.push(`Estás lejos de las paradas: ${Math.round(S.far/1000)} km hasta la más cercana. Se muestra el horario sin el tiempo a pie.`);
   nt.textContent=msgs.join(" ");nt.hidden=!msgs.length;
   $("places").hidden=!(S.loc==="denied"||S.loc==="error");
-  const b=$("locate");b.textContent=S.loc==="loading"?"Locating…":"Find me & refresh";b.disabled=S.loc==="loading";
+  const b=$("locate");b.textContent=S.loc==="loading"?"Localizando…":"Dónde estoy / Actualizar";b.disabled=S.loc==="loading";
   const st=h.p.stop||STOPS[S.dir][0];
   $("maps").href="https://www.google.com/maps/dir/?api=1"+(S.pos?`&origin=${S.pos.lat},${S.pos.lng}`:"")+`&destination=${st.lat},${st.lng}&travelmode=walking`;
-  $("list").innerHTML=fut.slice(i+1,i+5).map(x=>{const o=x.p.stop?x.p.stop.off:0;return `<li><b>${fmt(x.dep+o)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+", ":""}arrives ${fmt(x.arr)}</span></li>`}).join("");
-  $("dayt").textContent="Today: "+(t0==="fest"?"Sunday & holiday schedule":"Mon–Sat schedule")+".";
-  $("flip").textContent=t0==="fest"?"Show Mon–Sat":"Show Sunday & holiday";
+  $("list").innerHTML=fut.slice(i+1,i+5).map(x=>{const o=x.p.stop?x.p.stop.off:0;return `<li><b>${fmt(x.dep+o)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+", ":""}llega a las ${fmt(x.arr)}</span></li>`}).join("");
+  $("dayt").textContent="Hoy: "+(t0==="fest"?"horario de domingos y festivos":"horario de lunes a sábado")+".";
+  $("flip").textContent=t0==="fest"?"Ver lunes a sábado":"Ver domingos y festivos";
   $("margin").value=String(S.margin);
 }
 async function walkTo(p,s){const m=dist(p,s),approx={min:Math.max(1,Math.ceil(m*1.3/80)),m,meth:"approx"};
@@ -142,6 +164,8 @@ function locate(){if(!navigator.geolocation){S.loc="denied";render();return}
   S.loc="loading";render();
   try{navigator.geolocation.getCurrentPosition(onPos,e=>{S.loc=e.code===1?"denied":"error";render()},{enableHighAccuracy:true,timeout:12000,maximumAge:30000})}catch(e){S.loc="denied";render()}}
 $("locate").onclick=locate;
+$("infoBtn").onclick=()=>{const i=$("info");i.hidden=!i.hidden;$("infoBtn").setAttribute("aria-expanded",String(!i.hidden));if(!i.hidden)i.scrollIntoView({behavior:"smooth",block:"start"})};
+const LOG_URL="";if(LOG_URL)fetch(LOG_URL,{method:"POST",mode:"cors",keepalive:true}).catch(()=>{});
 $("swap").onclick=()=>{S.dir=S.dir==="toZ"?"toA":"toZ";render()};
 $("places").onclick=e=>{const d=e.target.dataset.d;if(d){S.dir=d;render()}};
 $("flip").onclick=()=>{const n=madrid(),cur=S.override||dayType(new Date(Date.UTC(n.year,n.month-1,n.day)));S.override=cur==="fest"?"lab":"fest";render()};
