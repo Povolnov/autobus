@@ -11,8 +11,10 @@ export default {
     const ip = request.headers.get("CF-Connecting-IP") || "";
     const country = request.cf?.country || "";
     const city = request.cf?.city || "";
+    const body = (await request.text()).trim();
+    const device = /^[0-9a-f-]{36}$/i.test(body) ? body.toLowerCase() : "";
     ctx.waitUntil(env.DB.batch([
-      env.DB.prepare("INSERT INTO visits (ip, country, city) VALUES (?, ?, ?)").bind(ip, country, city),
+      env.DB.prepare("INSERT INTO visits (ip, country, city, device_id) VALUES (?, ?, ?, ?)").bind(ip, country, city, device),
       env.DB.prepare("DELETE FROM visits WHERE ts < datetime('now', '-90 days')"),
     ]));
     return new Response(null, { status: 204, headers: cors });
