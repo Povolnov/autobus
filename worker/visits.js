@@ -8,10 +8,9 @@ export default {
     if (request.method !== "POST" || request.headers.get("Origin") !== ORIGIN) {
       return new Response("Not found", { status: 404 });
     }
-    const ip = request.headers.get("CF-Connecting-IP") || "";
     const country = request.cf?.country || "";
     ctx.waitUntil(env.DB.batch([
-      env.DB.prepare("INSERT INTO visits (ip, country) VALUES (?, ?)").bind(ip, country),
+      env.DB.prepare("INSERT INTO visits (ip, country) VALUES ('', ?)").bind(country),
       env.DB.prepare("DELETE FROM visits WHERE ts < datetime('now', '-90 days')"),
     ]));
     return new Response(null, { status: 204, headers: cors });
