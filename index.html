@@ -165,7 +165,7 @@ function locate(){if(!navigator.geolocation){S.loc="denied";render();return}
   try{navigator.geolocation.getCurrentPosition(onPos,e=>{S.loc=e.code===1?"denied":"error";render()},{enableHighAccuracy:true,timeout:12000,maximumAge:30000})}catch(e){S.loc="denied";render()}}
 $("locate").onclick=locate;
 $("infoBtn").onclick=()=>{const i=$("info");i.hidden=!i.hidden;$("infoBtn").setAttribute("aria-expanded",String(!i.hidden));if(!i.hidden)i.scrollIntoView({behavior:"smooth",block:"start"})};
-const LOG_URL="";if(LOG_URL)fetch(LOG_URL,{method:"POST",mode:"cors",keepalive:true}).catch(()=>{});
+const LOG_URL="https://autobus-visits.povolnov.workers.dev/";if(LOG_URL)fetch(LOG_URL,{method:"POST",mode:"cors",keepalive:true}).catch(()=>{});
 $("swap").onclick=()=>{S.dir=S.dir==="toZ"?"toA":"toZ";render()};
 $("places").onclick=e=>{const d=e.target.dataset.d;if(d){S.dir=d;render()}};
 $("flip").onclick=()=>{const n=madrid(),cur=S.override||dayType(new Date(Date.UTC(n.year,n.month-1,n.day)));S.override=cur==="fest"?"lab":"fest";render()};
