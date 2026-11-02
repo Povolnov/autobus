@@ -37,7 +37,7 @@ button,a.btn{font:inherit;cursor:pointer;border-radius:10px;min-height:48px;disp
 .places button{background:var(--surface);color:var(--fg);border:1px solid var(--line);font-weight:500}
 h2{margin:6px 0 0;font:500 1.1rem/1.2 var(--display);letter-spacing:.02em}
 ul{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px}
-li{display:grid;grid-template-columns:4.2rem 3.2rem 1fr;gap:6px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+li{display:grid;grid-template-columns:3.6rem 5.2rem 1fr;gap:6px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
 li:first-child{border-top:0}
 li b{font:500 1.25rem/1 var(--display)}
 li span{min-width:0}
@@ -59,15 +59,16 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="note" id="note" hidden></div>
   <div class="places" id="places" hidden><button type="button" data-d="toZ">Estoy en Alagón</button><button type="button" data-d="toA">Estoy en Zaragoza</button></div>
   <div class="actions"><button class="primary" id="locate" type="button">Dónde estoy / Actualizar</button><a class="btn ghost" id="maps" target="_blank" rel="noopener">Ruta en Google Maps</a></div>
-  <h2>Próximos autobuses</h2>
+  <a class="btn ghost" id="adif" href="https://www.adif.es/" target="_blank" rel="noopener" hidden>Comprobar retraso del tren en Adif</a>
+  <h2>Próximos autobuses y trenes</h2>
   <ul id="list"></ul>
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span>Versión 1.0</span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span>Versión 1.1</span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
-    <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Busca la parada que mejor te viene, calcula el tiempo a pie y te dice qué autobús puedes coger y cuándo salir.</p>
+    <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
     <h2>Próximamente</h2>
     <p>Queremos integrar el saldo de la tarjeta Lazo, con un aviso para recargar cuando se esté acabando. Hemos contactado con el soporte de Lazo para estudiar la integración.</p>
     <p>Queremos mostrar cuánto retraso lleva el autobús en tiempo real. Lo tenemos previsto en un mes, si conseguimos acceso a esos datos.</p>
@@ -76,11 +77,12 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
     <h2>Preguntas, ideas y críticas</h2>
     <p>WhatsApp: <a href="https://wa.me/34633816232" target="_blank" rel="noopener">633 816 232</a><br>Correo: <a href="mailto:andres@idaa.uk">andres@idaa.uk</a></p>
     <h2>Aviso</h2>
-    <p>Aplicación no oficial, sin vínculo con CTAZ, Lazo ni el Ayuntamiento de Alagón. Horarios según CTAZ, versión 08/2025. Compruébalos antes de viajar.</p>
+    <p>Aplicación no oficial, sin vínculo con CTAZ, Lazo ni el Ayuntamiento de Alagón. Autobuses según CTAZ, versión 08/2025. Trenes según Renfe, actualizados el 02/11/2026 y disponibles hasta el 12/12/2026. Compruébalos antes de viajar.</p>
     <h2>Privacidad</h2>
     <p>Para contar visitas guardamos la fecha, la dirección IP, el país y la ciudad aproximada durante 90 días. Para consultarlos o borrarlos, escribe a andres@idaa.uk.</p>
     <p>Tu ubicación no se guarda. Se usa en tu teléfono y se envía a OpenStreetMap solo para calcular el tiempo a pie.</p>
     <h2>Créditos</h2>
+    <p>Horarios de tren: <a href="https://data.renfe.com/dataset/horarios-de-alta-velocidad-larga-distancia-y-media-distancia" target="_blank" rel="noopener">Renfe Data</a>, CC BY 4.0.</p>
     <p>Bandera: <a href="https://commons.wikimedia.org/wiki/File:Bandera_de_Alag%C3%B3n-Zaragoza.svg" target="_blank" rel="noopener">Ecelan, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.es" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p>
     <p>© International Digital Asset Association (IDAA)</p>
   </section>
@@ -92,8 +94,11 @@ toZ:[["619","6:50","7:30"],["620B","8:10","8:55"],["619","8:40","9:20"],["620","
 fest:{toA:[["620B","8:00","8:45"],["619","9:30","10:10"],["620B","11:30","12:10"],["619","13:00","13:40"],["619B","15:00","15:40"],["619","17:00","17:40"],["620","19:00","19:40"],["620B","20:30","21:10"],["619","22:00","22:40"]],
 toZ:[["620B","8:45","9:30"],["619B","10:50","11:30"],["620","12:15","12:55"],["619","14:20","15:00"],["619B","16:20","17:00"],["619","18:20","19:00"],["620B","19:40","20:25"],["620","21:15","21:55"],["619","23:20","0:00"]]}};
 // off = minutes after the listed time. Av. Navarra is the 2nd stop after Mª Agustín; +3 is a cautious estimate.
-const STOPS={toZ:[{n:"Plaza Fueros de Aragón",lat:41.7664374,lng:-1.126042,off:0},{n:"C/ Mayor esq. Fernando el Católico",lat:41.7692772,lng:-1.1195697,off:0}],
-toA:[{n:"Pº María Agustín, 50",lat:41.6536809,lng:-0.8925917,off:0},{n:"Av. Navarra, 54",lat:41.6556185,lng:-0.9064294,off:3}]};
+// Renfe Data GTFS, updated 2026-11-02. m = runs on day N from 2026-11-02 to 2026-12-12
+const TRAIN_BASE=Date.UTC(2026,10,2);
+const TRAINS=[{"n":"16020","d":"toZ","t":{"Alagón":"11:15","Delicias":"11:35","Portillo":"11:38","Goya":"11:40","Miraflores":"11:43"},"m":"00000110000011000001100000110000011000001"},{"n":"16070","d":"toZ","t":{"Alagón":"18:56","Delicias":"19:17","Portillo":"19:20","Goya":"19:22","Miraflores":"19:26"},"m":"10001110000111000011100001110000111110011"},{"n":"18019","d":"toA","t":{"Miraflores":"9:17","Goya":"9:20","Portillo":"9:22","Delicias":"9:26","Alagón":"9:41"},"m":"11111001111100111110011111001111100111110"},{"n":"18021","d":"toA","t":{"Miraflores":"12:58","Goya":"13:01","Portillo":"13:03","Delicias":"13:07","Alagón":"13:26"},"m":"11111111111111111111111111111111111111111"},{"n":"18022","d":"toZ","t":{"Alagón":"20:41","Delicias":"21:00","Portillo":"21:11","Goya":"21:13","Miraflores":"21:16"},"m":"10000010000001000000100000010000000010000"},{"n":"18023","d":"toA","t":{"Miraflores":"16:43","Goya":"16:46","Portillo":"16:48","Delicias":"16:52","Alagón":"17:06"},"m":"11111001111100111110011111001111100111110"},{"n":"18029","d":"toZ","t":{"Alagón":"18:47","Delicias":"19:10","Portillo":"19:13","Goya":"19:15","Miraflores":"19:20"},"m":"11111111111111111111111111111111111111111"},{"n":"18048","d":"toZ","t":{"Alagón":"15:11","Delicias":"15:27","Portillo":"15:30","Goya":"15:32","Miraflores":"15:35"},"m":"11111001111100111110011111001111100111110"},{"n":"18068","d":"toZ","t":{"Alagón":"6:54","Delicias":"7:16","Portillo":"7:19","Goya":"7:21","Miraflores":"7:25"},"m":"11111000011100001110000111000011100001110"},{"n":"18071","d":"toA","t":{"Miraflores":"5:55","Goya":"5:58","Portillo":"6:00","Delicias":"6:06","Alagón":"6:25"},"m":"11111101111110111111011111101111110111111"},{"n":"18072","d":"toZ","t":{"Alagón":"8:06","Delicias":"8:43","Portillo":"8:47","Goya":"8:51","Miraflores":"8:55"},"m":"11111001111100111110011111001111100111110"},{"n":"18073","d":"toA","t":{"Miraflores":"14:30","Goya":"14:33","Portillo":"14:36","Delicias":"14:43","Alagón":"15:00"},"m":"11111111111111111111111111111111111111111"},{"n":"18074","d":"toZ","t":{"Alagón":"9:38","Delicias":"9:57","Portillo":"10:00","Goya":"10:02","Miraflores":"10:05"},"m":"11111111111111111111111111111111111111110"},{"n":"18075","d":"toA","t":{"Miraflores":"17:32","Goya":"17:35","Portillo":"17:37","Delicias":"17:42","Alagón":"17:59"},"m":"11111111111111111111111111111111111111111"},{"n":"18076","d":"toZ","t":{"Alagón":"16:55","Delicias":"17:12","Portillo":"17:15","Goya":"17:17","Miraflores":"17:20"},"m":"11111111111111111111111111111111111111111"},{"n":"18077","d":"toA","t":{"Miraflores":"19:34","Goya":"19:37","Portillo":"19:39","Delicias":"19:43","Alagón":"20:02"},"m":"11111000011100001110000111000011100001110"},{"n":"18078","d":"toZ","t":{"Alagón":"22:42","Delicias":"23:01","Portillo":"23:04","Goya":"23:06","Miraflores":"23:09"},"m":"11111111111111111111111111111111111111111"},{"n":"18079","d":"toA","t":{"Miraflores":"21:00","Goya":"21:03","Portillo":"21:05","Delicias":"21:09","Alagón":"21:26"},"m":"11111111111111111111111111111111111111111"}];
+const STOPS={toZ:[{n:"Plaza Fueros de Aragón",lat:41.7664374,lng:-1.126042,off:0,mode:"bus"},{n:"C/ Mayor esq. Fernando el Católico",lat:41.7692772,lng:-1.1195697,off:0,mode:"bus"},{n:"Estación de Alagón",k:"Alagón",lat:41.771422,lng:-1.112771,mode:"train"}],
+toA:[{n:"Pº María Agustín, 50",lat:41.6536809,lng:-0.8925917,off:0,mode:"bus"},{n:"Av. Navarra, 54",lat:41.6556185,lng:-0.9064294,off:3,mode:"bus"},{n:"Estación Zaragoza-Delicias",k:"Delicias",lat:41.6586576,lng:-0.9112693,mode:"train"},{n:"Estación Zaragoza-Portillo",k:"Portillo",lat:41.6527361,lng:-0.8958759,mode:"train"},{n:"Estación Zaragoza-Goya",k:"Goya",lat:41.6438779,lng:-0.8912574,mode:"train"},{n:"Estación Zaragoza-Miraflores",k:"Miraflores",lat:41.6334311,lng:-0.8681653,mode:"train"}]};
 const NAME={toZ:"Alagón → Zaragoza",toA:"Zaragoza → Alagón"},FAR_M=3500;
 const $=id=>document.getElementById(id);
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
@@ -114,44 +119,43 @@ const fmt=m=>{m=((m%1440)+1440)%1440;return Math.floor(m/60)+":"+String(m%60).pa
 const dur=m=>m<60?m+" min":Math.floor(m/60)+" h"+(m%60?" "+(m%60)+" min":"");
 function dist(a,b){const R=6371e3,r=Math.PI/180,x=(b.lat-a.lat)*r,y=(b.lng-a.lng)*r,h=Math.sin(x/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
 
-function buses(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=new Date(today.getTime()+864e5),t0=S.override||dayType(today);
-  const mk=(tp,add,tag)=>T[tp][S.dir].map(([l,d,a])=>({line:l,dep:toMin(d)+add,arr:toMin(a)+add+(toMin(a)<toMin(d)?1440:0),tag}));
-  return{list:[...mk(t0,0,""),...mk(dayType(tom),1440,"mañana")],today,t0}}
-function plan(b,now){ // pick the stop that lets you leave latest for this bus
-  if(!S.walk)return{leave:b.dep,stop:null,walk:null};
-  let best=null;STOPS[S.dir].forEach((s,i)=>{const w=S.walk[S.dir][i].min,leave=b.dep+s.off-w-S.margin;if(!best||leave>best.leave)best={leave,stop:s,walk:w,meth:S.walk[S.dir][i].meth,i}});return best}
+function services(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=new Date(today.getTime()+864e5),t0=S.override||dayType(today);
+  const bus=(tp,add,tag)=>T[tp][S.dir].map(([l,d,a])=>({mode:"bus",line:"Bus "+l,dep:toMin(d)+add,arr:toMin(a)+add+(toMin(a)<toMin(d)?1440:0),tag}));
+  const train=(day,add,tag)=>{const i=Math.round((day.getTime()-TRAIN_BASE)/864e5);return TRAINS.filter(x=>x.d===S.dir&&x.m[i]==="1").map(x=>{const times={};for(const k in x.t)times[k]=toMin(x.t[k])+add;return{mode:"train",line:"Tren "+x.n,times,arr:times[S.dir==="toZ"?"Delicias":"Alagón"],arrAt:S.dir==="toZ"?"Delicias":"Alagón",tag}})};
+  return{list:[...bus(t0,0,""),...bus(dayType(tom),1440,"mañana"),...train(today,0,""),...train(tom,1440,"mañana")],today,t0}}
+function plan(b,walks){let best=null;STOPS[S.dir].forEach((s,i)=>{if(s.mode!==b.mode)return;const dep=b.mode==="bus"?b.dep+s.off:b.times[s.k];if(dep==null)return;const w=walks?walks[i]:null,leave=w?dep-w.min-S.margin:dep;if(!best||(walks&&leave>best.leave))best={leave,dep,stop:s,walk:w?w.min:null,meth:w?w.meth:null}});return best}
 const nearby=()=>S.walk&&S.walk[S.dir]&&S.walk[S.dir].some(w=>w.m<=FAR_M);
+const arrText=x=>x.mode==="train"?"llega a "+x.arrAt+" a las "+fmt(x.arr):"llega a las "+fmt(x.arr);
 
-function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=buses(n);
+function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=services(n);
   $("route").textContent=NAME[S.dir];$("swap").textContent="⇄ Invertir";
-  const useWalk=nearby();
-  const saved=S.walk;if(!useWalk)S.walk=null;
-  const fut=list.map(b=>({...b,p:plan(b,now)}));S.walk=saved;
+  const useWalk=nearby(),walks=useWalk?S.walk[S.dir]:null;
+  const fut=list.map(b=>({...b,p:plan(b,walks)})).sort((a,b)=>a.p.dep-b.p.dep);
   const i=fut.findIndex(b=>b.p.leave>=now),h=fut[i];
-  $("heroLab").textContent=useWalk?"Próximo que puedes coger":"Próximo autobús";
-  $("time").textContent=fmt(h.dep+(h.p.stop?h.p.stop.off:0));
+  $("heroLab").textContent=useWalk?"Próximo que puedes coger":"Próximo transporte";
+  $("time").textContent=fmt(h.p.dep);
   $("line").textContent=h.line;
-  $("arr").textContent=(h.tag?h.tag+", ":"")+"llega a las "+fmt(h.arr);
+  $("arr").textContent=(h.tag?h.tag+", ":"")+arrText(h);
   if(useWalk){const wait=h.p.leave-now;$("go").textContent=wait<=0?"Sal ahora":"Sal en "+dur(wait)+", a las "+fmt(h.p.leave);
     $("detail").textContent=dur(h.p.walk)+(h.p.meth==="route"?"":" (aprox.)")+" a pie hasta "+h.p.stop.n+". Margen: "+S.margin+" min.";
-  }else{const w=h.dep-now;$("go").textContent="En "+dur(w);$("detail").textContent="Sale de "+STOPS[S.dir][0].n+". No incluye el tiempo a pie."}
-  // a bus still ahead but too close to walk to
+  }else{$("go").textContent="En "+dur(h.p.dep-now);$("detail").textContent="Sale de "+h.p.stop.n+". No incluye el tiempo a pie."}
   const r=$("run");r.hidden=true;
-  if(useWalk&&i>0){const m=fut[i-1],c=m.p.stop;if(c&&m.dep+c.off>=now){const t=m.dep+c.off-now;const run=Math.ceil(m.p.walk*.6);r.hidden=false;
-    r.textContent=run<=t?`Puedes coger el de las ${fmt(m.dep+c.off)} (${m.line}) si corres: sale en ${dur(t)}.`:`Ya no llegas al de las ${fmt(m.dep+c.off)} (${m.line}).`}}
-  // notes
+  if(useWalk&&i>0){const m=fut[i-1];if(m.p.dep>=now){const t=m.p.dep-now,run=Math.ceil(m.p.walk*.6);r.hidden=false;
+    r.textContent=run<=t?`Puedes coger el de las ${fmt(m.p.dep)} (${m.line}) si corres: sale en ${dur(t)}.`:`Ya no llegas al de las ${fmt(m.p.dep)} (${m.line}).`}}
   const nt=$("note"),msgs=[];const lh=localHoliday(today);
-  if(lh)msgs.push(`Hoy es festivo local en ${lh}. El horario puede cambiar: compruébalo en la parada o con CTAZ.`);
-  if(S.loc==="denied")msgs.push("La ubicación no está disponible. Elige dónde estás para ver el próximo autobús.");
+  if(lh)msgs.push(`Hoy es festivo local en ${lh}. El horario de autobús puede cambiar: compruébalo en la parada o con CTAZ.`);
+  if(today.getTime()>=TRAIN_BASE+41*864e5)msgs.push("Los horarios de tren ya no están disponibles aquí. Solo se muestran los autobuses.");
+  if(S.loc==="denied")msgs.push("La ubicación no está disponible. Elige dónde estás para ver el próximo transporte.");
   if(S.loc==="error")msgs.push("No se ha podido obtener tu ubicación. Elige tu municipio o inténtalo de nuevo.");
   if(S.loc==="far")msgs.push(`Estás lejos de las paradas: ${Math.round(S.far/1000)} km hasta la más cercana. Se muestra el horario sin el tiempo a pie.`);
   nt.textContent=msgs.join(" ");nt.hidden=!msgs.length;
   $("places").hidden=!(S.loc==="denied"||S.loc==="error");
   const b=$("locate");b.textContent=S.loc==="loading"?"Localizando…":"Dónde estoy / Actualizar";b.disabled=S.loc==="loading";
-  const st=h.p.stop||STOPS[S.dir][0];
+  const st=h.p.stop;
   $("maps").href="https://www.google.com/maps/dir/?api=1"+(S.pos?`&origin=${S.pos.lat},${S.pos.lng}`:"")+`&destination=${st.lat},${st.lng}&travelmode=walking`;
-  $("list").innerHTML=fut.slice(i+1,i+5).map(x=>{const o=x.p.stop?x.p.stop.off:0;return `<li><b>${fmt(x.dep+o)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+", ":""}llega a las ${fmt(x.arr)}</span></li>`}).join("");
-  $("dayt").textContent="Hoy: "+(t0==="fest"?"horario de domingos y festivos":"horario de lunes a sábado")+".";
+  $("adif").hidden=h.mode!=="train";
+  $("list").innerHTML=fut.slice(i+1,i+6).map(x=>`<li><b>${fmt(x.p.dep)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+", ":""}${arrText(x)}</span></li>`).join("");
+  $("dayt").textContent="Autobús hoy: "+(t0==="fest"?"domingos y festivos":"lunes a sábado")+".";
   $("flip").textContent=t0==="fest"?"Ver lunes a sábado":"Ver domingos y festivos";
   $("margin").value=String(S.margin);
 }
