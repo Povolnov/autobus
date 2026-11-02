@@ -10,8 +10,9 @@ export default {
     }
     const ip = request.headers.get("CF-Connecting-IP") || "";
     const country = request.cf?.country || "";
+    const city = request.cf?.city || "";
     ctx.waitUntil(env.DB.batch([
-      env.DB.prepare("INSERT INTO visits (ip, country) VALUES (?, ?)").bind(ip, country),
+      env.DB.prepare("INSERT INTO visits (ip, country, city) VALUES (?, ?, ?)").bind(ip, country, city),
       env.DB.prepare("DELETE FROM visits WHERE ts < datetime('now', '-90 days')"),
     ]));
     return new Response(null, { status: 204, headers: cors });
