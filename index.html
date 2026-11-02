@@ -39,6 +39,7 @@ h2{margin:6px 0 0;font:500 1.1rem/1.2 var(--display);letter-spacing:.02em}
 ul{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px}
 li{display:grid;grid-template-columns:3.6rem 5.2rem 1fr;gap:6px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
 li:first-child{border-top:0}
+li .st{grid-column:1/-1;color:var(--muted);font-size:.84rem}
 li b{font:500 1.25rem/1 var(--display)}
 li span{min-width:0}
 li .r{text-align:right;color:var(--muted);font-size:.9rem}
@@ -52,6 +53,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <section class="board" aria-live="polite">
     <div class="lab" id="heroLab"></div>
     <div class="timerow"><div class="time" id="time"></div><div class="meta"><span class="chip" id="line"></span><span id="arr"></span></div></div>
+    <div class="detail" id="allst" hidden></div>
     <div class="go" id="go"></div>
     <div class="detail" id="detail"></div>
     <div class="run" id="run" hidden></div>
@@ -65,7 +67,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span>Versión 1.1</span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span>Versión 1.2</span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
@@ -125,6 +127,9 @@ function services(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=
   return{list:[...bus(t0,0,""),...bus(dayType(tom),1440,"mañana"),...train(today,0,""),...train(tom,1440,"mañana")],today,t0}}
 function plan(b,walks){let best=null;STOPS[S.dir].forEach((s,i)=>{if(s.mode!==b.mode)return;const dep=b.mode==="bus"?b.dep+s.off:b.times[s.k];if(dep==null)return;const w=walks?walks[i]:null,leave=w?dep-w.min-S.margin:dep;if(!best||(walks&&leave>best.leave))best={leave,dep,stop:s,walk:w?w.min:null,meth:w?w.meth:null}});return best}
 const nearby=()=>S.walk&&S.walk[S.dir]&&S.walk[S.dir].some(w=>w.m<=FAR_M);
+const ZST=["Delicias","Portillo","Goya","Miraflores"];
+const allStops=x=>ZST.map(k=>k+" "+fmt(x.times[k])).join(" · ");
+const showAll=x=>x.mode==="train"&&S.dir==="toZ";
 const arrText=x=>x.mode==="train"?"llega a "+x.arrAt+" a las "+fmt(x.arr):"llega a las "+fmt(x.arr);
 
 function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=services(n);
@@ -135,7 +140,8 @@ function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=servic
   $("heroLab").textContent=useWalk?"Próximo que puedes coger":"Próximo transporte";
   $("time").textContent=fmt(h.p.dep);
   $("line").textContent=h.line;
-  $("arr").textContent=(h.tag?h.tag+", ":"")+arrText(h);
+  $("arr").textContent=h.tag&&showAll(h)?h.tag:showAll(h)?"":(h.tag?h.tag+", ":"")+arrText(h);
+  $("allst").hidden=!showAll(h);if(showAll(h))$("allst").textContent="Llega a: "+allStops(h);
   if(useWalk){const wait=h.p.leave-now;$("go").textContent=wait<=0?"Sal ahora":"Sal en "+dur(wait)+", a las "+fmt(h.p.leave);
     $("detail").textContent=dur(h.p.walk)+(h.p.meth==="route"?"":" (aprox.)")+" a pie hasta "+h.p.stop.n+". Margen: "+S.margin+" min.";
   }else{$("go").textContent="En "+dur(h.p.dep-now);$("detail").textContent="Sale de "+h.p.stop.n+". No incluye el tiempo a pie."}
@@ -154,7 +160,7 @@ function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=servic
   const st=h.p.stop;
   $("maps").href="https://www.google.com/maps/dir/?api=1"+(S.pos?`&origin=${S.pos.lat},${S.pos.lng}`:"")+`&destination=${st.lat},${st.lng}&travelmode=walking`;
   $("adif").hidden=h.mode!=="train";
-  $("list").innerHTML=fut.slice(i+1,i+6).map(x=>`<li><b>${fmt(x.p.dep)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+", ":""}${arrText(x)}</span></li>`).join("");
+  $("list").innerHTML=fut.slice(i+1,i+6).map(x=>`<li><b>${fmt(x.p.dep)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+(showAll(x)?"":", "):""}${showAll(x)?"":arrText(x)}</span>${showAll(x)?`<span class="st">${allStops(x)}</span>`:""}</li>`).join("");
   $("dayt").textContent="Autobús hoy: "+(t0==="fest"?"domingos y festivos":"lunes a sábado")+".";
   $("flip").textContent=t0==="fest"?"Ver lunes a sábado":"Ver domingos y festivos";
   $("margin").value=String(S.margin);
