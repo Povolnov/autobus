@@ -18,6 +18,10 @@ button,a.btn{font:inherit;cursor:pointer;border-radius:10px;min-height:48px;disp
 .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:.9rem}
 .ver{flex:none;white-space:nowrap;font-size:clamp(.72rem,3.5vw,.9rem)}
 .upd{flex:1;min-width:0;text-align:center}
+.install{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.install p{margin:0;font-size:.95rem}
+.inst-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.inst-x{min-height:36px;width:36px;padding:0;background:none;border:0;color:var(--muted);font-size:1.4rem;line-height:1}
 .info-btn{width:44px;min-height:44px;padding:0;flex:none;border-radius:50%;background:var(--surface);color:var(--accent);border:1px solid var(--line);font:600 1.15rem/1 Georgia,serif}
 .copy{white-space:nowrap;font-size:clamp(.68rem,3.5vw,.95rem)}
 .info{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.95rem}
@@ -67,12 +71,17 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="places" id="places" hidden><button type="button" data-d="toZ">Estoy en Alagón</button><button type="button" data-d="toA">Estoy en Zaragoza</button></div>
   <div class="actions"><button class="primary" id="locate" type="button">Dónde estoy / Actualizar</button><a class="btn ghost" id="maps" target="_blank" rel="noopener">Ruta en Google Maps</a></div>
   <a class="btn ghost" id="adif" href="https://www.adif.es/" target="_blank" rel="noopener" hidden>Comprobar retraso del tren en Adif</a>
+  <div class="install" id="install" hidden>
+    <div class="inst-row"><strong>Tenla siempre a mano</strong><button class="inst-x" id="instX" type="button" aria-label="Cerrar">×</button></div>
+    <p id="instT"></p>
+    <button class="primary" id="instB" type="button" hidden>Instalar la app</button>
+  </div>
   <h2>Próximos autobuses y trenes</h2>
   <ul id="list"></ul>
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span class="ver">v. 2.2</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span class="ver">v. 2.3</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
@@ -208,5 +217,18 @@ const showTrainInfo=()=>{const[y,m,d]=TRAIN_UPDATED.split("-").map(Number);$("up
 async function loadTrains(){try{const r=await fetch("trains.json",{cache:"no-cache"});if(!r.ok)return;const j=await r.json();if(!Array.isArray(j.trains)||!j.trains.length||!j.base)return;const[y,m,d]=j.base.split("-").map(Number);TRAINS=j.trains;TRAIN_BASE=Date.UTC(y,m-1,d);TRAIN_DAYS=j.days;TRAIN_UPDATED=j.updated;showTrainInfo();render()}catch(e){}}
 showTrainInfo();render();setInterval(render,20000);locate();
 if("serviceWorker" in navigator){const had=!!navigator.serviceWorker.controller;let done=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(had&&!done){done=true;location.reload()}});navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{})}loadTrains();
+let installEvent=null;
+function setupInstall(){const box=$("install"),text=$("instT"),btn=$("instB"),ua=navigator.userAgent;
+  if(openMode==="app"||store.get("installHidden")){box.hidden=true;return}
+  const ios=/iphone|ipad|ipod/i.test(ua),android=/android/i.test(ua),chromeLike=/chrome|crios|samsungbrowser/i.test(ua)&&!/; wv\)/i.test(ua);
+  if(installEvent){text.textContent="Instálala y ábrela con un toque desde la pantalla de inicio.";btn.hidden=false;box.hidden=false}
+  else if(ios){text.textContent=/crios|fxios/i.test(ua)?"Ábrela en Safari, pulsa Compartir y después «Añadir a pantalla de inicio».":"Pulsa Compartir y después «Añadir a pantalla de inicio».";btn.hidden=true;box.hidden=false}
+  else if(android){text.textContent=chromeLike?"Pulsa los tres puntos (⋮), arriba a la derecha, y después «Instalar aplicación».":"Ábrela en Chrome, pulsa los tres puntos (⋮) y después «Instalar aplicación».";btn.hidden=true;box.hidden=false}
+  else box.hidden=true}
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installEvent=e;setupInstall()});
+window.addEventListener("appinstalled",()=>{store.set("installHidden","1");$("install").hidden=true});
+$("instB").onclick=async()=>{if(!installEvent)return;const ev=installEvent;installEvent=null;ev.prompt();try{const r=await ev.userChoice;if(r.outcome!=="accepted")setupInstall()}catch(e){}};
+$("instX").onclick=()=>{store.set("installHidden","1");$("install").hidden=true};
+setupInstall();
 </script>
 </body></html>
