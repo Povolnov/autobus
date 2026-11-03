@@ -72,7 +72,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span class="ver">v. 2.0</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span class="ver">v. 2.1</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
@@ -86,7 +86,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
     <h2>Aviso</h2>
     <p>Aplicación no oficial, sin vínculo con CTAZ, Lazo ni el Ayuntamiento de Alagón. Autobuses según CTAZ, versión 08/2025. <span id="trainInfo">Trenes según Renfe.</span> Compruébalos antes de viajar.</p>
     <h2>Privacidad</h2>
-    <p>Para contar visitas y usuarios guardamos la fecha, la dirección IP, el país, la ciudad aproximada y un identificador anónimo creado en tu teléfono, durante 90 días. Para consultarlos o borrarlos, escribe a andres@idaa.uk.</p>
+    <p>Para contar visitas y usuarios guardamos la fecha, la dirección IP, el país, la ciudad aproximada, un identificador anónimo creado en tu teléfono y si la abres como aplicación o en el navegador, durante 90 días. Para consultarlos o borrarlos, escribe a andres@idaa.uk.</p>
     <p>La temperatura se consulta en Open-Meteo con las coordenadas del municipio, no con las tuyas.</p>
     <p>Tu ubicación no se guarda. Se usa en tu teléfono y se envía a OpenStreetMap solo para calcular el tiempo a pie.</p>
     <h2>Créditos</h2>
@@ -197,7 +197,8 @@ function locate(){if(!navigator.geolocation){S.loc="denied";render();return}
 $("locate").onclick=locate;
 $("infoBtn").onclick=()=>{const i=$("info");i.hidden=!i.hidden;$("infoBtn").setAttribute("aria-expanded",String(!i.hidden));if(!i.hidden)i.scrollIntoView({behavior:"smooth",block:"start"})};
 const LOG_URL="https://autobus-visits.povolnov.workers.dev/";function deviceId(){let id=store.get("device");if(!id&&crypto.randomUUID){id=crypto.randomUUID();store.set("device",id)}return id||""}
-if(LOG_URL)fetch(LOG_URL,{method:"POST",mode:"cors",keepalive:true,headers:{"Content-Type":"text/plain"},body:deviceId()}).catch(()=>{});
+const openMode=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone?"app":"web";
+if(LOG_URL)fetch(LOG_URL+"?mode="+openMode,{method:"POST",mode:"cors",keepalive:true,headers:{"Content-Type":"text/plain"},body:deviceId()}).catch(()=>{});
 $("swap").onclick=()=>{S.dir=S.dir==="toZ"?"toA":"toZ";render()};
 $("places").onclick=e=>{const d=e.target.dataset.d;if(d){S.dir=d;render()}};
 $("flip").onclick=()=>{const n=madrid(),cur=S.override||dayType(new Date(Date.UTC(n.year,n.month-1,n.day)));S.override=cur==="fest"?"lab":"fest";render()};

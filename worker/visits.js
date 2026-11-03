@@ -25,8 +25,10 @@ export default {
     const city = request.cf?.city || "";
     const body = (await request.text()).trim();
     const device = /^[0-9a-f-]{36}$/i.test(body) ? body.toLowerCase() : "";
+    const requested = new URL(request.url).searchParams.get("mode");
+    const mode = requested === "app" || requested === "web" ? requested : "";
     ctx.waitUntil(env.DB.batch([
-      env.DB.prepare("INSERT INTO visits (ip, country, city, device_id) VALUES (?, ?, ?, ?)").bind(ip, country, city, device),
+      env.DB.prepare("INSERT INTO visits (ip, country, city, device_id, open_mode) VALUES (?, ?, ?, ?, ?)").bind(ip, country, city, device, mode),
       env.DB.prepare("DELETE FROM visits WHERE ts < datetime('now', '-90 days')"),
     ]));
     return new Response(null, { status: 204, headers: cors });
