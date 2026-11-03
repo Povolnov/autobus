@@ -22,6 +22,8 @@ button,a.btn{font:inherit;cursor:pointer;border-radius:10px;min-height:48px;disp
 .swap{flex:none;background:var(--surface);color:var(--fg);border:1px solid var(--line);font-weight:500}
 .board{background:var(--board);color:var(--board-fg);border-radius:14px;padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px}
 .lab{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--board-muted)}
+.toprow{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.temp{flex:none;font:500 1.15rem/1.1 var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
 .timerow{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
 .time{font:600 clamp(3.8rem,20vw,6rem)/1 var(--display);color:var(--amber);font-variant-numeric:tabular-nums}
 .meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding-bottom:8px;font-size:.92rem}
@@ -51,7 +53,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
 <main>
   <div class="route"><img class="flag" src="flag.png" alt="Bandera de Alagón" width="48" height="32" onerror="this.hidden=true"><h1 id="route"></h1><button class="swap" id="swap" type="button">⇄ Invertir</button></div>
   <section class="board" aria-live="polite">
-    <div class="lab" id="heroLab"></div>
+    <div class="toprow"><div class="lab" id="heroLab"></div><div class="temp" id="temp" hidden></div></div>
     <div class="timerow"><div class="time" id="time"></div><div class="meta"><span class="chip" id="line"></span><span id="arr"></span></div></div>
     <div class="detail" id="allst" hidden></div>
     <div class="go" id="go"></div>
@@ -67,7 +69,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span>Versión 1.4</span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span>Versión 1.5</span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
@@ -82,9 +84,11 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
     <p>Aplicación no oficial, sin vínculo con CTAZ, Lazo ni el Ayuntamiento de Alagón. Autobuses según CTAZ, versión 08/2025. <span id="trainInfo">Trenes según Renfe.</span> Compruébalos antes de viajar.</p>
     <h2>Privacidad</h2>
     <p>Para contar visitas y usuarios guardamos la fecha, la dirección IP, el país, la ciudad aproximada y un identificador anónimo creado en tu teléfono, durante 90 días. Para consultarlos o borrarlos, escribe a andres@idaa.uk.</p>
+    <p>La temperatura se consulta en Open-Meteo con las coordenadas del municipio, no con las tuyas.</p>
     <p>Tu ubicación no se guarda. Se usa en tu teléfono y se envía a OpenStreetMap solo para calcular el tiempo a pie.</p>
     <h2>Créditos</h2>
     <p>Horarios de tren: <a href="https://data.renfe.com/dataset/horarios-de-alta-velocidad-larga-distancia-y-media-distancia" target="_blank" rel="noopener">Renfe Data</a>, CC BY 4.0.</p>
+    <p>Temperatura: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, CC BY 4.0.</p>
     <p>Bandera: <a href="https://commons.wikimedia.org/wiki/File:Bandera_de_Alag%C3%B3n-Zaragoza.svg" target="_blank" rel="noopener">Ecelan, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.es" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p>
     <p>© International Digital Asset Association (IDAA)</p>
   </section>
@@ -123,6 +127,13 @@ const dur=m=>m<60?m+" min":Math.floor(m/60)+" h"+(m%60?" "+(m%60)+" min":"");
 function dist(a,b){const R=6371e3,r=Math.PI/180,x=(b.lat-a.lat)*r,y=(b.lng-a.lng)*r,h=Math.sin(x/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
 
 const arrAt=x=>x.d==="toA"?"Alagón":ZST.find(k=>x.t[k]);
+const TOWNS={toZ:{n:"Alagón",lat:41.77,lng:-1.12},toA:{n:"Zaragoza",lat:41.65,lng:-0.89}};
+const tempCache={};
+function townNow(){return TOWNS[S.dir]}
+function showTemp(){const t=townNow(),c=tempCache[t.n],el=$("temp");el.hidden=!(c&&S.loc!=="far");if(c)el.textContent=t.n+" "+c.v+"°"}
+async function loadTemp(){const t=townNow(),c=tempCache[t.n];if(c&&Date.now()-c.at<18e5){showTemp();return}
+  try{const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${t.lat}&longitude=${t.lng}&current=temperature_2m&timezone=Europe%2FMadrid`);const j=await r.json();const v=j.current&&j.current.temperature_2m;if(typeof v==="number")tempCache[t.n]={v:Math.round(v),at:Date.now()}}catch(e){}
+  showTemp()}
 function services(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=new Date(today.getTime()+864e5),t0=S.override||dayType(today);
   const bus=(tp,add,tag)=>T[tp][S.dir].map(([l,d,a])=>({mode:"bus",line:"Bus "+l,dep:toMin(d)+add,arr:toMin(a)+add+(toMin(a)<toMin(d)?1440:0),tag}));
   const train=(day,add,tag)=>{const i=Math.round((day.getTime()-TRAIN_BASE)/864e5);return TRAINS.filter(x=>x.d===S.dir&&x.m[i]==="1").map(x=>{const times={};for(const k in x.t)times[k]=toMin(x.t[k])+add;return{mode:"train",line:"Tren "+x.n,times,arr:times[arrAt(x)],arrAt:arrAt(x),tag}})};
@@ -165,6 +176,7 @@ function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=servic
   $("dayt").textContent="Autobús hoy: "+(t0==="fest"?"domingos y festivos":"lunes a sábado")+".";
   $("flip").textContent=t0==="fest"?"Ver lunes a sábado":"Ver domingos y festivos";
   $("margin").value=String(S.margin);
+  showTemp();loadTemp();
 }
 async function walkTo(p,s){const m=dist(p,s),approx={min:Math.max(1,Math.ceil(m*1.3/80)),m,meth:"approx"};
   if(m>FAR_M)return approx;
