@@ -27,8 +27,10 @@ export default {
     const device = /^[0-9a-f-]{36}$/i.test(body) ? body.toLowerCase() : "";
     const requested = new URL(request.url).searchParams.get("mode");
     const mode = requested === "app" || requested === "web" ? requested : "";
+    const agent = request.headers.get("User-Agent") || "";
+    const platform = /android/i.test(agent) ? "android" : /iphone|ipad|ipod/i.test(agent) ? "ios" : agent ? "desktop" : "";
     ctx.waitUntil(env.DB.batch([
-      env.DB.prepare("INSERT INTO visits (ip, country, city, device_id, open_mode) VALUES (?, ?, ?, ?, ?)").bind(ip, country, city, device, mode),
+      env.DB.prepare("INSERT INTO visits (ip, country, city, device_id, open_mode, platform) VALUES (?, ?, ?, ?, ?, ?)").bind(ip, country, city, device, mode, platform),
       env.DB.prepare("DELETE FROM visits WHERE ts < datetime('now', '-90 days')"),
     ]));
     return new Response(null, { status: 204, headers: cors });
