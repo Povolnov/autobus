@@ -26,8 +26,8 @@ button,a.btn{font:inherit;cursor:pointer;border-radius:10px;min-height:48px;disp
 .temp{flex:none;font:500 1.15rem/1.1 var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
 .timerow{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
 .time{font:600 clamp(3.8rem,20vw,6rem)/1 var(--display);color:var(--amber);font-variant-numeric:tabular-nums}
-.meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding-bottom:8px;font-size:.92rem}
-.chip{font:600 1.05rem/1 var(--display);border:1.5px solid var(--board-muted);border-radius:6px;padding:4px 8px}
+.meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-bottom:8px;font-size:.92rem;min-width:0;text-align:right}
+.chip{font:600 1.6rem/1.05 var(--display);border:2px solid var(--board-muted);border-radius:8px;padding:6px 10px;text-align:center}
 .go{font:500 1.5rem/1.2 var(--display);margin-top:6px}
 .detail{color:var(--board-muted);font-size:.95rem}
 .run{color:var(--amber);font-size:.92rem;margin-top:4px}
@@ -69,7 +69,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span>Versión 1.5</span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span>Versión 1.6 · <span id="updated"></span></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
@@ -202,7 +202,7 @@ $("places").onclick=e=>{const d=e.target.dataset.d;if(d){S.dir=d;render()}};
 $("flip").onclick=()=>{const n=madrid(),cur=S.override||dayType(new Date(Date.UTC(n.year,n.month-1,n.day)));S.override=cur==="fest"?"lab":"fest";render()};
 $("margin").onchange=e=>{S.margin=+e.target.value;store.set("margin",S.margin);render()};
 const es=ms=>{const d=new Date(ms);return String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")+"/"+d.getUTCFullYear()};
-const showTrainInfo=()=>{const[y,m,d]=TRAIN_UPDATED.split("-").map(Number);$("trainInfo").textContent=`Trenes según Renfe, actualizados el ${es(Date.UTC(y,m-1,d))} y disponibles hasta el ${es(TRAIN_BASE+(TRAIN_DAYS-1)*864e5)}.`};
+const showTrainInfo=()=>{const[y,m,d]=TRAIN_UPDATED.split("-").map(Number);$("updated").textContent="Horario de trenes actualizado: "+es(Date.UTC(y,m-1,d));$("trainInfo").textContent=`Trenes según Renfe, actualizados el ${es(Date.UTC(y,m-1,d))} y disponibles hasta el ${es(TRAIN_BASE+(TRAIN_DAYS-1)*864e5)}.`};
 async function loadTrains(){try{const r=await fetch("trains.json",{cache:"no-cache"});if(!r.ok)return;const j=await r.json();if(!Array.isArray(j.trains)||!j.trains.length||!j.base)return;const[y,m,d]=j.base.split("-").map(Number);TRAINS=j.trains;TRAIN_BASE=Date.UTC(y,m-1,d);TRAIN_DAYS=j.days;TRAIN_UPDATED=j.updated;showTrainInfo();render()}catch(e){}}
 showTrainInfo();render();setInterval(render,20000);locate();
 if("serviceWorker" in navigator){const had=!!navigator.serviceWorker.controller;let done=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(had&&!done){done=true;location.reload()}});navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{})}loadTrains();
