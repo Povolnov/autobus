@@ -131,7 +131,9 @@ const TOWNS={toZ:{n:"Alagón",lat:41.77,lng:-1.12},toA:{n:"Zaragoza",lat:41.65,l
 const tempCache={};
 function townNow(){return TOWNS[S.dir]}
 function showTemp(){const t=townNow(),c=tempCache[t.n],el=$("temp");el.hidden=!(c&&S.loc!=="far");if(c)el.textContent=t.n+" "+c.v+"°"}
-async function loadTemp(){const t=townNow(),c=tempCache[t.n];if(c&&Date.now()-c.at<18e5){showTemp();return}
+const tempTry={};
+async function loadTemp(){const t=townNow(),c=tempCache[t.n];if((c&&Date.now()-c.at<18e5)||Date.now()-(tempTry[t.n]||0)<3e5){showTemp();return}
+  tempTry[t.n]=Date.now();
   try{const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${t.lat}&longitude=${t.lng}&current=temperature_2m&timezone=Europe%2FMadrid`);const j=await r.json();const v=j.current&&j.current.temperature_2m;if(typeof v==="number")tempCache[t.n]={v:Math.round(v),at:Date.now()}}catch(e){}
   showTemp()}
 function services(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=new Date(today.getTime()+864e5),t0=S.override||dayType(today);
