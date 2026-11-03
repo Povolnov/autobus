@@ -3,6 +3,18 @@ const ORIGIN = "https://povolnov.github.io";
 const cors = { "Access-Control-Allow-Origin": ORIGIN, "Access-Control-Allow-Methods": "POST", "Vary": "Origin" };
 
 export default {
+  async scheduled(event, env, ctx) {
+    const response = await fetch("https://api.github.com/repos/Povolnov/autobus/actions/workflows/update-trains.yml/dispatches", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${env.GITHUB_TOKEN}`,
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "autobus-visits",
+      },
+      body: JSON.stringify({ ref: "main" }),
+    });
+    if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+  },
   async fetch(request, env, ctx) {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
     if (request.method !== "POST" || request.headers.get("Origin") !== ORIGIN) {
