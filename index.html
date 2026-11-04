@@ -81,7 +81,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span class="ver">v. 2.3</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span class="ver">v. 2.4</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
@@ -146,6 +146,7 @@ async function loadTemp(){const t=townNow(),c=tempCache[t.n];if((c&&Date.now()-c
   tempTry[t.n]=Date.now();
   try{const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${t.lat}&longitude=${t.lng}&current=temperature_2m&timezone=Europe%2FMadrid`);const j=await r.json();const v=j.current&&j.current.temperature_2m;if(typeof v==="number")tempCache[t.n]={v:Math.round(v),at:Date.now()}}catch(e){}
   showTemp()}
+let ALERTS=[];
 function services(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=new Date(today.getTime()+864e5),t0=S.override||dayType(today);
   const bus=(tp,add,tag)=>T[tp][S.dir].map(([l,d,a])=>({mode:"bus",line:"Bus "+l,dep:toMin(d)+add,arr:toMin(a)+add+(toMin(a)<toMin(d)?1440:0),tag}));
   const train=(day,add,tag)=>{const i=Math.round((day.getTime()-TRAIN_BASE)/864e5);return TRAINS.filter(x=>x.d===S.dir&&x.m[i]==="1").map(x=>{const times={};for(const k in x.t)times[k]=toMin(x.t[k])+add;return{mode:"train",line:"Tren "+x.n,times,arr:times[arrAt(x)],arrAt:arrAt(x),tag}})};
@@ -172,7 +173,7 @@ function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=servic
   const r=$("run");r.hidden=true;
   if(useWalk&&i>0){const m=fut[i-1];if(m.p.dep>=now){const t=m.p.dep-now,run=Math.ceil(m.p.walk*.6);r.hidden=false;
     r.textContent=run<=t?`Puedes coger el de las ${fmt(m.p.dep)} (${m.line}) si corres: sale en ${dur(t)}.`:`Ya no llegas al de las ${fmt(m.p.dep)} (${m.line}).`}}
-  const nt=$("note"),msgs=[];const lh=localHoliday(today);
+  const nt=$("note"),msgs=[];const todayKey=today.toISOString().slice(0,10);ALERTS.filter(a=>a.date===todayKey&&a.text).forEach(a=>msgs.push(a.text));const lh=localHoliday(today);
   if(lh)msgs.push(`Hoy es festivo local en ${lh}. El horario de autobús puede cambiar: compruébalo en la parada o con CTAZ.`);
   if(today.getTime()>=TRAIN_BASE+TRAIN_DAYS*864e5)msgs.push("Los horarios de tren ya no están disponibles aquí. Solo se muestran los autobuses.");
   if(S.loc==="denied")msgs.push("La ubicación no está disponible. Elige dónde estás para ver el próximo transporte.");
@@ -217,6 +218,8 @@ const showTrainInfo=()=>{const[y,m,d]=TRAIN_UPDATED.split("-").map(Number);$("up
 async function loadTrains(){try{const r=await fetch("trains.json",{cache:"no-cache"});if(!r.ok)return;const j=await r.json();if(!Array.isArray(j.trains)||!j.trains.length||!j.base)return;const[y,m,d]=j.base.split("-").map(Number);TRAINS=j.trains;TRAIN_BASE=Date.UTC(y,m-1,d);TRAIN_DAYS=j.days;TRAIN_UPDATED=j.updated;showTrainInfo();render()}catch(e){}}
 showTrainInfo();render();setInterval(render,20000);locate();
 if("serviceWorker" in navigator){const had=!!navigator.serviceWorker.controller;let done=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(had&&!done){done=true;location.reload()}});navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{})}loadTrains();
+async function loadAlerts(){try{const r=await fetch("alerts.json",{cache:"no-cache"});if(!r.ok)return;const j=await r.json();if(Array.isArray(j.alerts)){ALERTS=j.alerts;render()}}catch(e){}}
+loadAlerts();
 let installEvent=null;
 function setupInstall(){const box=$("install"),text=$("instT"),btn=$("instB"),ua=navigator.userAgent;
   if(openMode==="app"||store.get("installHidden")){box.hidden=true;return}
