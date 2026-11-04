@@ -22,5 +22,10 @@ jobs:
           git add trains.json
           git diff --cached --quiet && exit 0
           git commit -m "Update train timetable"
-          git push
+          for attempt in 1 2 3; do
+            git push && break
+            [ "$attempt" = 3 ] && exit 1
+            sleep 30
+            git pull --rebase origin main
+          done
           gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
