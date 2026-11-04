@@ -184,7 +184,7 @@ function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=servic
   const b=$("locate");b.textContent=S.loc==="loading"?"Localizando…":"Dónde estoy / Actualizar";b.disabled=S.loc==="loading";
   const st=h.p.stop;
   $("maps").href="https://www.google.com/maps/dir/?api=1"+(S.pos?`&origin=${S.pos.lat},${S.pos.lng}`:"")+`&destination=${st.lat},${st.lng}&travelmode=walking`;
-  $("adif").hidden=h.mode!=="train";
+  $("adif").hidden=h.mode!=="train"&&!ALERTS.some(x=>x.date===todayKey);
   $("list").innerHTML=fut.slice(i+1,i+6).map(x=>`<li><b>${fmt(x.p.dep)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+(showAll(x)?"":", "):""}${showAll(x)?"":arrText(x)}</span>${showAll(x)?`<span class="st">${allStops(x)}</span>`:""}</li>`).join("");
   $("dayt").textContent="Autobús hoy: "+(t0==="fest"?"domingos y festivos":"lunes a sábado")+".";
   $("flip").textContent=t0==="fest"?"Ver lunes a sábado":"Ver domingos y festivos";
