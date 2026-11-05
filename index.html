@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Golos+Text:wght@400;500;600&display=swap">
 <style>
 /* Layout: one phone column; a departure board on top, the next buses below it */
-:root{--bg:#e9efec;--surface:#fff;--fg:#14282a;--muted:#55686a;--line:#cbd7d3;--board:#0f3d3e;--board-fg:#f3f7f4;--board-muted:#a9c4bf;--amber:#ffc247;--accent:#0b6b62;--warn:#8f4a00;--warn-bg:#fdf0dc;
+:root{--bg:#e9efec;--strong:#000;--surface:#fff;--fg:#14282a;--muted:#55686a;--line:#cbd7d3;--board:#0f3d3e;--board-fg:#f3f7f4;--board-muted:#a9c4bf;--amber:#ffc247;--accent:#0b6b62;--warn:#8f4a00;--warn-bg:#fdf0dc;
 --display:"Oswald","Arial Narrow",Impact,sans-serif;--body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1718;--surface:#172426;--fg:#e8f0ee;--muted:#9db0ad;--line:#2b3c3e;--board:#123f40;--accent:#5fd0c2;--warn:#ffc98a;--warn-bg:#35270f;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0d1718;--surface:#172426;--fg:#e8f0ee;--muted:#9db0ad;--line:#2b3c3e;--board:#123f40;--accent:#5fd0c2;--warn:#ffc98a;--warn-bg:#35270f;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1718;--strong:#fff;--surface:#172426;--fg:#e8f0ee;--muted:#9db0ad;--line:#2b3c3e;--board:#123f40;--accent:#5fd0c2;--warn:#ffc98a;--warn-bg:#35270f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1718;--strong:#fff;--surface:#172426;--fg:#e8f0ee;--muted:#9db0ad;--line:#2b3c3e;--board:#123f40;--accent:#5fd0c2;--warn:#ffc98a;--warn-bg:#35270f;color-scheme:dark}
 body{background:var(--bg);color:var(--fg);font:400 1rem/1.45 var(--body);padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 main{max-width:30rem;margin:0 auto;display:flex;flex-direction:column;gap:14px}
 button,a.btn{font:inherit;cursor:pointer;border-radius:10px;min-height:48px;display:flex;align-items:center;justify-content:center;text-decoration:none;padding:8px 14px;text-align:center}
@@ -49,7 +49,7 @@ ul{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid
 li{display:grid;grid-template-columns:3.4rem minmax(0,1fr) auto;gap:6px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
 li:first-child{border-top:0}
 ul{overflow:hidden}
-li.cur{background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+li.cur,li.cur .r{color:var(--strong)}
 li.cur b,li.cur .stop,li.cur .ln{font-weight:600}
 li .stop{font-weight:500;min-width:0}
 li .ln{white-space:nowrap;text-align:right}
@@ -87,7 +87,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span class="ver">v. 2.9</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span class="ver">v. 3.0</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
