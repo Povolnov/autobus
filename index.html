@@ -81,7 +81,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span class="ver">v. 2.4</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span class="ver">v. 2.5</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
@@ -178,7 +178,6 @@ function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=servic
   if(today.getTime()>=TRAIN_BASE+TRAIN_DAYS*864e5)msgs.push("Los horarios de tren ya no están disponibles aquí. Solo se muestran los autobuses.");
   if(S.loc==="denied")msgs.push("La ubicación no está disponible. Elige dónde estás para ver el próximo transporte.");
   if(S.loc==="error")msgs.push("No se ha podido obtener tu ubicación. Elige tu municipio o inténtalo de nuevo.");
-  if(S.loc==="far")msgs.push(`Estás lejos de las paradas: ${Math.round(S.far/1000)} km hasta la más cercana. Se muestra el horario sin el tiempo a pie.`);
   nt.textContent=msgs.join(" ");nt.hidden=!msgs.length;
   $("places").hidden=!(S.loc==="denied"||S.loc==="error");
   const b=$("locate");b.textContent=S.loc==="loading"?"Localizando…":"Dónde estoy / Actualizar";b.disabled=S.loc==="loading";
