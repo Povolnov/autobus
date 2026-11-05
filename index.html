@@ -46,9 +46,12 @@ button,a.btn{font:inherit;cursor:pointer;border-radius:10px;min-height:48px;disp
 .places button{background:var(--surface);color:var(--fg);border:1px solid var(--line);font-weight:500}
 h2{margin:6px 0 0;font:500 1.1rem/1.2 var(--display);letter-spacing:.02em}
 ul{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px}
-li{display:grid;grid-template-columns:3.6rem 5.2rem 1fr;gap:6px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+li{display:grid;grid-template-columns:3.4rem minmax(0,1fr) auto;gap:6px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
 li:first-child{border-top:0}
-li .st{grid-column:1/-1;color:var(--muted);font-size:.84rem}
+li .stop{font-weight:500;min-width:0}
+li .ln{white-space:nowrap;text-align:right}
+li .r{grid-column:2/-1;text-align:left}
+li .st{grid-column:2/-1;color:var(--muted);font-size:.84rem}
 li b{font:500 1.25rem/1 var(--display)}
 li span{min-width:0}
 li .r{text-align:right;color:var(--muted);font-size:.9rem}
@@ -81,7 +84,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="status"><span><span id="dayt"></span> <button class="link" id="flip" type="button"></button></span>
     <label for="margin">Margen<select id="margin"><option value="0">0 min</option><option value="2">2 min</option><option value="5">5 min</option><option value="10">10 min</option></select></label></div>
   <p class="gift"><strong>La app de Alagón para quienes viajan a Zaragoza.</strong><br>Esta aplicación es un regalo para los vecinos de Alagón, de parte de vecinos de Alagón.</p>
-  <div class="foot"><span class="ver">v. 2.7</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
+  <div class="foot"><span class="ver">v. 2.8</span><span class="ver upd" id="updated"></span><button class="info-btn" id="infoBtn" type="button" aria-expanded="false" aria-controls="info" aria-label="Información">i</button></div>
   <section class="info" id="info" hidden>
     <h2>Cómo funciona</h2>
     <p>Al abrirla, detecta tu ubicación y sabe si estás en Alagón o en Zaragoza. Compara autobuses y trenes, busca la parada o estación que mejor te viene, calcula el tiempo a pie y te dice cuál puedes coger y cuándo salir.</p>
@@ -184,7 +187,7 @@ function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=servic
   const st=h.p.stop;
   $("maps").href="https://www.google.com/maps/dir/?api=1"+(S.pos?`&origin=${S.pos.lat},${S.pos.lng}`:"")+`&destination=${st.lat},${st.lng}&travelmode=walking`;
   $("adif").hidden=h.mode!=="train"&&!ALERTS.some(x=>x.date===todayKey);
-  $("list").innerHTML=fut.slice(i+1,i+6).map(x=>`<li><b>${fmt(x.p.dep)}</b><span>${x.line}</span><span class="r">${x.tag?x.tag+(showAll(x)?"":", "):""}${showAll(x)?"":arrText(x)}</span><span class="st">${x.p.stop.s}</span>${showAll(x)?`<span class="st">Llega a: ${allStops(x)}</span>`:""}</li>`).join("");
+  $("list").innerHTML=fut.slice(i+1,i+6).map(x=>`<li><b>${fmt(x.p.dep)}</b><span class="stop">${x.p.stop.s}</span><span class="ln">${x.line}</span><span class="r">${x.tag?x.tag+(showAll(x)?"":", "):""}${showAll(x)?"":arrText(x)}</span>${showAll(x)?`<span class="st">Llega a: ${allStops(x)}</span>`:""}</li>`).join("");
   $("dayt").textContent="Autobús hoy: "+(t0==="fest"?"domingos y festivos":"lunes a sábado")+".";
   $("flip").textContent=t0==="fest"?"Ver lunes a sábado":"Ver domingos y festivos";
   $("margin").value=String(S.margin);
