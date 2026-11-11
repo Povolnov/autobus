@@ -13,13 +13,15 @@ jobs:
         run: |
           mkdir -p camarles-src && cd camarles-src
           dl() { curl -sSL -A "Mozilla/5.0" -m 180 -o "$1" "$2" && echo "$1 $(stat -c%s "$1")" || echo "FAIL $1"; }
-          dl plana.pdf "https://empresaplana.cat/uploads/boxes-lineas-configuration/horari-lametlla-de-mar-el-perello-lampolla-camarles-laldea-tortosa-escolar-no-escolar-2024-2.pdf"
-          dl r16.pdf "https://ebredigital.cat/wp-content/uploads/2026/03/r16-a3-30.03_ok.pdf"
-          dl plana.html "https://empresaplana.cat/"
+          echo skip; true || dl plana.pdf "https://empresaplana.cat/uploads/boxes-lineas-configuration/horari-lametlla-de-mar-el-perello-lampolla-camarles-laldea-tortosa-escolar-no-escolar-2024-2.pdf"
+          true || dl r16.pdf "https://ebredigital.cat/wp-content/uploads/2026/03/r16-a3-30.03_ok.pdf"
+          true || dl plana.html "https://empresaplana.cat/"
           dl cer.zip "https://ssl.renfe.com/ftransit/Fichero_CER_FOMENTO/fomento_transit.zip"
           dl ld.zip "https://ssl.renfe.com/gtransit/Fichero_AV_LD/google_transit.zip"
           dl flag.html "https://commons.wikimedia.org/w/index.php?search=Bandera+de+Camarles&title=Special:MediaSearch&type=image"
           dl wiki.html "https://ca.wikipedia.org/wiki/Camarles"
+          dl flagfile.html "https://commons.wikimedia.org/wiki/File:Bandera_de_Camarles.svg"
+          dl flag.svg "https://commons.wikimedia.org/wiki/Special:FilePath/Bandera_de_Camarles.svg"
           ls -la
       - name: Extract trains through Camarles
         run: |
@@ -32,7 +34,7 @@ jobs:
               except Exception as e: out[f]=str(e); continue
               rd=lambda n: [{(k or '').strip():(v or '').strip() for k,v in r.items()} for r in csv.DictReader(io.StringIO(z.read(n).decode('utf-8-sig')))]
               stops=rd('stops.txt')
-              st=[s for s in stops if any(k in s['stop_name'].lower() for k in ['camarles','tortosa','aldea','ampolla','barcelona','tarragona'])]
+              st=stops
               ids={s['stop_id'].strip() for s in st}
               cam={s['stop_id'].strip() for s in stops if 'camarles' in s['stop_name'].lower()}
               times=[r for r in rd('stop_times.txt') if r['stop_id'].strip() in ids]
@@ -45,6 +47,11 @@ jobs:
               cd=[c for c in rd('calendar_dates.txt') if c['service_id'] in svc] if 'calendar_dates.txt' in z.namelist() else []
               routes={r['route_id']:r for r in rd('routes.txt')}
               out[f]={'stops':st,'camarles':sorted(cam),'trips':{t:{'trip':trips.get(t),'route':routes.get((trips.get(t) or {}).get('route_id')),'stops':sorted(v,key=lambda r:int(r['stop_sequence']))} for t,v in keep.items()},'calendar':cal,'calendar_dates':cd,'feed':z.namelist()}
+          used=set()
+          for f,v in out.items():
+              if isinstance(v,dict):
+                  for x in v['trips'].values(): used|={r['stop_id'] for r in x['stops']}
+                  v['stops']=[s for s in v['stops'] if s['stop_id'] in used]
           json.dump(out,open('trains.json','w'),ensure_ascii=False)
           for f,v in out.items(): print(f, v if isinstance(v,str) else (len(v['trips']), v['camarles']))
           PY
