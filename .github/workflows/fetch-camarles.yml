@@ -30,7 +30,7 @@ jobs:
           for f in ['cer.zip','ld.zip']:
               try: z=zipfile.ZipFile(f)
               except Exception as e: out[f]=str(e); continue
-              rd=lambda n: list(csv.DictReader(io.StringIO(z.read(n).decode('utf-8-sig'))))
+              rd=lambda n: [{(k or '').strip():(v or '').strip() for k,v in r.items()} for r in csv.DictReader(io.StringIO(z.read(n).decode('utf-8-sig')))]
               stops=rd('stops.txt')
               st=[s for s in stops if any(k in s['stop_name'].lower() for k in ['camarles','tortosa','aldea','ampolla','barcelona','tarragona'])]
               ids={s['stop_id'].strip() for s in st}
