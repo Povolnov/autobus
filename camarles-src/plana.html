@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Empresa Plana | Transport públic de viatgers</title>
+        <meta name="description" content="Empresa Plana ofereix serveis de transport públic de viatgers a la Costa Daurada. Consulta horaris, línies i rutes d'autobús.">
+
+        <link rel="icon" type="image/png" href="https://empresaplana.cat/img/plana60.png">
+
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://empresaplana.cat">
+        <meta property="og:title" content="Empresa Plana | Transport públic de viatgers">
+        <meta property="og:description" content="Empresa Plana ofereix serveis de transport públic de viatgers a la Costa Daurada. Consulta horaris, línies i rutes d'autobús.">
+        <meta name="image" property="og:image" content="https://empresaplana.cat/img/thumbnail.png">
+        <meta property="og:image:secure_url" content="https://empresaplana.cat/img/thumbnail.png">
+        <meta property="og:image:type" content="image/png">
+        <link rel="alternate" hreflang="ca" href="https://empresaplana.cat/ca">
+				<link rel="alternate" hreflang="es" href="https://empresaplana.cat">
+				<link rel="alternate" hreflang="en" href="https://empresaplana.cat/en">
+	
+        <!-- css -->
+        
+        <link href="https://empresaplana.cat/js/bootstrap-datepicker/css/datepicker.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://empresaplana.cat/css/bootstrap.css">
+        <link href="https://empresaplana.cat/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://empresaplana.cat/css/sweetalert.css" rel="stylesheet">
+        <link href="https://empresaplana.cat/css/general.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=News+Cycle:400,700|Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/css/bootstrap-datetimepicker.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+                <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif] trolo-->
+         
+    </head>
+    <body>
+        <a href="https://wa.me/34620201632" target="_blank" class="btn-whatsapp"><img src="https://empresaplana.cat/img/whatsapp.png"></a>
+         
+
+                
+        <div class="navbar-wrapper">
+    <div class="container">
+        <nav class="navbar navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://empresaplana.cat" title="Plana">
+                        <!-- <img src="https://empresaplana.cat/img/plana.png" class="img-responsive" alt="Plana" title="Plana"> -->
+                        <img src="https://empresaplana.cat/img/plana60.png" class="img-responsive" alt="Plana" title="Plana" style="max-width: 450px;width: 100%;">
+                    </a>
+                </div>
+                <div class="extres-top">
+                    <p>
+                        <strong> +34 977 553 680 De Lunes a Domingo: 8:00 h - 20:00 h</strong>   <i>·</i>   <a href="https://empresaplana.cat/contacta"> CONTACTA</a>   <i>·</i>
+                                                                                    <a href="https://empresaplana.cat/ca" class="language ">ca</a>
+                                                                                                                <a href="https://empresaplana.cat" class="language active">es</a>
+                                                                                                                <a href="https://empresaplana.cat/en" class="language ">en</a>
+                                                                        </p>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse pull-right">
+                    <ul class="nav navbar-nav nav-plana">
+                        <li class=""><a href="https://empresaplana.cat/empresa-plana" title="EMPRESA PLANA">EMPRESA PLANA</a></li>
+                        <li class=""><a href="https://empresaplana.cat/servicios-discrecionales" title="SERVICIOS DISCRECIONALES">SERVICIOS DISCRECIONALES</a></li>
+                        <li class=""><a href="https://empresaplana.cat/donde-estamos" title="DONDE ESTAMOS">DONDE ESTAMOS</a></li>
+                        <li class=""><a href="https://empresaplana.cat/descargas" title="RUTAS Y HORARIOS">RUTAS Y HORARIOS</a></li>
+                        <!-- <li class="nav-buscador visible-xs"><a href="public.buscador" title="BUSCADOR DE LÍNEAS">BUSCADOR DE LÍNEAS</a></li> -->
+                        <!-- <li><a href="buscador-lineas.php" title="Buscador de líneas">BUSCADOR DE LINEAS</a></li> -->
+                    </ul>
+                </div>
+                                            <div class="floating-advice" id="floating-advice-alert" style="display: none;">
+                            <a href="javascript: void(0);" onclick="closeAlertServiceFloat();"><img src="https://empresaplana.cat/img/close.svg" alt="close" class="img-responsive floating-advice__close"></a>
+                            <p class="title__sm">Información 11 de noviembre 2026</p>
+                            <p class="text__xs"><p><strong>Afectación al servicio de autobús</strong> a causa de <strong>Huelga General</strong></p><p> </p><p>Las franjas afectadas con <strong>servicios mínimos</strong> garantizados son las siguientes:</p><p> </p><ul><li>De<strong> 6:30h </strong>a <strong>9:30h</strong></li><li>De <strong>16:30h</strong> a <strong>21:00h</strong></li></ul><p> </p><p>Nuestras líneas pueden sufrir alteraciones del servicio durante todo el día, en función del seguimiento de la huelga.</p></p>
+                                                            <a href="https://empresaplana.cat/uploads/alertas-servicio/11112026-2.jpg" target="_blank" class="btn btn-white btn-xs">DESCARGAR PDF</a>
+                                                                                </div>
+                                </div>
+        </nav>
+    </div>
+</div>
+        
+<div class="full-home">
+    <style>
+        .navbar-wrapper {position: relative;}
+    </style>
+
+
+        <div id="carousel-example-generic" class="carousel carousel-fade slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators" style="display: none;">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                                <div class="item active" style="background: url(https://empresaplana.cat/uploads/slides/portada.png) bottom center no-repeat; background-size:cover;">
+                    <!-- <img src="https://empresaplana.cat/uploads/slides/portada.png" alt="Servicios discrecionales"> -->
+                    <div class="textura"></div>
+                    <div class="box-info-foto">
+                        <div class="tit-box">Servicios discrecionales</div>
+                        <div class="tit-box2"><p>Desplazamientos en autob&uacute;s a medida para empresas, organizaciones y particulares.</p></div>
+                        <a href="https://empresaplana.cat/servicios-discrecionales" class="queofrecemos" style="display: block; margin: 15px auto 0;">MÁS INFORMACIÓN</a>
+                    </div>
+                </div>
+                            </div>
+
+            <!-- Controls -->
+            <!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a> -->
+        </div>
+
+        
+        
+        <div class="buscador-home" style="bottom: 0px;">
+    <div class="container">
+        <div class="box-buscador-home buscador-descargas">
+            
+            <form method="post" action="https://empresaplana.cat/descargas#results" id="buscadorHorarios">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="errors_custom">
+                            <h3 style="height: fit-content;">BUSCADOR DE LÍNEAS</h3>  
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-12"  style="position:relative;">
+                        <div class="form-group" style="height: 70px;" id="origin">
+                            <label>Localidad de origen</label>
+                            <select class="form-control selectCiudad" id="origenSelect" name="origen" required>
+                                                                    <option value="240" selected>Aeroport de Barcelona - El Prat de Llobregat</option>
+                                                                    <option value="179" >Aeroport de Reus</option>
+                                                                    <option value="229" >Aiguamúrcia</option>
+                                                                    <option value="274" >Albarca</option>
+                                                                    <option value="166" >Alcover</option>
+                                                                    <option value="192" >Alforja</option>
+                                                                    <option value="231" >Alió</option>
+                                                                    <option value="221" >Almoster</option>
+                                                                    <option value="176" >Altafulla</option>
+                                                                    <option value="252" >Arbolí</option>
+                                                                    <option value="196" >Ascó</option>
+                                                                    <option value="212" >Barberà de la Conca</option>
+                                                                    <option value="242" >Barcelona</option>
+                                                                    <option value="214" >Bellaguarda</option>
+                                                                    <option value="273" >Bonavista</option>
+                                                                    <option value="236" >Bràfim</option>
+                                                                    <option value="247" >Cabacés</option>
+                                                                    <option value="205" >Cabra del Camp</option>
+                                                                    <option value="266" >Camarles</option>
+                                                                    <option value="172" >Cambrils</option>
+                                                                    <option value="288" >Canyelles </option>
+                                                                    <option value="276" >Capafons</option>
+                                                                    <option value="220" >Castellvell del Camp</option>
+                                                                    <option value="241" >Cerdanyola del Vallès</option>
+                                                                    <option value="243" >Colldejou</option>
+                                                                    <option value="283" >Complex Educatiu de Tarragona</option>
+                                                                    <option value="159" >Constantí</option>
+                                                                    <option value="191" >Cornudella de Montsant</option>
+                                                                    <option value="292" >Cubelles</option>
+                                                                    <option value="253" >Cunit</option>
+                                                                    <option value="223" >El Catllar</option>
+                                                                    <option value="269" >El Lligallo del Gànguil</option>
+                                                                    <option value="270" >El Lligallo del Roig</option>
+                                                                    <option value="165" >El Milà</option>
+                                                                    <option value="161" >El Morell</option>
+                                                                    <option value="264" >El Perelló</option>
+                                                                    <option value="204" >El Pla de Santa Maria</option>
+                                                                    <option value="228" >El Pont d&#039;Armentera</option>
+                                                                    <option value="163" >El Rourell</option>
+                                                                    <option value="203" >Els Garidells</option>
+                                                                    <option value="284" >Escaladei</option>
+                                                                    <option value="258" >Estació del Camp</option>
+                                                                    <option value="298" >Falset</option>
+                                                                    <option value="272" >Ferran </option>
+                                                                    <option value="206" >Figuerola del Camp</option>
+                                                                    <option value="195" >Flix</option>
+                                                                    <option value="199" >Garcia</option>
+                                                                    <option value="297" >Igualada</option>
+                                                                    <option value="267" >L&#039;Aldea</option>
+                                                                    <option value="225" >L&#039;Aleixar</option>
+                                                                    <option value="265" >L&#039;Ametlla de Mar</option>
+                                                                    <option value="271" >L&#039;Ampolla</option>
+                                                                    <option value="217" >l&#039;Hospitalet de l&#039;Infant</option>
+                                                                    <option value="293" >L&#039;Hospitalet de Llobregat</option>
+                                                                    <option value="232" >L’Espluga de Francolí</option>
+                                                                    <option value="246" >La Bisbal de Falset</option>
+                                                                    <option value="275" >La Febró</option>
+                                                                    <option value="213" >La Granadella</option>
+                                                                    <option value="164" >La Masó</option>
+                                                                    <option value="250" >La Morera del Montsant</option>
+                                                                    <option value="186" >La Nou de Gaià</option>
+                                                                    <option value="244" >La Palma d&#039;Ebre</option>
+                                                                    <option value="173" >La Pineda</option>
+                                                                    <option value="160" >La Pobla de Mafumet</option>
+                                                                    <option value="209" >La Riba</option>
+                                                                    <option value="187" >La Riera de Gaià</option>
+                                                                    <option value="183" >La Secuita</option>
+                                                                    <option value="222" >La Selva del Camp</option>
+                                                                    <option value="197" >La Torre de l&#039;Espanyol</option>
+                                                                    <option value="249" >La Vilella Alta</option>
+                                                                    <option value="248" >La Vilella Baixa</option>
+                                                                    <option value="193" >Les Borges del Camp</option>
+                                                                    <option value="263" >Les Gunyoles</option>
+                                                                    <option value="291" >Les Roquetes</option>
+                                                                    <option value="245" >Margalef</option>
+                                                                    <option value="260" >Masboquera</option>
+                                                                    <option value="226" >Maspujols</option>
+                                                                    <option value="261" >Masriudoms</option>
+                                                                    <option value="259" >Miami Platja </option>
+                                                                    <option value="238" >Monistrol de Montserrat</option>
+                                                                    <option value="218" >Mont-roig del Camp</option>
+                                                                    <option value="211" >Montblanc</option>
+                                                                    <option value="237" >Montbrió del Camp</option>
+                                                                    <option value="201" >Móra d&#039;Ebre</option>
+                                                                    <option value="200" >Móra la Nova</option>
+                                                                    <option value="234" >Nulles</option>
+                                                                    <option value="287" >Olèrdola</option>
+                                                                    <option value="294" >Olivella</option>
+                                                                    <option value="182" >Perafort</option>
+                                                                    <option value="208" >Pira</option>
+                                                                    <option value="251" >Poboleda</option>
+                                                                    <option value="280" >Polígon Industrial de Riu Clar-Tarragona</option>
+                                                                    <option value="278" >Polígon Industrial de Valls</option>
+                                                                    <option value="279" >Polígono Industrial de Constantí </option>
+                                                                    <option value="177" >PortAventura</option>
+                                                                    <option value="285" >PortAventura (Administración)</option>
+                                                                    <option value="190" >Prades</option>
+                                                                    <option value="257" >Puigdelfi</option>
+                                                                    <option value="227" >Querol</option>
+                                                                    <option value="180" >Reus</option>
+                                                                    <option value="194" >Riba-roja d&#039;Ebre</option>
+                                                                    <option value="215" >Riudoms</option>
+                                                                    <option value="184" >Salomó</option>
+                                                                    <option value="170" >Salou</option>
+                                                                    <option value="289" >Sant Pere de Ribes </option>
+                                                                    <option value="296" >Santes Creus</option>
+                                                                    <option value="207" >Sarral</option>
+                                                                    <option value="239" >Sitges</option>
+                                                                    <option value="158" >Tarragona</option>
+                                                                    <option value="216" >Tivissa</option>
+                                                                    <option value="175" >Torredembarra</option>
+                                                                    <option value="268" >Tortosa</option>
+                                                                    <option value="189" >Ulldemolins</option>
+                                                                    <option value="167" >Vallmoll</option>
+                                                                    <option value="168" >Valls</option>
+                                                                    <option value="262" >Vandellòs</option>
+                                                                    <option value="185" >Vespella de Gaià</option>
+                                                                    <option value="230" >Vila-rodona</option>
+                                                                    <option value="181" >Vila-seca</option>
+                                                                    <option value="235" >Vilabella</option>
+                                                                    <option value="174" >Vilafortuny</option>
+                                                                    <option value="286" >Vilafranca del Penedès</option>
+                                                                    <option value="162" >Vilallonga del Camp</option>
+                                                                    <option value="277" >Vilanova de Prades</option>
+                                                                    <option value="254" >Vilanova i la Geltrú</option>
+                                                                    <option value="224" >Vilaplana</option>
+                                                                    <option value="210" >Vilaverd</option>
+                                                                    <option value="233" >Vimbodí</option>
+                                                                    <option value="198" >Vinebre</option>
+                                                                    <option value="219" >Vinyols i els Arcs</option>
+                                                            </select>
+                        </div>  
+                        <div id="mensaje-info-origin" class="hide mensaje-info">
+                        </div>                      
+                    </div>                    
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="form-group" style="height: 70px;" id="destiny">
+                            <label>Localidad de destino</label>
+                            <select class="form-control selectCiudad" id="llegadaSelect" name="destino" required>
+                                                                    <option value="240" >Aeroport de Barcelona - El Prat de Llobregat</option>
+                                                                    <option value="179" >Aeroport de Reus</option>
+                                                                    <option value="229" >Aiguamúrcia</option>
+                                                                    <option value="274" >Albarca</option>
+                                                                    <option value="166" >Alcover</option>
+                                                                    <option value="192" >Alforja</option>
+                                                                    <option value="231" >Alió</option>
+                                                                    <option value="221" >Almoster</option>
+                                                                    <option value="176" >Altafulla</option>
+                                                                    <option value="252" >Arbolí</option>
+                                                                    <option value="196" >Ascó</option>
+                                                                    <option value="212" >Barberà de la Conca</option>
+                                                                    <option value="242" >Barcelona</option>
+                                                                    <option value="214" >Bellaguarda</option>
+                                                                    <option value="273" >Bonavista</option>
+                                                                    <option value="236" >Bràfim</option>
+                                                                    <option value="247" >Cabacés</option>
+                                                                    <option value="205" >Cabra del Camp</option>
+                                                                    <option value="266" >Camarles</option>
+                                                                    <option value="172" >Cambrils</option>
+                                                                    <option value="288" >Canyelles </option>
+                                                                    <option value="276" >Capafons</option>
+                                                                    <option value="220" >Castellvell del Camp</option>
+                                                                    <option value="241" >Cerdanyola del Vallès</option>
+                                                                    <option value="243" >Colldejou</option>
+                                                                    <option value="283" >Complex Educatiu de Tarragona</option>
+                                                                    <option value="159" >Constantí</option>
+                                                                    <option value="191" >Cornudella de Montsant</option>
+                                                                    <option value="292" >Cubelles</option>
+                                                                    <option value="253" >Cunit</option>
+                                                                    <option value="223" >El Catllar</option>
+                                                                    <option value="269" >El Lligallo del Gànguil</option>
+                                                                    <option value="270" >El Lligallo del Roig</option>
+                                                                    <option value="165" >El Milà</option>
+                                                                    <option value="161" >El Morell</option>
+                                                                    <option value="264" >El Perelló</option>
+                                                                    <option value="204" >El Pla de Santa Maria</option>
+                                                                    <option value="228" >El Pont d&#039;Armentera</option>
+                                                                    <option value="163" >El Rourell</option>
+                                                                    <option value="203" >Els Garidells</option>
+                                                                    <option value="284" >Escaladei</option>
+                                                                    <option value="258" >Estació del Camp</option>
+                                                                    <option value="298" >Falset</option>
+                                                                    <option value="272" >Ferran </option>
+                                                                    <option value="206" >Figuerola del Camp</option>
+                                                                    <option value="195" >Flix</option>
+                                                                    <option value="199" >Garcia</option>
+                                                                    <option value="297" >Igualada</option>
+                                                                    <option value="267" >L&#039;Aldea</option>
+                                                                    <option value="225" >L&#039;Aleixar</option>
+                                                                    <option value="265" >L&#039;Ametlla de Mar</option>
+                                                                    <option value="271" >L&#039;Ampolla</option>
+                                                                    <option value="217" >l&#039;Hospitalet de l&#039;Infant</option>
+                                                                    <option value="293" >L&#039;Hospitalet de Llobregat</option>
+                                                                    <option value="232" >L’Espluga de Francolí</option>
+                                                                    <option value="246" >La Bisbal de Falset</option>
+                                                                    <option value="275" >La Febró</option>
+                                                                    <option value="213" >La Granadella</option>
+                                                                    <option value="164" >La Masó</option>
+                                                                    <option value="250" >La Morera del Montsant</option>
+                                                                    <option value="186" >La Nou de Gaià</option>
+                                                                    <option value="244" >La Palma d&#039;Ebre</option>
+                                                                    <option value="173" >La Pineda</option>
+                                                                    <option value="160" >La Pobla de Mafumet</option>
+                                                                    <option value="209" >La Riba</option>
+                                                                    <option value="187" >La Riera de Gaià</option>
+                                                                    <option value="183" >La Secuita</option>
+                                                                    <option value="222" >La Selva del Camp</option>
+                                                                    <option value="197" >La Torre de l&#039;Espanyol</option>
+                                                                    <option value="249" >La Vilella Alta</option>
+                                                                    <option value="248" >La Vilella Baixa</option>
+                                                                    <option value="193" >Les Borges del Camp</option>
+                                                                    <option value="263" >Les Gunyoles</option>
+                                                                    <option value="291" >Les Roquetes</option>
+                                                                    <option value="245" >Margalef</option>
+                                                                    <option value="260" >Masboquera</option>
+                                                                    <option value="226" >Maspujols</option>
+                                                                    <option value="261" >Masriudoms</option>
+                                                                    <option value="259" >Miami Platja </option>
+                                                                    <option value="238" >Monistrol de Montserrat</option>
+                                                                    <option value="218" >Mont-roig del Camp</option>
+                                                                    <option value="211" >Montblanc</option>
+                                                                    <option value="237" >Montbrió del Camp</option>
+                                                                    <option value="201" >Móra d&#039;Ebre</option>
+                                                                    <option value="200" >Móra la Nova</option>
+                                                                    <option value="234" >Nulles</option>
+                                                                    <option value="287" >Olèrdola</option>
+                                                                    <option value="294" >Olivella</option>
+                                                                    <option value="182" >Perafort</option>
+                                                                    <option value="208" >Pira</option>
+                                                                    <option value="251" >Poboleda</option>
+                                                                    <option value="280" >Polígon Industrial de Riu Clar-Tarragona</option>
+                                                                    <option value="278" >Polígon Industrial de Valls</option>
+                                                                    <option value="279" >Polígono Industrial de Constantí </option>
+                                                                    <option value="177" >PortAventura</option>
+                                                                    <option value="285" >PortAventura (Administración)</option>
+                                                                    <option value="190" >Prades</option>
+                                                                    <option value="257" >Puigdelfi</option>
+                                                                    <option value="227" >Querol</option>
+                                                                    <option value="180" >Reus</option>
+                                                                    <option value="194" >Riba-roja d&#039;Ebre</option>
+                                                                    <option value="215" >Riudoms</option>
+                                                                    <option value="184" >Salomó</option>
+                                                                    <option value="170" selected>Salou</option>
+                                                                    <option value="289" >Sant Pere de Ribes </option>
+                                                                    <option value="296" >Santes Creus</option>
+                                                                    <option value="207" >Sarral</option>
+                                                                    <option value="239" >Sitges</option>
+                                                                    <option value="158" >Tarragona</option>
+                                                                    <option value="216" >Tivissa</option>
+                                                                    <option value="175" >Torredembarra</option>
+                                                                    <option value="268" >Tortosa</option>
+                                                                    <option value="189" >Ulldemolins</option>
+                                                                    <option value="167" >Vallmoll</option>
+                                                                    <option value="168" >Valls</option>
+                                                                    <option value="262" >Vandellòs</option>
+                                                                    <option value="185" >Vespella de Gaià</option>
+                                                                    <option value="230" >Vila-rodona</option>
+                                                                    <option value="181" >Vila-seca</option>
+                                                                    <option value="235" >Vilabella</option>
+                                                                    <option value="174" >Vilafortuny</option>
+                                                                    <option value="286" >Vilafranca del Penedès</option>
+                                                                    <option value="162" >Vilallonga del Camp</option>
+                                                                    <option value="277" >Vilanova de Prades</option>
+                                                                    <option value="254" >Vilanova i la Geltrú</option>
+                                                                    <option value="224" >Vilaplana</option>
+                                                                    <option value="210" >Vilaverd</option>
+                                                                    <option value="233" >Vimbodí</option>
+                                                                    <option value="198" >Vinebre</option>
+                                                                    <option value="219" >Vinyols i els Arcs</option>
+                                                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12" style="position:relative;">
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <div class='input-group date'>
+                                <input type="text" class="form-control" name="fecha" id="fecha" value="" required autocomplete="off"> 
+                                <label class="input-group-addon" for="fecha">
+                                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                <label>
+                            </div>
+                        </div> 
+                        <div id="mensaje-info-date" class="hide mensaje-info"> 
+                        </div>                       
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="form-group">
+                            <label>Horario</label>
+                            <select class="form-control" name="horario" id="horario">
+                                <option value="">Cualquier hora</option>
+                                <option value="0">00:00 a 07:00</option>
+                                <option value="1">07:00 a 10:00</option>
+                                <option value="2">10:00 a 12:00</option>
+                                <option value="3">12:00 a 16:00</option>
+                                <option value="4">16:00 a 18:00</option>
+                                <option value="5">18:00 a 20:00</option>
+                                <option value="6">20:00 a 23:59</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="form-group" id="destiny">
+                            <label>Tipo de búsqueda</label>
+                            <select class="form-control selectCiudad" id="llegadaSelect" name="search_type" required>
+                                <option value="0">Rutas directas</option>
+                                <option value="1">Rutas con transbordos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-sm-2 col-xs-12">                           
+                        <button type="submit" style="height: 70px;" id="btn-buscar-lineas" class="btn btn-form form-control btn-temporal custom"> <i class="fa fa-search" aria-hidden="true"></i><br>BUSCAR LÍNEAS</button>
+                    </div>
+                </div>
+                
+                
+
+
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    $('#buscadorHorarios').on('submit', function($event) {
+        $('#btn-buscar-lineas').prop('disabled', true);
+    });  
+});
+</script>    </div>
+    
+    
+    
+    
+        <section class="searchest-lines">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="title__lg">LAS LÍNEAS MÁS BUSCADAS</h2>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-md-9 col-sm-7">
+                    <div class="searchest-lines__in">
+                                                     
+                                <div class="searchest-lines__box">
+                                                                            <img src="https://empresaplana.cat/img/airport.svg" alt="airport" class="img-responsive searchest-lines__airport">
+                                                                        <small class="searchest-lines__line">Barcelona-Aeropuerto</small>
+                                    <hr class="searchest-lines__hr">
+                                    <p class="searchest-lines__title">Barcelona</p>
+                                    <p class="searchest-lines__text">Tarragona-La Pineda-Salou-Cambrils</p>
+                                       
+                                        <a href="https://empresaplana.cat/uploads/boxes-lineas-configuration/horari-barcelona-granadella-dilluns-a-diumenge-tb-26-27-5.pdf" target="_blank" class="searchest-lines__download">
+                                            <img src="https://empresaplana.cat/img/surface.svg" alt="surface" class="img-responsive"> Descargar archivo
+                                        </a>
+                                    
+                                      
+                                </div>
+                                                                                 
+                                <div class="searchest-lines__box">
+                                                                        <small class="searchest-lines__line">Tarragona-Barcelona</small>
+                                    <hr class="searchest-lines__hr">
+                                    <p class="searchest-lines__title">Tarragona</p>
+                                    <p class="searchest-lines__text">Barcelona</p>
+                                       
+                                        <a href="https://empresaplana.cat/uploads/boxes-lineas-configuration/horari-barcelona-tarragona-salou-granadella-tb-2026-2027-2.pdf" target="_blank" class="searchest-lines__download">
+                                            <img src="https://empresaplana.cat/img/surface.svg" alt="surface" class="img-responsive"> Descargar archivo
+                                        </a>
+                                    
+                                      
+                                </div>
+                                                                                 
+                                <div class="searchest-lines__box">
+                                                                        <small class="searchest-lines__line">Tarragona-La Pineda-Salou-Cambrils</small>
+                                    <hr class="searchest-lines__hr">
+                                    <p class="searchest-lines__title">Tarragona</p>
+                                    <p class="searchest-lines__text">Cambrils</p>
+                                       
+                                        <a href="https://empresaplana.cat/uploads/boxes-lineas-configuration/horari-de-la-costa-2026-27-tb-2.pdf" target="_blank" class="searchest-lines__download">
+                                            <img src="https://empresaplana.cat/img/surface.svg" alt="surface" class="img-responsive"> Descargar archivo
+                                        </a>
+                                    
+                                      
+                                </div>
+                                                                                 
+                                <div class="searchest-lines__box">
+                                                                        <small class="searchest-lines__line">L68-Vilanova i la Geltrú - Vilafranca del Penedés</small>
+                                    <hr class="searchest-lines__hr">
+                                    <p class="searchest-lines__title">Vilanova i la Geltrú</p>
+                                    <p class="searchest-lines__text">Vilafranca del Penedés</p>
+                                       
+                                        <a href="https://empresaplana.cat/uploads/boxes-lineas-configuration/l68-vilanova-i-la-geltru-vilafranca-del-penedes-2.pdf" target="_blank" class="searchest-lines__download">
+                                            <img src="https://empresaplana.cat/img/surface.svg" alt="surface" class="img-responsive"> Descargar archivo
+                                        </a>
+                                    
+                                      
+                                </div>
+                                                                                 
+                                <div class="searchest-lines__box">
+                                                                        <small class="searchest-lines__line">Tarragona-Estació del Camp</small>
+                                    <hr class="searchest-lines__hr">
+                                    <p class="searchest-lines__title">Tarragona</p>
+                                    <p class="searchest-lines__text">Estació del Camp</p>
+                                       
+                                        <a href="https://empresaplana.cat/uploads/boxes-lineas-configuration/tarragona-estacio-del-camp-9.pdf" target="_blank" class="searchest-lines__download">
+                                            <img src="https://empresaplana.cat/img/surface.svg" alt="surface" class="img-responsive"> Descargar archivo
+                                        </a>
+                                    
+                                      
+                                </div>
+                                                                                 
+                                <div class="searchest-lines__box">
+                                                                        <small class="searchest-lines__line">L&#039;Ametlla de Mar - El Perelló - L&#039;Ampolla - Camarles - L&#039;Aldea - Tortosa</small>
+                                    <hr class="searchest-lines__hr">
+                                    <p class="searchest-lines__title">L&#039;Ametlla de Mar</p>
+                                    <p class="searchest-lines__text">Tortosa</p>
+                                       
+                                        <a href="https://empresaplana.cat/uploads/boxes-lineas-configuration/horari-lametlla-de-mar-el-perello-lampolla-camarles-laldea-tortosa-escolar-no-escolar-2024-2.pdf" target="_blank" class="searchest-lines__download">
+                                            <img src="https://empresaplana.cat/img/surface.svg" alt="surface" class="img-responsive"> Descargar archivo
+                                        </a>
+                                    
+                                      
+                                </div>
+                                                                                 
+                                <div class="searchest-lines__box">
+                                                                        <small class="searchest-lines__line">e5 Reus-Salou</small>
+                                    <hr class="searchest-lines__hr">
+                                    <p class="searchest-lines__title">Reus</p>
+                                    <p class="searchest-lines__text">Salou</p>
+                                       
+                                        <a href="https://empresaplana.cat/uploads/boxes-lineas-configuration/horari-reus-salou-tb-2.pdf" target="_blank" class="searchest-lines__download">
+                                            <img src="https://empresaplana.cat/img/surface.svg" alt="surface" class="img-responsive"> Descargar archivo
+                                        </a>
+                                    
+                                      
+                                </div>
+                                                                                 
+                                <div class="searchest-lines__box">
+                                                                        <small class="searchest-lines__line">Tarragona-Vila-seca-Salou</small>
+                                    <hr class="searchest-lines__hr">
+                                    <p class="searchest-lines__title">Tarragona</p>
+                                    <p class="searchest-lines__text">Salou</p>
+                                       
+                                        <a href="https://empresaplana.cat/uploads/boxes-lineas-configuration/tarragona-vilaseca-salou-2.pdf" target="_blank" class="searchest-lines__download">
+                                            <img src="https://empresaplana.cat/img/surface.svg" alt="surface" class="img-responsive"> Descargar archivo
+                                        </a>
+                                    
+                                      
+                                </div>
+                                                                        </div>
+                </div>
+                                    <div class="col-md-3 col-sm-5">
+                        <div class="searchest-lines__advice">
+                            <!-- <img src="https://empresaplana.cat/img/warning.svg" alt="warning" class="img-responsive searchest-lines__warning"> -->
+                            <img src="https://empresaplana.cat/img/novedad.svg" alt="novedad" class="img-responsive searchest-lines__warning">
+                            <h3 class="title__md">Aeropuerto de Barcelona</h3>
+                            <p class="text"></p>
+                                                                                        <a href="https://www.busplana.com" target="_blank" class="btn btn-pill-primary">Compra tu traslado aquí</a>
+                                                    </div>
+                    </div>
+                            </div>
+        </div>
+    </section>
+    
+    <section class="servicios-discrecionales">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="https://empresaplana.cat/img/busos.jpg" class="img-responsive">
+                </div>
+                <div class="col-md-6">
+                    <h4>ALQUILER AUTOCARES</h4>
+                    <span class="cuadrets"><img src="https://empresaplana.cat/img/cuadrets-blau.png"></span>
+                    <h5><h5>En Empresa Plana le ofrecemos la posibilidad de contratar un servicio de bus privado para sus eventos, excursiones o cualquier tipo de desplazamiento.</h5>
+</h5>
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#queofrecemos" aria-controls="queofrecemos" role="tab" data-toggle="tab">QUÉ OFRECEMOS</a></li>
+                        <li role="presentation"><a href="#presupuesto" aria-controls="presupuesto" role="tab" data-toggle="tab">SOLICITA PRESUPUESTO</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="queofrecemos">
+                            <p><p>La experiencia y profesionalidad de una empresa con más de 60 años en el sector. Una amplia gama de autobuses que se adaptarán a tus necesidades.</p></p>
+                            <a href="public.servicios" class="queofrecemos">MÁS INFORMACIÓN</a>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="presupuesto">
+                            <p><span lang="es-ES">Si necesitas informaci&oacute;n sobre nuestros servicios ll&aacute;manos o usa el formulario que encontrar&aacute;s en esta web.</span></p>
+
+                            <div class="acciones">
+                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                        <span class="glyphicon glyphicon-earphone"></span> +34 <strong>977 54 04 93</strong>
+                                        <br>
+                                        <small>Presupuestos Área Tarragona</small>
+                                    </div>
+                                                                    <div class="col-sm-6">
+                                        <span class="glyphicon glyphicon-earphone"></span> +34 <strong>663 854 611</strong>
+                                        <br>
+                                        <small>Presupuestos Área Barcelona y Garraf</small>
+                                    </div>
+                                                                </div>
+                                <a href="https://empresaplana.cat/presupuesto" class="queofrecemos">SOLICITAR PRESUPUESTO</a>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="transfers">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 bg-blue-custom">
+                <h3>ACCESO DE PATINETES ELÉCTRICOS EN LOS AUTOBUSES</h3>
+                <span class="cuadrets"><img src="https://empresaplana.cat/img/cuadrets-blanc.png"></span>
+                <p><p style="box-sizing: border-box; transition: all 0.2s ease-in-out 0s; margin: 15px 0px; font-family: &quot;Open Sans&quot;, sans-serif; font-size: 16px; color: rgb(255, 255, 255); opacity: 0.8;"><span style="color:#000000;"></span></p>
+
+<p style="text-align: justify;">Siguiendo las instrucciones de Autoridad Territorial de Movilidad y por motivos de seguridad, a partir del d&iacute;a 1 de febrero de 2023, no se podr&aacute; acceder ni viajar en el transporte p&uacute;blico con patinetes el&eacute;ctricos y otros veh&iacute;culos el&eacute;ctricos de movilidad personal, ni siquiera plegados, durante los pr&oacute;ximos seis meses.</p>
+
+<p style="text-align: justify;">Durante este semestre se elaborar&aacute; una propuesta de normativa sobre el acceso de patinetes el&eacute;ctricos y otros veh&iacute;culos de movilidad personal.</p>
+
+<p style="text-align: justify;">La Autoridad Territorial de Movilidad, ha informado que las denuncias que se formulen por el incumplimiento de esta normativa comportar&aacute;n una sanci&oacute;n de 200 &euro;.</p>
+
+<p style="box-sizing: border-box; transition: all 0.2s ease-in-out 0s; margin: 15px 0px; font-family: &quot;Open Sans&quot;, sans-serif; font-size: 16px; color: rgb(255, 255, 255); opacity: 0.8;"><span style="color:#000000;"></span></p>
+</p>
+                <div class="box-transfer">
+                    <div class="row">
+                        <div class="col-md-2 col-xs-2">
+                            <img src="https://empresaplana.cat/img/avio.png" class="img-responsive">
+                        </div>
+                        <div class="col-md-10 col-xs-10">
+                            <h4>TRANSFERS AEROPUERTOS</h4>
+                            <p><p>Reserva online tus transfers a los aeropuertos de <a href="https://www.busplana.com/">Barcelona</a> y <a href="https://www.busplana.com/">Reus</a></p>
+</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-transfer">
+                    <div class="row">
+                        <div class="col-md-2 col-xs-2">
+                            <img src="https://empresaplana.cat/img/bus.png" class="img-responsive">
+                        </div>
+                        <div class="col-md-10 col-xs-10">
+                            <h4>EXCURSIONES</h4>
+                            <p><p>Contrata online tus excursiones desde la <a href="https://www.busplana.com/ca/excursions">Costa Daurada</a></p>
+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    <section class="pre-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h3>¿QUÉ TE OFRECE EMPRESA PLANA?</h3>
+                <span class="cuadrets"><img src="img/cuadrets-blau.png"></span>
+                <h4><p>En Empresa Plana tenemos un objetivo muy claro: el esfuerzo constante de ofrecerte el mejor servicio.</p>
+</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="serv-pre-footer">
+                    <img src="img/ico-rutas.jpg">
+                    <h4><h4>RUTAS Y HORARIOS<br />
+ADAPTADOS A TI</h4>
+</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="serv-pre-footer">
+                    <img src="img/ico-accesible.jpg">
+                    <h4><h4>ACCESIBILIDAD DE<br />
+MOVILIDADES REDUCIDAS</h4>
+</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="serv-pre-footer">
+                    <img src="img/ico-bus.jpg">
+                    <h4><h4>FLOTA MODERNA Y EN<br />
+CONSTANTE RENOVACI&Oacute;N</h4>
+</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="serv-pre-footer">
+                    <img src="img/ico-persona.jpg">
+                    <h4><h4>SERVICIOS<br />
+PERSONALIZADOS</h4>
+</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    <section class="pre-footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12" id="financiado">
+                <p><strong>Financiado por</strong></p>
+                <div>
+                    <div><img src="https://empresaplana.cat/img/UE.png"></div>
+                    <div><img src="https://empresaplana.cat/img/Pla.png"></div>
+                    <div><img src="https://empresaplana.cat/img/Generalitat.png"></div>
+                </div>
+            </div>
+
+            <style>
+
+                #financiado {margin: 50px 0;}
+                #financiado > div {
+                    display: grid;
+                    grid-template-columns: auto auto auto;
+                    align-items: center;
+                }
+
+                #financiado img {
+                    height: 50px;
+                    width: auto;
+                }
+
+
+                @media  screen and (max-width: 980px){
+                    #financiado > div {
+                        text-align: center;
+                        row-gap: 30px;
+                        display: grid;
+                        grid-template-columns: 100%;
+                    }
+
+                    #financiado img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            </style>
+
+
+            <div class="col-md-12">
+                <h3>SÍGUENOS EN LAS REDES SOCIALES</h3>
+                <span class="cuadrets"><img src="https://empresaplana.cat/img/cuadrets-blau.png"></span>
+                <h4><p>Actualidad, incidencias, novedades y todo lo que necesitas saber si usas el transporte p&uacute;blico</p>
+</h4>
+                <div class="links-social">
+                    <a href="https://www.facebook.com/BusPlana" target="_blank"><img src="https://empresaplana.cat/img/facebook.png"></a>
+                    <a href="https://twitter.com/BusPlanaOficial" target="_blank" target="_blank"><img src="https://empresaplana.cat/img/twitter.png"></a>
+                    <a href="https://www.youtube.com/user/busplana?feature=mhsn" target="_blank"><img src="https://empresaplana.cat/img/youtube.png"></a>
+                    <a href="https://www.instagram.com/busplana/" target="_blank"><img src="https://empresaplana.cat/img/instagram.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>        
+        
+        <section class="partners">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="https://www.catalunya.com/es/catalunya-convention-bureau-ccb" target="_blank" title="Web: Catalunya Convention Bureau">
+                    <img src="https://empresaplana.cat/img/ccb.svg" alt="Catalunya Convention Bureau" class="img-responsive">
+                </a>
+                <a href="https://costadaurada.info/es/convention-bureau" target="_blank" title="Web: Costa Daurada Convention Bureau">
+                    <img src="https://empresaplana.cat/img/cdcb.svg" alt="Costa Daurada Convention Bureau" class="img-responsive">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <a href="https://empresaplana.cat" title="INICIO">INICIO</a>        
+                    <a href="https://empresaplana.cat/empresa-plana" title="EMPRESA PLANA">EMPRESA PLANA</a>       
+                    <a href="https://empresaplana.cat/servicios-discrecionales" title="SERVICIOS DISCRECIONALES">SERVICIOS DISCRECIONALES</a>  
+                    <a href="https://empresaplana.cat/donde-estamos" title="DONDE ESTAMOS">DONDE ESTAMOS</a>   
+                    <a href="https://empresaplana.cat/descargas" title="RUTAS Y HORARIOS">RUTAS Y HORARIOS</a>          
+                    <!-- <a href="https://empresaplana.cat/trabaja-con-nosotros" title="TRABAJA CON NOSOTROS">TRABAJA CON NOSOTROS</a>   -->       
+                    <!-- <a href="https://empresaplana.cat/buscador-de-lineas" title="BUSCADOR DE LÍNEAS">BUSCADOR DE LÍNEAS</a> -->  
+                </p>
+                <br>
+                <p>
+                    <a href="#modal-legal" data-toggle="modal" data-target="#modal-legal">Aviso Legal</a>
+                    <a href="#modal-cookies" data-toggle="modal" data-target="#modal-cookies">Política de Cookies</a>
+                    <a href="#modal-privacidad" data-toggle="modal" data-target="#modal-privacidad">Política de Privacidad</a>
+                    
+                </p>
+                <br>
+                <p>
+                    <a href="http://portal-delempleado.com/login" title="ir al portal del empleado" target="_blank" class="btn btn-primary">Portal del empleado</a>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <div class="box-peu">
+                    <p><strong>EMPRESA PLANA</strong></p>
+
+<address>Empresa Plana, SL,<br />
+CIF B-43009091</address>
+
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="box-peu box-peu-nosotros">
+                    <p><strong>SOBRE NOSOTROS</strong></p><p>Empresa Plana tiene más de 60 años de experiencia en el transporte de personas en líneas regulares, transfers a aeropuertos y servicios de transporte discrecional. Confíe&nbsp;en Empresa Plana.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="box-peu">
+                    <p><strong>SERVICIOS</strong></p>
+                    <ul>
+                                                                                <li><a href="https://empresaplana.cat/servicios-discrecionales/1/transportes-discrecionales" title="Transportes discrecionales">Transportes discrecionales</a></li>
+                                                                                <li><a href="https://empresaplana.cat/servicios-discrecionales/2/servicios-a-empresas-y-fabricas" title="Servicios a Empresas y fábricas">Servicios a Empresas y fábricas</a></li>
+                                                                                <li><a href="https://empresaplana.cat/servicios-discrecionales/3/autocares-adaptados" title="Autocares adaptados">Autocares adaptados</a></li>
+                                                                                <li><a href="https://empresaplana.cat/servicios-discrecionales/4/transporte-escolar" title="Transporte escolar">Transporte escolar</a></li>
+                                                                                <li><a href="https://empresaplana.cat/servicios-discrecionales/5/viajes-fin-de-curso" title="Viajes fin de curso">Viajes fin de curso</a></li>
+                                                                                <li><a href="https://empresaplana.cat/servicios-discrecionales/6/transfers" title="Transfers">Transfers</a></li>
+                                                                        </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="box-peu">
+                    <p><strong>&nbsp;</strong></p>
+                    <ul>
+                                                        <li><a href="https://empresaplana.cat/servicios-discrecionales/7/viajes-turisticos" title="Viajes turísticos">Viajes turísticos</a></li>
+                                                                                <li><a href="https://empresaplana.cat/servicios-discrecionales/8/excursiones-internacionales" title="Excursiones Internacionales">Excursiones Internacionales</a></li>
+                                                                                <li><a href="https://empresaplana.cat/servicios-discrecionales/9/bodas-y-celebraciones" title="Bodas y celebraciones">Bodas y celebraciones</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>   
+</footer>
+
+
+
+        
+        
+        <!-- Modal Aviso legal -->
+<div class="modal fade" id="modal-legal" tabindex="-1" role="dialog" aria-labelledby="label-modal-legal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                <h4 class="modal-title" id="label-modal-legal">Aviso legal</h4>
+            </div>
+            <div class="modal-body">
+                <p><strong>RESPONSABILIAD DE CONTENIDOS Y OFERTAS COMERCIALES.</strong></p>
+                <p>AVISO LEGAL v.1.<br />
+                <br />
+                TERESA Y JOS&Eacute; PLANA EMPRESA PLANA, S.L. (en adelante, EMPRESA PLANA) provista de CIF B43009091, act&uacute;a como titular, dinamizador y gestor de contenidos de la presente web. La entidad informa a los Usuarios que cumple con la vigente normativa de protecci&oacute;n de datos, y con car&aacute;cter especial, con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la protecci&oacute;n de las personas f&iacute;sicas en lo que respecta al tratamiento de datos personales y a la libre circulaci&oacute;n de estos datos y por el que se deroga la Directiva 95/46/CE (Reglamento general de protecci&oacute;n de datos) y con la Ley de la Sociedad de Servicios de la Informaci&oacute;n y Comercio Electr&oacute;nico, Ley 34/2002, de 11 de julio.<br />
+                Por tanto, la actividad comercial, publicitaria, mercantil, administrativa o de contrataci&oacute;n de bienes y/o servicios es responsabilidad de la sociedad mencionada, propietaria de este dominio y que opera con la marca EMPRESA PLANA atendiendo para cuestiones comerciales y administrativas en la direcci&oacute;n siguiente: C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona).<br />
+                1.- CONCEPTO DE USUARIO<br />
+                La utilizaci&oacute;n de la web (incluida su &aacute;rea privada) atribuye la condici&oacute;n de usuario e implica la aceptaci&oacute;n plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal y en las Pol&iacute;ticas de Privacidad en la versi&oacute;n publicada por EMPRESA PLANA en el mismo momento en que el usuario acceda a la web. En consecuencia, el usuario debe leer atentamente el presente Aviso Legal y las Pol&iacute;ticas de Privacidad en cada una de las ocasiones en que se proponga utilizar la web, puesto que puede tener modificaciones.<br />
+                2.- INFORMACI&Oacute;N SOBRE LOS LINKS<br />
+                EMPRESA PLANA no se hace responsable de las webs no propias a las que se puede acceder mediante v&iacute;nculos &ldquo;links&rdquo; o de cualquier contenido puesto a disposici&oacute;n por terceros.<br />
+                Cualquier uso de un v&iacute;nculo o acceso a una web no propia es realizado por voluntad y riesgo exclusivo del usuario y EMPRESA PLANA no recomienda ni garantiza ninguna informaci&oacute;n obtenida a trav&eacute;s de un v&iacute;nculo ajeno a la web de EMPRESA PLANA ni se responsabiliza de ninguna p&eacute;rdida, reclamaci&oacute;n o perjuicio derivada del uso o mal uso de un v&iacute;nculo, o de la informaci&oacute;n obtenida a trav&eacute;s de &eacute;l, incluyendo otros v&iacute;nculos o webs, de la interrupci&oacute;n en el servicio o en el acceso, o del intento de usar o usar mal un v&iacute;nculo, tanto al conectarse a la web de EMPRESA PLANA como al acceder a la informaci&oacute;n de otras webs desde la web de EMPRESA PLANA.<br />
+                3.- V&Iacute;NCULOS O ENLACES DESDE OTRAS WEBS EXTERNAS<br />
+                Se proh&iacute;be expresamente establecer el v&iacute;nculo http://empresaplana.cat/ desde p&aacute;ginas que contengan manifestaciones o propaganda de car&aacute;cter racista, xen&oacute;fobo, pornogr&aacute;fico, de apolog&iacute;a del terrorismo, en contra de los Derechos Humanos o cualquier otro de car&aacute;cter il&iacute;cito o contrario a la moral y al orden p&uacute;blico. En ning&uacute;n caso se podr&aacute; dar a entender, ni declarar que, EMPRESA PLANA, interviene, avala, promociona, participa o ha supervisado en forma alguna los contenidos de la p&aacute;gina donde figure el enlace, ni tan s&oacute;lo que consienta su incursi&oacute;n, excepto autorizaci&oacute;n expresa.<br />
+                <br />
+                <br />
+                4.- INFORMACI&Oacute;N SOBRE LA UTILIZACI&Oacute;N DE COOKIES<br />
+                En esta Web se pueden ir utilizando cookies en algunas p&aacute;ginas. La finalidad de dichas cookies es mejorar el servicio que ofrecen a sus clientes y a nuestros visitantes. Si desea saber m&aacute;s sobre el uso de las cookies por parte de EMPRESA PLANA visite nuestra Pol&iacute;tica de cookies en la web.<br />
+                5.- RENUNCIA Y LIMITACI&Oacute;N DE LA RESPONSABILIDAD<br />
+                EMPRESA PLANA informa que en todo momento implementa las medidas de seguridad oportunas a fin de presentar a los usuarios de la web informaciones y servicios adecuados, ciertos y actualizados. No obstante, se reserva el derecho de rectificaci&oacute;n sobre aquellos aspectos que, eventualmente y de forma fortuita, puedan sufrir incorrecciones, desactualizaciones o errores.<br />
+                EMPRESA PLANA, ha obtenido la informaci&oacute;n y los materiales incluidos en la web de fuentes consideradas como fiables, pero si bien se han tomado las medidas correspondientes por asegurar que la informaci&oacute;n contenida sea correcta, no garantiza que sea exacta o actualizada.<br />
+                Tambi&eacute;n se advierte que los contenidos de esta Web, tienen dos finalidades, una finalidad informativa en cuanto a la calidad, situaci&oacute;n, servicios y tarifas y otra de venta de servicios, seg&uacute;n lo previsto en el presente aviso legal y el resto de textos legales de la presente web.<br />
+                6.- INDICACIONES SOBRE ASPECTOS T&Eacute;CNICOS<br />
+                EMPRESA PLANA declina cualquier responsabilidad en caso de que existan interrupciones o un mal funcionamiento de los servicios o contenidos ofrecidos en Internet, cualquiera que sea su causa. Asimismo, EMPRESA PLANA no se hace responsable por ca&iacute;das de la red, p&eacute;rdidas de informaci&oacute;n como consecuencia de dichas ca&iacute;das, suspensiones temporales del fluido el&eacute;ctrico o cualquier otro tipo de da&ntilde;o indirecto que le pueda ser causado a los Usuarios por causas ajenas a EMPRESA PLANA.<br />
+                EMPRESA PLANA no declara ni garantiza que los servicios o contenidos sean ininterrumpidos o que est&eacute;n libres de errores, que los defectos sean corregidos, o que el servicio o el servidor que lo pone a disposici&oacute;n est&eacute;n libres de virus u otros componentes nocivos, sin perjuicio de que EMPRESA PLANA realiza sus mejores esfuerzos en evitar este tipo de incidentes. En caso de que el Usuario tomara determinadas decisiones o realizara acciones con base a la informaci&oacute;n incluida en cualquiera de los websites, se recomienda la comprobaci&oacute;n de la informaci&oacute;n recibida con otras fuentes.<br />
+                7.- PROPIEDAD INDUSTRIAL E INTELECTUAL<br />
+                Los contenidos prestados por EMPRESA PLANA, as&iacute; como los contenidos vertidos en la red a trav&eacute;s de sus p&aacute;ginas web, constituyen una obra en el sentido de la legislaci&oacute;n sobre propiedad intelectual por lo que se hallan protegidos por las leyes y convenios internacionales aplicables en la materia.<br />
+                Queda prohibida cualquier forma de reproducci&oacute;n, distribuci&oacute;n, comunicaci&oacute;n p&uacute;blica, transformaci&oacute;n, puesta a disposici&oacute;n y, en general, cualquier otro acto de explotaci&oacute;n p&uacute;blica referido tanto a las p&aacute;ginas Web como a sus contenidos e informaci&oacute;n, sin el expreso y previo consentimiento y por escrito de EMPRESA PLANA.<br />
+                En consecuencia, todos los contenidos que se muestran en los diferentes websites y en especial, dise&ntilde;os, textos, gr&aacute;ficos, logotipos, iconos, botones, software, nombres comerciales, marcas, dibujos industriales o cualesquiera otros signos susceptibles de utilizaci&oacute;n industrial y comercial est&aacute;n sujetos a derechos de propiedad intelectual e industrial de EMPRESA PLANA o de terceros titulares de los mismos que han autorizado debidamente su inclusi&oacute;n en los diferentes websites.<br />
+                Los contenidos, im&aacute;genes, formas, opiniones, &iacute;ndices y dem&aacute;s expresiones formales que formen parte de las p&aacute;ginas Web, as&iacute; como el software necesario para el funcionamiento y visualizaci&oacute;n de las mismas, constituyen asimismo una obra en el sentido del Derecho de Autor y quedan, por lo tanto, protegidas por las convenciones internacionales y legislaciones nacionales en materia de Propiedad intelectual que resulten aplicables. El incumplimiento de lo se&ntilde;alado implica la comisi&oacute;n de graves actos il&iacute;citos y su sanci&oacute;n por la legislaci&oacute;n civil y penal.<br />
+                Queda prohibido todo acto por virtud del cual los Usuarios de los servicios o contenidos puedan explotar o servirse comercialmente, directa o indirectamente, en su totalidad o parcialmente, de cualquiera de los contenidos, im&aacute;genes, formas, &iacute;ndices y dem&aacute;s expresiones formales que formen parte de las p&aacute;ginas Web sin permiso previo y por escrito de EMPRESA PLANA.<br />
+                En concreto, y sin car&aacute;cter exhaustivo, quedan prohibidos los actos de reproducci&oacute;n, distribuci&oacute;n, exhibici&oacute;n, transmisi&oacute;n, retransmisi&oacute;n, emisi&oacute;n en cualquier forma, almacenamiento en soportes f&iacute;sicos o l&oacute;gicos (por ejemplo, disquetes o disco duro de ordenadores), digitalizaci&oacute;n o puesta a disposici&oacute;n desde bases de datos distintas de las pertenecientes a las autorizadas por EMPRESA PLANA as&iacute; como su traducci&oacute;n, adaptaci&oacute;n, arreglo o cualquier otra transformaci&oacute;n de dichas opiniones, im&aacute;genes, formas, &iacute;ndices y dem&aacute;s expresiones formales que se pongan a disposici&oacute;n de los Usuarios a trav&eacute;s de los servicios o contenidos, en tanto tales actos est&eacute;n sometidos a la legislaci&oacute;n aplicable en materia de Propiedad intelectual, industrial o de protecci&oacute;n de la imagen.<br />
+                EMPRESA PLANA es libre de limitar el acceso a las p&aacute;ginas Web, y a los productos y/o servicios en ella ofrecidos, as&iacute; como la consiguiente publicaci&oacute;n de las opiniones, observaciones, im&aacute;genes o comentarios que los Usuarios puedan hacerle llegar a trav&eacute;s del correo electr&oacute;nico.<br />
+                EMPRESA PLANA en este sentido, podr&aacute; establecer, si lo considera oportuno, sin perjuicio de la &uacute;nica y exclusiva responsabilidad de los Usuarios, los filtros necesarios a fin de evitar que a trav&eacute;s de sus p&aacute;ginas Web puedan verterse en la red contenidos u opiniones, considerados como racistas, xen&oacute;fobos, discriminatorios, pornogr&aacute;ficos, difamatorios o que, de cualquier modo, fomenten la violencia o la diseminaci&oacute;n de contenidos claramente il&iacute;citos o nocivos.<br />
+                Aquellos Usuarios que env&iacute;en a las p&aacute;ginas web de EMPRESA PLANA a su departamento de sugerencias, observaciones, opiniones o comentarios por medio del servicio de correo electr&oacute;nico, salvo que expresen de manera cierta e inconfundible lo contrario, en los casos en los que por la naturaleza de los servicios o contenidos ello sea posible, se entiende que autorizan a EMPRESA PLANA para la reproducci&oacute;n, distribuci&oacute;n, exhibici&oacute;n, transmisi&oacute;n, retransmisi&oacute;n, emisi&oacute;n en cualquier formato, almacenamiento en soportes f&iacute;sicos o l&oacute;gicos (por ejemplo, disquetes o disco duro de ordenadores), digitalizaci&oacute;n, puesta a disposici&oacute;n desde bases de datos pertenecientes a EMPRESA PLANA traducci&oacute;n, adaptaci&oacute;n, arreglo o cualquier otra transformaci&oacute;n de tales observaciones, opiniones o comentarios, por todo el tiempo de protecci&oacute;n de derecho de autor que est&eacute; previsto legalmente.<br />
+                Asimismo, se entiende que esta autorizaci&oacute;n se hace a t&iacute;tulo gratuito, y que por el solo hecho de enviar por correo electr&oacute;nico tales observaciones, opiniones o comentarios, los Usuarios declinan cualquier pretensi&oacute;n remuneratoria por parte de EMPRESA PLANA.<br />
+                De acuerdo con lo se&ntilde;alado en el p&aacute;rrafo anterior, EMPRESA PLANA queda autorizada igualmente para proceder a la modificaci&oacute;n o alteraci&oacute;n de tales observaciones, opiniones o comentarios, a fin de adaptarlos a las necesidades de formato editorial de las p&aacute;ginas Web, sin que por ello pueda entenderse que existe en absoluto cualquier tipo de lesi&oacute;n de cualesquiera de las facultades morales de derecho de autor que los Usuarios pudieran ostentar sobre aqu&eacute;llas.<br />
+                Quedan prohibidos cualesquiera de los recursos t&eacute;cnicos, l&oacute;gicos o tecnol&oacute;gicos por virtud de los cuales un tercero pueda beneficiarse, directa o indirectamente, con o sin lucro, de todos y cada uno de los contenidos, formas, &iacute;ndices y dem&aacute;s expresiones formales que formen parte de las p&aacute;ginas Web, o del esfuerzo llevado a cabo por EMPRESA PLANA para su funcionamiento.<br />
+                En concreto, queda prohibido todo link, hyperlink, framing o v&iacute;nculo similar que pueda establecerse en direcci&oacute;n a las p&aacute;ginas Web de EMPRESA PLANA sin el consentimiento previo, expreso y por escrito de EMPRESA PLANA Cualquier trasgresi&oacute;n de lo dispuesto en este punto ser&aacute; considerada como lesi&oacute;n de los leg&iacute;timos derechos de Propiedad intelectual de EMPRESA PLANA sobre las p&aacute;ginas Web y todos los contenidos de las mismas.<br />
+                EMPRESA PLANA no asumir&aacute; responsabilidad alguna ante consecuencias derivadas de las conductas y actuaciones antes citadas, del mismo modo que no asumir&aacute; responsabilidad alguna por los contenidos, servicios, productos, etc., de terceros a los que se pueda acceder directamente o a trav&eacute;s de banners, enlaces, links, hyperlinks, framing o v&iacute;nculos similares desde los websites de EMPRESA PLANA.<br />
+                Quedan prohibidos cualesquiera de los recursos t&eacute;cnicos, l&oacute;gicos o tecnol&oacute;gicos por virtud de los cuales un tercero pueda beneficiarse, directa o indirectamente, con o sin lucro, de todos y cada uno de los contenidos, formas, &iacute;ndices y dem&aacute;s expresiones formales que formen parte de las p&aacute;ginas Web, o del esfuerzo llevado a cabo por EMPRESA PLANA para su funcionamiento.<br />
+                En concreto, queda prohibido todo link, hyperlink, framing o v&iacute;nculo similar que pueda establecerse en direcci&oacute;n a las p&aacute;ginas Web de EMPRESA PLANA sin el consentimiento previo, expreso y por escrito de EMPRESA PLANA Cualquier trasgresi&oacute;n de lo dispuesto en este punto ser&aacute; considerada como lesi&oacute;n de los leg&iacute;timos derechos de Propiedad intelectual de EMPRESA PLANA sobre las p&aacute;ginas Web y todos los contenidos de las mismas.<br />
+                EMPRESA PLANA no asumir&aacute; responsabilidad alguna ante consecuencias derivadas de las conductas y actuaciones antes citadas, del mismo modo que no asumir&aacute; responsabilidad alguna por los contenidos, servicios, productos, etc., de terceros a los que se pueda acceder directamente o a trav&eacute;s de banners, enlaces, links, hyperlinks, framing o v&iacute;nculos similares desde los websites de EMPRESA PLANA.</p>
+
+                <p>&nbsp;---------------------------------------------------------------------------------------------------------------------------</p>
+
+                <p>VIATGES PLANA, S.L. (en adelante, VIATGES PLANA), provista de CIF B43236991, act&uacute;a como titular, dinamizador y gestor de contenidos de la presente web. La entidad informa a los Usuarios que cumple con la vigente normativa de protecci&oacute;n de datos, y con car&aacute;cter especial, con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la protecci&oacute;n de las personas f&iacute;sicas en lo que respecta al tratamiento de datos personales y a la libre circulaci&oacute;n de estos datos y por el que se deroga la Directiva 95/46/CE (Reglamento general de protecci&oacute;n de datos) y con la Ley de la Sociedad de Servicios de la Informaci&oacute;n y Comercio Electr&oacute;nico, Ley 34/2002, de 11 de julio.</p>
+
+                <p><br />
+                &nbsp;</p>
+
+                <table border="0" cellpadding="7" cellspacing="0" class="mceVisualAid" style="width:100%">
+                    <tbody>
+                        <tr>
+                            <td>
+                            <p><strong>Raz&oacute;n Social o Nombre de la Empresa</strong></p>
+                            </td>
+                            <td>
+                            <p><strong>CIF</strong></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <p>VIATGES PLANA, S.L.</p>
+                            </td>
+                            <td>
+                            <p>B43236991</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                            <p><strong>Direcci&oacute;n</strong></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                            <p>C/ Colom, 29</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <p><strong>Poblaci&oacute;n</strong></p>
+                            </td>
+                            <td>
+                            <p><strong>C&oacute;digo Postal</strong></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <p>Tarragona</p>
+                            </td>
+                            <td>
+                            <p>43001</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><br />
+                &nbsp;</p>
+
+                <p><strong>1.- CONCEPTO DE USUARIO</strong></p>
+
+                <p>La utilizaci&oacute;n de la web (incluida su &aacute;rea privada) atribuye la condici&oacute;n de usuario e implica la aceptaci&oacute;n plena y sin reservas de todas y cada una de las disposiciones incluidas en este <strong>Aviso Legal</strong> y en las <strong>Pol&iacute;ticas de Privacidad</strong> en la versi&oacute;n publicada por VIATGES PLANA en el mismo momento en que el usuario acceda a la web. En consecuencia, el usuario debe leer atentamente el presente <strong>Aviso Legal</strong> y las <strong>Pol&iacute;ticas de Privacidad</strong> en cada una de las ocasiones en que se proponga utilizar la web, puesto que puede tener modificaciones.</p>
+
+                <p><strong>2.- INFORMACI&Oacute;N SOBRE LOS LINKS</strong></p>
+
+                <p>VIATGES PLANA no se hace responsable de las webs no propias a las que se puede acceder mediante v&iacute;nculos &ldquo;links&rdquo; o de cualquier contenido puesto a disposici&oacute;n por terceros.</p>
+
+                <p>Cualquier uso de un v&iacute;nculo o acceso a una web no propia es realizado por voluntad y riesgo exclusivo del usuario y VIATGES PLANA no recomienda ni garantiza ninguna informaci&oacute;n obtenida a trav&eacute;s de un v&iacute;nculo ajeno a la web de VIATGES PLANA ni se responsabiliza de ninguna p&eacute;rdida, reclamaci&oacute;n o perjuicio derivada del uso o mal uso de un v&iacute;nculo, o de la informaci&oacute;n obtenida a trav&eacute;s de &eacute;l, incluyendo otros v&iacute;nculos o webs, de la interrupci&oacute;n en el servicio o en el acceso, o del intento de usar o usar mal un v&iacute;nculo, tanto al conectarse a la web de VIATGES PLANA como al acceder a la informaci&oacute;n de otras webs desde la web de VIATGES PLANA.</p>
+
+                <p><strong>3.- V&Iacute;NCULOS O ENLACES DESDE OTRAS WEBS EXTERNAS</strong></p>
+
+                <p>Se proh&iacute;be expresamente establecer el v&iacute;nculo <a href="http://www.busplana.com">http://www.busplana.com</a> desde p&aacute;ginas que contengan manifestaciones o propaganda de car&aacute;cter racista, xen&oacute;fobo, pornogr&aacute;fico, de apolog&iacute;a del terrorismo, en contra de los Derechos Humanos o cualquier otro de car&aacute;cter il&iacute;cito o contrario a la moral y al orden p&uacute;blico. En ning&uacute;n caso se podr&aacute; dar a entender, ni declarar que, VIATGES PLANA, interviene, avala, promociona, participa o ha supervisado en forma alguna los contenidos de la p&aacute;gina donde figure el enlace, ni tan s&oacute;lo que consienta su incursi&oacute;n, excepto autorizaci&oacute;n expresa.</p>
+
+                <p><strong>4.- INFORMACI&Oacute;N SOBRE LA UTILIZACI&Oacute;N DE COOKIES</strong></p>
+
+                <p><a name="_GoBack"></a> En esta Web se pueden ir utilizando cookies en algunas p&aacute;ginas. La finalidad de dichas cookies es mejorar el servicio que ofrecen a sus clientes y a nuestros visitantes. Si desea saber m&aacute;s sobre el uso de las cookies por parte de VIATGES PLANA, visite nuestra <strong>Pol&iacute;tica de cookies</strong> en la web.</p>
+
+                <p><strong>5.- RENUNCIA Y LIMITACI&Oacute;N DE LA RESPONSABILIDAD</strong></p>
+
+                <p>VIATGES PLANA informa que en todo momento implementa las medidas de seguridad oportunas a fin de presentar a los usuarios de la web informaciones y servicios adecuados, ciertos y actualizados. No obstante, se reserva el derecho de rectificaci&oacute;n sobre aquellos aspectos que, eventualmente y de forma fortuita, puedan sufrir incorrecciones, desactualizaciones o errores.</p>
+
+                <p>VIATGES PLANA, ha obtenido la informaci&oacute;n y los materiales incluidos en la web de fuentes consideradas como fiables, pero si bien se han tomado las medidas correspondientes por asegurar que la informaci&oacute;n contenida sea correcta, no garantiza que sea exacta o actualizada.</p>
+
+                <p>Tambi&eacute;n se advierte que los contenidos de esta Web, tienen dos finalidades, una finalidad informativa en cuanto a la calidad, situaci&oacute;n, servicios y tarifas y otra de venta de servicios, seg&uacute;n lo previsto en el presente aviso legal y el resto de textos legales de la presente web.</p>
+
+                <p><strong>6.- INDICACIONES SOBRE ASPECTOS T&Eacute;CNICOS</strong></p>
+
+                <p>VIATGES PLANA declina cualquier responsabilidad en caso de que existan interrupciones o un mal funcionamiento de los servicios o contenidos ofrecidos en Internet, cualquiera que sea su causa. Asimismo, VIATGES PLANA no se hace responsable por ca&iacute;das de la red, p&eacute;rdidas de informaci&oacute;n como consecuencia de dichas ca&iacute;das, suspensiones temporales del fluido el&eacute;ctrico o cualquier otro tipo de da&ntilde;o indirecto que le pueda ser causado a los Usuarios por causas ajenas a VIATGES PLANA.</p>
+
+                <p><a name="_Hlk513105889"></a> VIATGES PLANA no declara ni garantiza que los servicios o contenidos sean ininterrumpidos o que est&eacute;n libres de errores, que los defectos sean corregidos, o que el servicio o el servidor que lo pone a disposici&oacute;n est&eacute;n libres de virus u otros componentes nocivos, sin perjuicio de que VIATGES PLANA realiza sus mejores esfuerzos en evitar este tipo de incidentes. En caso de que el Usuario tomara determinadas decisiones o realizara acciones con base a la informaci&oacute;n incluida en cualquiera de los websites, se recomienda la comprobaci&oacute;n de la informaci&oacute;n recibida con otras fuentes.</p>
+
+                <p><strong>7.- PROPIEDAD INDUSTRIAL E INTELECTUAL</strong></p>
+
+                <p>Los contenidos prestados por VIATGES PLANA, as&iacute; como los contenidos vertidos en la red a trav&eacute;s de sus p&aacute;ginas web, constituyen una obra en el sentido de la legislaci&oacute;n sobre propiedad intelectual por lo que se hallan protegidos por las leyes y convenios internacionales aplicables en la materia.</p>
+
+                <p>Queda prohibida cualquier forma de reproducci&oacute;n, distribuci&oacute;n, comunicaci&oacute;n p&uacute;blica, transformaci&oacute;n, puesta a disposici&oacute;n y, en general, cualquier otro acto de explotaci&oacute;n p&uacute;blica referido tanto a las p&aacute;ginas Web como a sus contenidos e informaci&oacute;n, sin el expreso y previo<strong> </strong>consentimiento y por escrito de VIATGES PLANA.</p>
+
+                <p>En consecuencia, todos los contenidos que se muestran en los diferentes websites y en especial, dise&ntilde;os, textos, gr&aacute;ficos, logotipos, iconos, botones, software, nombres comerciales, marcas, dibujos industriales o cualesquiera otros signos susceptibles de utilizaci&oacute;n industrial y comercial est&aacute;n sujetos a derechos de propiedad intelectual e industrial de VIATGES PLANA o de terceros titulares de los mismos que han autorizado debidamente su inclusi&oacute;n en los diferentes websites.</p>
+
+                <p>Los contenidos, im&aacute;genes, formas, opiniones, &iacute;ndices y dem&aacute;s expresiones formales que formen parte de las p&aacute;ginas Web, as&iacute; como el software necesario para el funcionamiento y visualizaci&oacute;n de las mismas, constituyen asimismo una obra en el sentido del Derecho de Autor y quedan, por lo tanto, protegidas por las convenciones internacionales y legislaciones nacionales en materia de Propiedad intelectual que resulten aplicables. El incumplimiento de lo se&ntilde;alado implica la comisi&oacute;n de graves actos il&iacute;citos y su sanci&oacute;n por la legislaci&oacute;n civil y penal.</p>
+
+                <p>Queda prohibido todo acto por virtud del cual los Usuarios de los servicios o contenidos puedan explotar o servirse comercialmente, directa o indirectamente, en su totalidad o parcialmente, de cualquiera de los contenidos, im&aacute;genes, formas, &iacute;ndices y dem&aacute;s expresiones formales que formen parte de las p&aacute;ginas Web sin permiso previo y por escrito de VIATGES PLANA.</p>
+
+                <p>En concreto, y sin car&aacute;cter exhaustivo, quedan prohibidos los actos de reproducci&oacute;n, distribuci&oacute;n, exhibici&oacute;n, transmisi&oacute;n, retransmisi&oacute;n, emisi&oacute;n en cualquier forma, almacenamiento en soportes f&iacute;sicos o l&oacute;gicos (por ejemplo, disquetes o disco duro de ordenadores), digitalizaci&oacute;n o puesta a disposici&oacute;n desde bases de datos distintas de las pertenecientes a las autorizadas por VIATGES PLANA as&iacute; como su traducci&oacute;n, adaptaci&oacute;n, arreglo o cualquier otra transformaci&oacute;n de dichas opiniones, im&aacute;genes, formas, &iacute;ndices y dem&aacute;s expresiones formales que se pongan a disposici&oacute;n de los Usuarios a trav&eacute;s de los servicios o contenidos, en tanto tales actos est&eacute;n sometidos a la legislaci&oacute;n aplicable en materia de Propiedad intelectual, industrial o de protecci&oacute;n de la imagen.</p>
+
+                <p>VIATGES PLANA es libre de limitar el acceso a las p&aacute;ginas Web, y a los productos y/o servicios en ella ofrecidos, as&iacute; como la consiguiente publicaci&oacute;n de las opiniones, observaciones, im&aacute;genes o comentarios que los Usuarios puedan hacerle llegar a trav&eacute;s del correo electr&oacute;nico.</p>
+
+                <p>VIATGES PLANA en este sentido, podr&aacute; establecer, si lo considera oportuno, sin perjuicio de la &uacute;nica y exclusiva responsabilidad de los Usuarios, los filtros necesarios a fin de evitar que a trav&eacute;s de sus p&aacute;ginas Web puedan verterse en la red contenidos u opiniones, considerados como racistas, xen&oacute;fobos, discriminatorios, pornogr&aacute;ficos, difamatorios o que, de cualquier modo, fomenten la violencia o la diseminaci&oacute;n de contenidos claramente il&iacute;citos o nocivos.</p>
+
+                <p>Aquellos Usuarios que env&iacute;en a las p&aacute;ginas web de VIATGES PLANA a su departamento de sugerencias, observaciones, opiniones o comentarios por medio del servicio de correo electr&oacute;nico, salvo que expresen de manera cierta e inconfundible lo contrario, en los casos en los que por la naturaleza de los servicios o contenidos ello sea posible, se entiende que autorizan a VIATGES PLANA para la reproducci&oacute;n, distribuci&oacute;n, exhibici&oacute;n, transmisi&oacute;n, retransmisi&oacute;n, emisi&oacute;n en cualquier formato, almacenamiento en soportes f&iacute;sicos o l&oacute;gicos (por ejemplo, disquetes o disco duro de ordenadores), digitalizaci&oacute;n, puesta a disposici&oacute;n desde bases de datos pertenecientes a VIATGES PLANA traducci&oacute;n, adaptaci&oacute;n, arreglo o cualquier otra transformaci&oacute;n de tales observaciones, opiniones o comentarios, por todo el tiempo de protecci&oacute;n de derecho de autor que est&eacute; previsto legalmente.</p>
+
+                <p>Asimismo, se entiende que esta autorizaci&oacute;n se hace a t&iacute;tulo gratuito, y que por el solo hecho de enviar por correo electr&oacute;nico tales observaciones, opiniones o comentarios, los Usuarios declinan cualquier pretensi&oacute;n remuneratoria por parte de VIATGES PLANA.</p>
+
+                <p>De acuerdo con lo se&ntilde;alado en el p&aacute;rrafo anterior, VIATGES PLANA queda autorizada igualmente para proceder a la modificaci&oacute;n o alteraci&oacute;n de tales observaciones, opiniones o comentarios, a fin de adaptarlos a las necesidades de formato editorial de las p&aacute;ginas Web, sin que por ello pueda entenderse que existe en absoluto cualquier tipo de lesi&oacute;n de cualesquiera de las facultades morales de derecho de autor que los Usuarios pudieran ostentar sobre aqu&eacute;llas.</p>
+
+                <p>Quedan prohibidos cualesquiera de los recursos t&eacute;cnicos, l&oacute;gicos o tecnol&oacute;gicos por virtud de los cuales un tercero pueda beneficiarse, directa o indirectamente, con o sin lucro, de todos y cada uno de los contenidos, formas, &iacute;ndices y dem&aacute;s expresiones formales que formen parte de las p&aacute;ginas Web, o del esfuerzo llevado a cabo por VIATGES PLANA para su funcionamiento.</p>
+
+                <p>En concreto, queda prohibido todo link, hyperlink, framing o v&iacute;nculo similar que pueda establecerse en direcci&oacute;n a las p&aacute;ginas Web de VIATGES PLANA sin el consentimiento previo, expreso y por escrito de VIATGES PLANA Cualquier trasgresi&oacute;n de lo dispuesto en este punto ser&aacute; considerada como lesi&oacute;n de los leg&iacute;timos derechos de Propiedad intelectual de VIATGES PLANA sobre las p&aacute;ginas Web y todos los contenidos de las mismas.</p>
+
+                <p>VIATGES PLANA no asumir&aacute; responsabilidad alguna ante consecuencias derivadas de las conductas y actuaciones antes citadas, del mismo modo que no asumir&aacute; responsabilidad alguna por los contenidos, servicios, productos, etc., de terceros a los que se pueda acceder directamente o a trav&eacute;s de banners, enlaces, links, hyperlinks, framing o v&iacute;nculos similares desde los websites de VIATGES PLANA.</p>
+
+                <p>Quedan prohibidos cualesquiera de los recursos t&eacute;cnicos, l&oacute;gicos o tecnol&oacute;gicos por virtud de los cuales un tercero pueda beneficiarse, directa o indirectamente, con o sin lucro, de todos y cada uno de los contenidos, formas, &iacute;ndices y dem&aacute;s expresiones formales que formen parte de las p&aacute;ginas Web, o del esfuerzo llevado a cabo por VIATGES PLANA para su funcionamiento.</p>
+
+                <p>En concreto, queda prohibido todo link, hyperlink, framing o v&iacute;nculo similar que pueda establecerse en direcci&oacute;n a las p&aacute;ginas Web de VIATGES PLANA sin el consentimiento previo, expreso y por escrito de VIATGES PLANA Cualquier trasgresi&oacute;n de lo dispuesto en este punto ser&aacute; considerada como lesi&oacute;n de los leg&iacute;timos derechos de Propiedad intelectual de VIATGES PLANA sobre las p&aacute;ginas Web y todos los contenidos de las mismas.</p>
+
+                <p>VIATGES PLANA no asumir&aacute; responsabilidad alguna ante consecuencias derivadas de las conductas y actuaciones antes citadas, del mismo modo que no asumir&aacute; responsabilidad alguna por los contenidos, servicios, productos, etc., de terceros a los que se pueda acceder directamente o a trav&eacute;s de banners, enlaces, links, hyperlinks, framing o v&iacute;nculos similares desde los websites de VIATGES PLANA.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Aviso legal -->
+
+<!-- Modal Cookies -->
+<div class="modal fade" id="modal-cookies" tabindex="-1" role="dialog" aria-labelledby="label-modal-cookies">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                <h4 class="modal-title" id="label-modal-cookies">Política de cookies</h4>
+            </div>
+            <div class="modal-body">
+              <p>POLÍTICA DE USO COOKIES</p>
+              <p><strong>Definición y función de las cookies</strong></p>
+              <p>De conformidad con lo establecido en la Ley 34/2002 de Servicios de la Sociedad de la Información y Comercio Electrónico, le informamos que este sitio web almacena información de las direcciones IP de los ordenadores, y utiliza Cookies con el objetivo de prestar un mejor servicio y ofrecerle una mejor experiencia en su navegación.</p>
+              <p>Las Cookies son pequeños archivos de texto que contienen información, y que se generan en el ordenador o terminal del Usuario cuando navega por el sitio web. Con la navegación por esta web usted presta su consentimiento para recibir dichas Cookies. Por medio de ellas TERESA Y JOSÉ PLANA EMPRESA PLANA, S.L. (en adelante, EMPRESA PLANA) sólo obtiene y conserva la información bajo las condiciones descritas en la presente Política de cookies:</p>
+              <p><strong>¿Qué tipos de cookies utilizamos?</strong></p>
+              <p>Según el plazo de tiempo que permanecen activas:<br>
+                  <ul>
+                      <li>Cookies de sesión: Son un tipo de cookies diseñadas para recabar y almacenar datos mientras accede a nuestra web y permanecen en el archivo de cookies de su navegador hasta que abandone la página. Como por ejemplo las cookies de identificación.</li>
+                      <li>Cookies persistentes: Son un tipo de cookies en el que los datos siguen almacenados en el terminal y pueden ser accedidos y tratados durante un periodo determinado de tiempo.</li>
+                  </ul>
+              </p>
+              <p>
+                  Según su finalidad y la entidad que las gestiona:<br>
+                  <ul>
+                      <li>Cookies propias: Son aquellas que enviamos a su ordenador o terminal desde nuestra página web.</li>
+                      <li>Cookies de terceros: Son aquellas que se envían a su ordenador o terminal desde un dominio o una página web que no es gestionada por nosotros, sino por una entidad colaboradora. Por ejemplo, las usadas por Google, quien instala cookies que nos ayudan a analizar el funcionamiento de nuestro sitio web, y mejorar la efectividad de nuestras campañas de marketing. </li>
+                      <li>Cookies técnicas: son aquellas necesarias para la navegación y el buen funcionamiento de nuestra web. Por ejemplo, permiten realizar el proceso de compra, controlar los aspectos de seguridad de la web, compartir contenidos a través de redes sociales…</li>
+                      <li>
+                          Cookies de análisis: Son aquéllas que bien tratadas por nosotros o por terceros, nos permiten cuantificar el número de usuarios y realizar la medición y análisis estadístico de la utilización que hacen los usuarios de nuestra web. Para ello analizamos la navegación en nuestra página web con el fin de mejorar la oferta de productos o servicios que ofrecemos. Ejemplo de ello son:
+                          <ul>
+                              <li>El número de visitantes únicos de cada página / sección, que se utiliza para hacer un recuento de las veces en que el sitio es visitado por un usuario, así como la primera y última vez de dicha visita. Esto ayuda a conocer las áreas de más éxito y aumentar y mejorar el contenido, con el resultado de que los usuarios obtengan una experiencia y servicio más satisfactorios.</li>
+                              <li>La fecha y hora de acceso a nuestra web, con el fin de permitir averiguar las horas de más afluencia, y hacer los ajustes precisos para evitar problemas de saturación en nuestras horas punta.</li>
+                              <li>La fuente de tráfico, que registra el origen del usuario, es decir, la dirección de Internet desde la que parte el link que dirige a nuestra web, con el fin de potenciar los distintos enlaces y banners que apuntan a nuestro servidor y que ofrecen mejores resultados.</li>
+                          </ul>
+                      </li>
+                      <li>Cookies publicitarias y de publicidad comportamental: Las cookies publicitarias son aquéllas que permiten la gestión, de la forma más eficaz posible, de los espacios publicitarios que se pudieran incluir en nuestra página web en base a criterios como el contenido editado o la frecuencia en la que se muestran los anuncios. </li>
+                  </ul>
+              </p> 
+              <p>Las Cookies de publicidad comportamental actúan en función del comportamiento (preferencias y elecciones personales) de los usuarios obtenidos a través de la observación continuada de sus hábitos de navegación, lo que permite desarrollar un perfil específico para mostrarle anuncios personalizados en otros sitios web. </p>
+              <p><strong>¿Cómo puedo configurar o deshabilitar las cookies?</strong></p>
+              <p>Puede configurar su navegador para ser avisado de la recepción de cookies y negarse a aceptarlas activando la configuración en el navegador que permite rechazarlas. No obstante, le advertimos que la desactivación de las Cookies puede provocar la limitación, o incluso imposibilidad de acceso a algunas de las funcionalidades de nuestra web, así como algunos de los servicios pueden dejar de funcionar correctamente.</p>
+              <p>Para más detalle sobre la configuración de las cookies en su navegador, consulte el menú “Ayuda” del mismo. 
+              También le proponemos consultar los siguientes sitios web: Aboutcookies, youronlinechoices, Network Advertising Initiative o Digital Advertising Alliance donde encontrará explicaciones detalladas sobre cómo eliminar las cookies de su ordenador y más información general sobre las mismas. </p>
+              <p>
+                  <strong>Cookies de terceros / empresas colaboradoras</strong>
+                  <ul>
+                      <li>Google: Google ofrece un gran número de productos para ayudarnos a administrar nuestros anuncios y sitios web; entre los que se incluyen Google Analytics. Al visitar nuestro sitio web pueden enviarse algunas cookies a su navegador.</li>
+                  </ul>
+              </p>
+              <p>Estas cookies pueden habilitarse desde una serie de dominios diferentes, incluidos www.google.com, y www.doubleclick.net para permitirnos usar servicios conjuntos al servicio de Google, como un servicio de medición y elaboración de informes de anuncios. Consulte más información sobre los tipos de cookies que utiliza Google. </p>
+              <p>Google Analytics es la herramienta de analítica que ayuda a nuestro sitio web http://empresaplana.cat/ a entender el modo en que los usuarios interactúan con sus propiedades. Puede utilizar un conjunto de cookies para recopilar información e informar de las estadísticas de uso de los sitios web sin identificar personalmente a los visitantes de Google. Consulte más información sobre las cookies de Google Analytics. </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Cookies -->
+
+<!-- Modal soluciones publicitarias -->
+<div class="modal fade" id="modal-soluciones" tabindex="-1" role="dialog" aria-labelledby="label-modal-soluciones">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                <h4 class="modal-title" id="label-modal-soluciones">Soluciones publicitarias</h4>
+            </div>
+            <div class="modal-body">
+                <p>Texto</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Cookies -->
+
+<!-- Modal privacidad -->
+<div class="modal fade" id="modal-privacidad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Política de privacidad</h4>
+            </div>
+            <div class="modal-body">  
+              <p>POL&Iacute;TICA DE PRIVACIDAD<br />
+              1.- Objeto de la pol&iacute;tica de privacidad<br />
+              La presente Pol&iacute;tica de privacidad de TERESA Y JOSE PLANA (En adelante, EMPRESA PLANA) regula la obtenci&oacute;n, utilizaci&oacute;n y otras formas de procesamiento de datos personales facilitados por los Usuarios en la presente web o en cualquiera del entorno de Internet de la entidad.<br />
+              Mediante la implementaci&oacute;n de los formularios incluidos en el website, relativos a servicios prestados por EMPRESA PLANA, los usuarios aceptan la inclusi&oacute;n y tratamiento de los datos que proporcionen en un tratamiento de datos de car&aacute;cter personal, del cual es titular EMPRESA PLANA pudi&eacute;ndose ejercer los derechos pertinentes seg&uacute;n lo expuesto en las siguientes cl&aacute;usulas.<br />
+              EMPRESA PLANA act&uacute;a como titular, dinamizadora y gestora de contenidos de la presente Web. EMPRESA PLANA informa a los usuarios que cumple con la vigente normativa de protecci&oacute;n de datos, y con car&aacute;cter especial, con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la protecci&oacute;n de las personas f&iacute;sicas en lo que respecta al tratamiento de datos personales y a la libre circulaci&oacute;n de estos datos y por el que se deroga la Directiva 95/46/CE (en adelante, Reglamento General de Protecci&oacute;n de Datos), y con la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informaci&oacute;n y de Comercio Electr&oacute;nico.<br />
+              Todos los textos legales se encuentran a disposici&oacute;n de los usuarios y/o interesados en la correspondiente web.<br />
+              2.- &iquest;Qui&eacute;n es responsable del tratamiento de sus datos?<br />
+              EMPRESA PLANA es el responsable de la recogida y procesamiento de sus datos personales en relaci&oacute;n con los servicios que la misma presta.<br />
+              EMPRESA PLANA se compromete a respetar y salvaguardar su privacidad y la seguridad de sus datos.<br />
+              Los datos identificativos del responsable de tratamiento son: EMPRESA PLANA, con CIF B43009091, y domiciliada en C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona).<br />
+              3.- &iquest;Qu&eacute; datos recogemos?<br />
+              De acuerdo con lo dispuesto en la normativa vigente, EMPRESA PLANA s&oacute;lo recoge los datos estrictamente necesarios para ofrecer los servicios derivados de su actividad y dem&aacute;s prestaciones, gestiones y actividades atribuidas por la Ley.<br />
+              Mediante la presente web, y con el objetivo de prestarle el mejor servicio, EMPRESA PLANA capta informaci&oacute;n o datos que pueden identificarle directa o indirectamente: nombre, correo electr&oacute;nico y n&uacute;mero de tel&eacute;fono.<br />
+              Se informa a los usuarios, que la informaci&oacute;n que nos facilite en los formularios incluidos en la presente web tiene car&aacute;cter voluntario, si bien la negativa a facilitar los datos solicitados puede comportar la imposibilidad de acceso a los servicios que lo requieran.<br />
+              4.- &iquest;Con qu&eacute; finalidad/es recopilamos sus datos?&nbsp;&nbsp; &nbsp;<br />
+              Las finalidades y base legal para las que recopilamos dichos datos son:<br />
+              &nbsp;&nbsp;&nbsp; &bull; Gesti&oacute;n de la relaci&oacute;n contractual que mantenemos con usted, para la cual la base legal es la ejecuci&oacute;n del contrato que nos une.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Env&iacute;o de informaci&oacute;n comercial y/o promocional que pueda ser de su inter&eacute;s, siendo la base legal su consentimiento.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Resoluci&oacute;n de consultas que pueda plantearnos v&iacute;a web, siendo la base legal su consentimiento.<br />
+              Se informa de que no se realizar&aacute;n evaluaciones automatizadas, ni se elaborar&aacute;n perfiles de usuarios.<br />
+              5.- &iquest;A qu&eacute; destinatarios se comunicar&aacute;n sus datos?<br />
+              Con el objetivo de obtener la plena satisfacci&oacute;n de nuestros clientes le informamos de que todos los datos que nos ha proporcionado y los que nos facilite a lo largo de su relaci&oacute;n con EMPRESA PLANA ser&aacute;n tratados con la m&aacute;xima confidencialidad.<br />
+              Los datos podr&aacute;n ser comunicados a los siguientes destinatarios:<br />
+              &nbsp;&nbsp;&nbsp; &bull; Otras empresas relacionadas con el Grupo Plana<br />
+              &nbsp;&nbsp;&nbsp; &bull; Terceros que nos ayudan a proporcionar servicios de Tecnolog&iacute;as de la Informaci&oacute;n, como proveedores de plataforma, servicios de alojamiento, mantenimiento y soporte en nuestras bases de datos, as&iacute; como en nuestro software y aplicaciones que pueden contener datos sobre usted.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Terceros que nos ayudan a proporcionar servicios digitales calificaciones y rese&ntilde;as, CRM, an&aacute;lisis web y motor de b&uacute;squeda, herramientas de curaci&oacute;n de contenido generado por el usuario.<br />
+              EMPRESA PLANA colaborar&aacute; para que los terceros cumplan con la legislaci&oacute;n vigente, si bien la responsabilidad ser&aacute; exigible a los citados terceros.<br />
+              EMPRESA PLANA&nbsp;&nbsp; no vende, alquila o cede los datos personales de los usuarios de estas Web, a excepci&oacute;n del caso que sea necesario para la propia prestaci&oacute;n del servicio.<br />
+              6.- &iquest;Durante cu&aacute;nto tiempo conservamos sus datos personales?<br />
+              Los datos personales ser&aacute;n conservados mientras el usuario no manifieste lo contrario y por los plazos de conservaci&oacute;n legalmente establecidos, salvo que por motivos l&oacute;gicos y evidentes hayan perdido la utilidad o la finalidad leg&iacute;tima para la que fueron captados.<br />
+              7.- &iquest;Cu&aacute;les son los derechos de los usuarios que nos facilitan sus datos?<br />
+              Los usuarios podr&aacute;n ejercitar, respecto de los datos recabados en la forma descrita en el punto primero, los derechos reconocidos en el Reglamento General de Protecci&oacute;n de Datos, y en particular los derechos de portabilidad, acceso, rectificaci&oacute;n, supresi&oacute;n y limitaci&oacute;n al tratamiento.<br />
+              Los derechos referidos en el p&aacute;rrafo precedente podr&aacute;n ejercitarse por cada usuario mediante solicitud escrita y firmada, acompa&ntilde;ada de fotocopia de DNI, NIE o Pasaporte, dirigida a la siguiente direcci&oacute;n C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona).&nbsp; Tambi&eacute;n pueden remitir dicha informaci&oacute;n por correo electr&oacute;nico a la direcci&oacute;n <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3daddd5dcf3d2c6c7dcd0d2c1c0c3dfd2ddd29dd0d2c7">[email&#160;protected]</a><br />
+              Asimismo, se hace saber a los usuarios que pueden retirar el consentimiento para el tratamiento de sus datos en cualquier momento, as&iacute; como que pueden presentar reclamaci&oacute;n ante la Autoridad de Control (Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos) de considerarlo oportuno.<br />
+              8.- Comunicaci&oacute;n de incidencia e irregularidades<br />
+              En el caso de existir alguna conducta o situaci&oacute;n que pudiera ser susceptible de generar una incidencia o irregularidad de cualquier clase, se ruega contactar con <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe97909891be9f8b8a919d9f8c8d8e929f909fd09d9f8a">[email&#160;protected]</a> o a la direcci&oacute;n siguiente C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona).<br />
+              9.- Contacto<br />
+              Si tiene cualquier duda o preocupaci&oacute;n acerca de la forma en que tratamos y usamos sus datos personales o desea ejercer cualquiera de los derechos anteriormente descritos, p&oacute;ngase en contacto con EMPRESA PLANA o escr&iacute;banos a la siguiente direcci&oacute;n <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ee87808881ae8f9b9a818d8f9c9d9e828f808fc08d8f9a">[email&#160;protected]</a><br />
+              Tambi&eacute;n puede ponerse en contacto con nuestro Delegado de Protecci&oacute;n de Datos en <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="86e2f6e2c6e7f3f2e9e5e7f4f5f6eae7e8e7a8e5e7f2">[email&#160;protected]</a>.<br />
+              10.- Compromiso del usuario<br />
+              El usuario es el responsable de la autenticidad de los datos aportados, que sean exactos, actuales y completos para la finalidad que sean aportados, asumiendo la responsabilidad de los da&ntilde;os y perjuicios, tanto por lucro cesante como por da&ntilde;o emergente, que se pudieran generar por dichas inexactitudes o falsedades. En todo caso, si los datos aportados en los correspondientes formularios fueran titular de un tercero, el usuario se hace &uacute;nico responsable de la correcta captaci&oacute;n del consentimiento e informaci&oacute;n al tercero sobre los aspectos reflejados en el presente aviso legal y pol&iacute;ticas de privacidad.<br />
+              <br />
+              11.- Responsabilidad de los usuarios por uso y contenido<br />
+              Tanto el acceso a nuestra web, como el uso que pueda realizarse de la informaci&oacute;n y contenidos incluidos en la misma, ser&aacute; de exclusiva responsabilidad de quien lo realice. Por tanto, el uso que pueda hacerse de la informaci&oacute;n, im&aacute;genes, contenidos y/o productos rese&ntilde;ados y accesibles a trav&eacute;s del mismo, estar&aacute; supeditada a la legalidad, sea nacional o internacional, aplicable, as&iacute; como a los principios de buena fe y uso l&iacute;cito por parte de los usuarios, quienes ser&aacute;n enteramente responsables de dicho acceso y correcto uso. Los usuarios estar&aacute;n obligados a hacer un uso razonable de los servicios o contenidos, bajo el principio de buena fe y con respeto a la legalidad vigente, a la moral, al orden p&uacute;blico, a las buenas costumbres, a los derechos de terceros o de la propia empresa, todo ello seg&uacute;n las posibilidades y fines para los que est&aacute;n concebidos.<br />
+              EMPRESA PLANA no asume responsabilidades, ya sean directas o indirectas, por da&ntilde;o emergente o lucro cesante, derivadas del mal uso de los servicios o contenidos realizado por los Usuarios o terceros.<br />
+              <br />
+              12.- Informaci&oacute;n LSSI-CE<br />
+              En cumplimiento del deber de informaci&oacute;n contemplado en el art&iacute;culo 10 de la vigente Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informaci&oacute;n y de Comercio Electr&oacute;nico, le comunicamos que la dinamizadora y gestora de contenidos de la Web donde puede descargar diferentes aplicaciones y/o informaciones es EMPRESA PLANA con domicilio en C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona), y con la gesti&oacute;n del dominio de Internet http://empresaplana.cat/ inscrito en el registro correspondiente, atendiendo a comunicaciones de los usuarios y/o interesados a trav&eacute;s del e-mail <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="10797e767f507165647f73716263607c717e713e737164">[email&#160;protected]</a><br />
+              Cualquier otra actividad comercial, mercantil, administrativa o de contrataci&oacute;n de bienes y/o servicios es responsabilidad de la sociedad mencionada anteriormente, propietaria de este dominio.<br />
+              <br />
+              <br />
+              13.- Informaci&oacute;n sobre las cookies<br />
+              Le informamos que utilizamos cookies con el fin de mejorar la experiencia de navegaci&oacute;n en nuestra web y prestarle un mejor servicio. Para obtener m&aacute;s informaci&oacute;n acerca de las cookies y de c&oacute;mo las utilizamos, por favor lea nuestra Pol&iacute;tica de Cookies que se encuentra en nuestra web.<br />
+              14.- Informaci&oacute;n sobre el uso de otras webs y redes sociales<br />
+              La empresa s&oacute;lo se hace responsable de los contenidos y de la gesti&oacute;n de las p&aacute;ginas web de la cual sea ella el titular u ostente un derecho de an&aacute;loga naturaleza. Cualquier otra p&aacute;gina web o red social o repositorio de informaci&oacute;n en Internet, fuera de la presente web, es responsabilidad de sus leg&iacute;timos titulares.<br />
+              EMPRESA PLANA colabora de forma ordinaria con diferentes aplicaciones y entornos Web, y siempre recomienda a todos los usuarios que antes de acceder a dichos entornos web lean atentamente los correspondientes avisos legales y pol&iacute;ticas de privacidad, y que s&oacute;lo accedan a los mismos una vez hayan comprendido y aceptado en su totalidad dicho texto legal.<br />
+              EMPRESA PLANA se compromete a controlar los contenidos que se expongan en dichas&nbsp;redes sociales&nbsp;y expulsar&aacute; aquellos usuarios que hagan un uso incorrecto en ellas.<br />
+              EMPRESA PLANA recomienda, siguiendo instrucciones del Instituto Nacional de Tecnolog&iacute;as de la Comunicaci&oacute;n (INTECO) y de la Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos (AEPD), para el uso de redes sociales o navegaci&oacute;n en entornos Web, la ejecuci&oacute;n de las siguientes acciones:<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda a todos los usuarios recurrir al uso de seud&oacute;nimos o nicks personales con los que operar a trav&eacute;s de Internet, permiti&eacute;ndoles disponer de una aut&eacute;ntica &quot;identidad digital&quot;, que no ponga en entredicho la seguridad de su vida personal y profesional.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda a los usuarios tener especial cuidado a la hora de publicar contenidos audiovisuales y gr&aacute;ficos en sus perfiles, dado que en este caso pueden estar poniendo en riesgo la privacidad e intimidad de personas de su entorno.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda revisar y leer, tanto en el momento previo al registro de usuario, como posteriormente, las condiciones generales de uso y la pol&iacute;tica de privacidad que la plataforma pone a su disposici&oacute;n en sus sitios web.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda configurar adecuadamente el grado de privacidad del perfil de usuario en la red social, de tal forma que &eacute;ste no sea completamente p&uacute;blico, sino que &uacute;nicamente tengan acceso a la informaci&oacute;n publicada en el perfil aquellas personas que hayan sido catalogadas como &quot;amigos&quot; o &quot;contactos directos&quot; previamente por el usuario.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda aceptar como contacto &uacute;nicamente a aquellas personas conocidas o con las que mantiene alguna relaci&oacute;n previa, no aceptando de forma compulsiva todas las solicitudes de contacto que recibe e investigando siempre que fuera posible y necesario, qui&eacute;n es la persona que solicita su contacto a trav&eacute;s de la red social.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda no publicar en el perfil de usuario informaci&oacute;n de contacto f&iacute;sico, que permita a cualquier persona conocer d&oacute;nde vive, d&oacute;nde trabaja o estudia diariamente o los lugares de ocio que suele frecuentar.<br />
+              &nbsp;&nbsp;&nbsp; &bull; A los usuarios de herramientas de microblogging se recomienda tener especial cuidado respecto a la publicaci&oacute;n de informaci&oacute;n relativa a los lugares en que se encuentra en todo momento.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda utilizar y publicar &uacute;nicamente contenidos respecto a los que se cuente con los derechos de propiedad intelectual suficientes. En caso contrario, el usuario estar&aacute; cometiendo un il&iacute;cito civil protegible por parte de los tribunales nacionales.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda a los usuarios emplear diferentes nombres de usuario y contrase&ntilde;as para entrar en las distintas redes sociales de las que sea miembro.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda utilizar contrase&ntilde;as con una extensi&oacute;n m&iacute;nima de 8 caracteres, alfanum&eacute;ricos y con uso de may&uacute;sculas y min&uacute;sculas.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda a todos los usuarios disponer en sus equipos de software antivirus instalado y debidamente actualizado.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Los menores no deben revelar datos personales excesivos. Nunca se deben suministrar los datos a desconocidos.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se debe leer toda la informaci&oacute;n concerniente a la p&aacute;gina web. En ella se explica qui&eacute;nes son los titulares de la misma y la finalidad para la que se solicitan los datos.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Si el usuario es menor de catorce a&ntilde;os, se necesita tambi&eacute;n el consentimiento de los padres tutores. En estos casos, siempre que se soliciten datos por parte de una red social debe preguntarse a los padres o tutores para ver si ellos aprueban la suscripci&oacute;n o no.<br />
+              &nbsp;&nbsp;&nbsp; &bull; No deben comunicarse a terceros los nombres de usuario y contrase&ntilde;a, ni compartirlos entre amigos o compa&ntilde;eros de clase. Estos datos son privados y no deben ser comunicados a terceros y/o desconocidos.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Siempre que se tenga cualquier duda respecto a alguna situaci&oacute;n que se derive del uso de las redes sociales y herramientas colaboradoras, debe preguntarse a los padres o tutores.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se debe mantener el ordenador en una zona com&uacute;n de la casa.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se deben establecer reglas sobre el uso de Internet en casa.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Los padres deben conocer el funcionamiento y las posibilidades de este tipo de plataformas, tanto positivas como negativas.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Activar el control parental y las herramientas de control de la plataforma, as&iacute; como establecer el correo del padre o tutor como correo de contacto secundario.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurarse de que los controles de verificaci&oacute;n de la edad est&aacute;n implementados.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurar la correcta instalaci&oacute;n del bloqueador de contenidos.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Concienciar e informar a los menores sobre aspectos relativos a la seguridad.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Explicar a los menores que nunca han de quedar con personas que hayan conocido en el mundo online y que si lo hacen debe ser siempre en compa&ntilde;&iacute;a de sus padres o tutores.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurarse de que los menores conocen los riesgos e implicaciones de alojar contenidos como v&iacute;deos y fotograf&iacute;as, as&iacute; como el uso de c&aacute;maras web a trav&eacute;s de las redes sociales.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Controlar el perfil de usuario del menor.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurarse de que el menor s&oacute;lo accede a las p&aacute;ginas recomendadas para su edad.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurarse de que los menores no utilizan su nombre completo.<br />
+              La presente pol&iacute;tica de privacidad podr&aacute; variar con el tiempo debido a los posibles cambios legislativos, jurisprudenciales o de los criterios seguidos por la Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos y/o la autoridad competente en cada momento. Es por ello por lo que EMPRESA PLANA se reserva el derecho a modificar el presente aviso legal. En este caso, EMPRESA PLANA anunciar&aacute; en la presente Web, los cambios introducidos con la suficiente antelaci&oacute;n a su puesta en pr&aacute;ctica.</p>
+
+              <p>&nbsp;POL&Iacute;TICA DE PRIVACIDAD<br />
+              1.- Objeto de la pol&iacute;tica de privacidad<br />
+              La presente Pol&iacute;tica de privacidad de VIATGES PLANA SL (En adelante, VIATGES PLANA) regula la obtenci&oacute;n, utilizaci&oacute;n y otras formas de procesamiento de datos personales facilitados por los Usuarios en la presente web o en cualquiera del entorno de Internet de la entidad.<br />
+              Mediante la implementaci&oacute;n de los formularios incluidos en el website, relativos a servicios prestados por VIATGES PLANA, los usuarios aceptan la inclusi&oacute;n y tratamiento de los datos que proporcionen en un tratamiento de datos de car&aacute;cter personal, del cual es titular VIATGES PLANA pudi&eacute;ndose ejercer los derechos pertinentes seg&uacute;n lo expuesto en las siguientes cl&aacute;usulas.<br />
+              VIATGES PLANA act&uacute;a como titular, dinamizadora y gestora de contenidos de la presente Web. VIATGES PLANA&nbsp; informa a los usuarios que cumple con la vigente normativa de protecci&oacute;n de datos, y con car&aacute;cter especial, con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la protecci&oacute;n de las personas f&iacute;sicas en lo que respecta al tratamiento de datos personales y a la libre circulaci&oacute;n de estos datos y por el que se deroga la Directiva 95/46/CE (en adelante, Reglamento General de Protecci&oacute;n de Datos), y con la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informaci&oacute;n y de Comercio Electr&oacute;nico.<br />
+              Todos los textos legales se encuentran a disposici&oacute;n de los usuarios y/o interesados en la correspondiente web.<br />
+              2.- &iquest;Qui&eacute;n es responsable del tratamiento de sus datos?<br />
+              VIATGES PLANA, en colaboraci&oacute;n con EMPRESA PLANA, es el responsable de la recogida y procesamiento de sus datos personales en relaci&oacute;n con los servicios que la misma presta.<br />
+              VIATGES PLANA se compromete a respetar y salvaguardar su privacidad y la seguridad de sus datos.<br />
+              Los datos identificativos del responsable de tratamiento son:<br />
+              &nbsp;&nbsp;&nbsp; &bull; VIATGES PLANA SL, con CIF B43236991 y domiciliada en C/ Colom 29, 43001, Tarragona. &nbsp;<br />
+              &nbsp;&nbsp;&nbsp; &bull; TERESA Y JOSE PLANA, EMPRESA PLANA SL con CIF B43009091, y domiciliada en C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona).<br />
+              <br />
+              3.- &iquest;Qu&eacute; datos recogemos?<br />
+              De acuerdo con lo dispuesto en la normativa vigente, VIATGES PLANA s&oacute;lo recoge los datos estrictamente necesarios para ofrecer los servicios derivados de su actividad y dem&aacute;s prestaciones, gestiones y actividades atribuidas por la Ley.<br />
+              Mediante la presente web, y con el objetivo de prestarle el mejor servicio, VIATGES PLANA&nbsp; capta informaci&oacute;n o datos que pueden identificarle directa o indirectamente como nombre, correo electr&oacute;nico y direcci&oacute;n postal.<br />
+              Se informa a los usuarios, que la informaci&oacute;n que nos facilite en los formularios incluidos en la presente web tiene car&aacute;cter voluntario, si bien la negativa a facilitar los datos solicitados puede comportar la imposibilidad de acceso a los servicios que lo requieran.<br />
+              4.- &iquest;Con qu&eacute; finalidad/es recopilamos sus datos?&nbsp;&nbsp; &nbsp;<br />
+              Las finalidades y base legal para las que recopilamos dichos datos son:<br />
+              &nbsp;&nbsp;&nbsp; &bull; Gesti&oacute;n de la relaci&oacute;n contractual que mantenemos con usted, para la cual la base legal es la ejecuci&oacute;n del contrato que nos une.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Env&iacute;o de informaci&oacute;n comercial y/o promocional que pueda ser de su inter&eacute;s, siendo la base legal su consentimiento.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Resoluci&oacute;n de consultas que pueda plantearnos v&iacute;a web, siendo la base legal su consentimiento.<br />
+              Se informa de que no se realizar&aacute;n evaluaciones automatizadas, ni se elaborar&aacute;n perfiles de usuarios.<br />
+              5.- &iquest;A qu&eacute; destinatarios se comunicar&aacute;n sus datos?<br />
+              Con el objetivo de obtener la plena satisfacci&oacute;n de nuestros clientes le informamos de que todos los datos que nos ha proporcionado y los que nos facilite a lo largo de su relaci&oacute;n con VIATGES PLANA ser&aacute;n tratados con la m&aacute;xima confidencialidad.<br />
+              Los datos podr&aacute;n ser comunicados a los siguientes destinatarios:<br />
+              &nbsp;&nbsp;&nbsp; &bull; Otras empresas relacionadas con el Grupo Plana como TERESA y JOSE PLANA, EMPRESA PLANA SL.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Terceros que nos ayudan a proporcionar servicios de Tecnolog&iacute;as de la Informaci&oacute;n, como proveedores de plataforma, servicios de alojamiento, mantenimiento y soporte en nuestras bases de datos, as&iacute; como en nuestro software y aplicaciones que pueden contener datos sobre usted.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Terceros que nos ayudan a proporcionar servicios digitales calificaciones y rese&ntilde;as, CRM, an&aacute;lisis web y motor de b&uacute;squeda, herramientas de curaci&oacute;n de contenido generado por el usuario.<br />
+              VIATGES PLANA colaborar&aacute; para que los terceros cumplan con la legislaci&oacute;n vigente, si bien la responsabilidad ser&aacute; exigible a los citados terceros.<br />
+              VIATGES PLANA no vende, alquila o cede los datos personales de los usuarios de estas Web, a excepci&oacute;n del caso que sea necesario para la propia prestaci&oacute;n del servicio.<br />
+              6.- &iquest;Durante cu&aacute;nto tiempo conservamos sus datos personales?<br />
+              Los datos personales ser&aacute;n conservados mientras el usuario no manifieste lo contrario y por los plazos de conservaci&oacute;n legalmente establecidos, salvo que por motivos l&oacute;gicos y evidentes hayan perdido la utilidad o la finalidad leg&iacute;tima para la que fueron captados.<br />
+              7.- &iquest;Cu&aacute;les son los derechos de los usuarios que nos facilitan sus datos?<br />
+              Los usuarios podr&aacute;n ejercitar, respecto de los datos recabados en la forma descrita en el punto primero, los derechos reconocidos en el Reglamento General de Protecci&oacute;n de Datos, y en particular los derechos de portabilidad, acceso, rectificaci&oacute;n, supresi&oacute;n y limitaci&oacute;n al tratamiento.<br />
+              Los derechos referidos en el p&aacute;rrafo precedente podr&aacute;n ejercitarse por cada usuario mediante solicitud escrita y firmada, acompa&ntilde;ada de fotocopia de DNI, NIE o Pasaporte, dirigida a la siguiente direcci&oacute;n C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona).&nbsp; Tambi&eacute;n pueden remitir dicha informaci&oacute;n por correo electr&oacute;nico a la direcci&oacute;n <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f3e2b3a313c3630713c33363a312b1f3e2a2b303c3e2d2c2f333e313e713c3032">[email&#160;protected]</a><br />
+              Asimismo, se hace saber a los usuarios que pueden retirar el consentimiento para el tratamiento de sus datos en cualquier momento, as&iacute; como que pueden presentar reclamaci&oacute;n ante la Autoridad de Control (Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos) de considerarlo oportuno.<br />
+              8.- Comunicaci&oacute;n de incidencia e irregularidades<br />
+              En el caso de existir alguna conducta o situaci&oacute;n que pudiera ser susceptible de generar una incidencia o irregularidad de cualquier clase, se ruega contactar con <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="87e6f3e2e9e4eee8a9e4ebeee2e9f3c7e6f2f3e8e4e6f5f4f7ebe6e9e6a9e4e8ea">[email&#160;protected]</a> o a la direcci&oacute;n siguiente C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona).<br />
+              9.- Contacto<br />
+              Si tiene cualquier duda o preocupaci&oacute;n acerca de la forma en que tratamos y usamos sus datos personales o desea ejercer cualquiera de los derechos anteriormente descritos, p&oacute;ngase en contacto con VIATGES PLANA o escr&iacute;banos a la siguiente direcci&oacute;n <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="badbcedfd4d9d3d594d9d6d3dfd4cefadbcfced5d9dbc8c9cad6dbd4db94d9d5d7">[email&#160;protected]</a><br />
+              Tambi&eacute;n puede ponerse en contacto con nuestro Delegado de Protecci&oacute;n de Datos en <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="593d293d19382c2d363a382b2a2935383738773a382d">[email&#160;protected]</a>.<br />
+              10.- Compromiso del usuario<br />
+              El usuario es el responsable de la autenticidad de los datos aportados, que sean exactos, actuales y completos para la finalidad que sean aportados, asumiendo la responsabilidad de los da&ntilde;os y perjuicios, tanto por lucro cesante como por da&ntilde;o emergente, que se pudieran generar por dichas inexactitudes o falsedades. En todo caso, si los datos aportados en los correspondientes formularios fueran titular de un tercero, el usuario se hace &uacute;nico responsable de la correcta captaci&oacute;n del consentimiento e informaci&oacute;n al tercero sobre los aspectos reflejados en el presente aviso legal y pol&iacute;ticas de privacidad.<br />
+              <br />
+              11.- Responsabilidad de los usuarios por uso y contenido<br />
+              Tanto el acceso a nuestra web, como el uso que pueda realizarse de la informaci&oacute;n y contenidos incluidos en la misma, ser&aacute; de exclusiva responsabilidad de quien lo realice. Por tanto, el uso que pueda hacerse de la informaci&oacute;n, im&aacute;genes, contenidos y/o productos rese&ntilde;ados y accesibles a trav&eacute;s del mismo, estar&aacute; supeditada a la legalidad, sea nacional o internacional, aplicable, as&iacute; como a los principios de buena fe y uso l&iacute;cito por parte de los usuarios, quienes ser&aacute;n enteramente responsables de dicho acceso y correcto uso. Los usuarios estar&aacute;n obligados a hacer un uso razonable de los servicios o contenidos, bajo el principio de buena fe y con respeto a la legalidad vigente, a la moral, al orden p&uacute;blico, a las buenas costumbres, a los derechos de terceros o de la propia empresa, todo ello seg&uacute;n las posibilidades y fines para los que est&aacute;n concebidos.<br />
+              VIATGES PLANA no asume responsabilidades, ya sean directas o indirectas, por da&ntilde;o emergente o lucro cesante, derivadas del mal uso de los servicios o contenidos realizado por los Usuarios o terceros.<br />
+              <br />
+              12.- Informaci&oacute;n LSSI-CE<br />
+              En cumplimiento del deber de informaci&oacute;n contemplado en el art&iacute;culo 10 de la vigente Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informaci&oacute;n y de Comercio Electr&oacute;nico, le comunicamos que la dinamizadora y gestora de contenidos de la Web donde puede descargar diferentes aplicaciones y/o informaciones es VIATGES PLANA&nbsp; con domicilio en C/ Les Creus, 29, 43120 Constant&iacute; (Tarragona), y con la gesti&oacute;n del dominio de Internet www.busplana.com inscrito en el registro correspondiente, atendiendo a comunicaciones de los usuarios y/o interesados a trav&eacute;s del e-mail <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b1a0f1e15181214551817121e150f3b1a0e0f14181a09080b171a151a55181416">[email&#160;protected]</a><br />
+              Cualquier otra actividad comercial, mercantil, administrativa o de contrataci&oacute;n de bienes y/o servicios es responsabilidad de la sociedad mencionada anteriormente, propietaria de este dominio.<br />
+              <br />
+              <br />
+              13.- Informaci&oacute;n sobre las cookies<br />
+              Le informamos que utilizamos cookies con el fin de mejorar la experiencia de navegaci&oacute;n en nuestra web y prestarle un mejor servicio. Para obtener m&aacute;s informaci&oacute;n acerca de las cookies y de c&oacute;mo las utilizamos, por favor lea nuestra Pol&iacute;tica de Cookies que se encuentra en nuestra web.<br />
+              14.- Informaci&oacute;n sobre el uso de otras webs y redes sociales<br />
+              La empresa s&oacute;lo se hace responsable de los contenidos y de la gesti&oacute;n de las p&aacute;ginas web de la cual sea ella el titular u ostente un derecho de an&aacute;loga naturaleza. Cualquier otra p&aacute;gina web o red social o repositorio de informaci&oacute;n en Internet, fuera de la presente web, es responsabilidad de sus leg&iacute;timos titulares.<br />
+              VIATGES PLANA colabora de forma ordinaria con diferentes aplicaciones y entornos Web, y siempre recomienda a todos los usuarios que antes de acceder a dichos entornos web lean atentamente los correspondientes avisos legales y pol&iacute;ticas de privacidad, y que s&oacute;lo accedan a los mismos una vez hayan comprendido y aceptado en su totalidad dicho texto legal.<br />
+              VIATGES PLANA se compromete a controlar los contenidos que se expongan en dichas&nbsp;redes sociales&nbsp;y expulsar&aacute; aquellos usuarios que hagan un uso incorrecto en ellas.<br />
+              VIATGES PLANA recomienda, siguiendo instrucciones del Instituto Nacional de Tecnolog&iacute;as de la Comunicaci&oacute;n (INTECO) y de la Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos (AEPD), para el uso de redes sociales o navegaci&oacute;n en entornos Web, la ejecuci&oacute;n de las siguientes acciones:<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda a todos los usuarios recurrir al uso de seud&oacute;nimos o nicks personales con los que operar a trav&eacute;s de Internet, permiti&eacute;ndoles disponer de una aut&eacute;ntica &quot;identidad digital&quot;, que no ponga en entredicho la seguridad de su vida personal y profesional.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda a los usuarios tener especial cuidado a la hora de publicar contenidos audiovisuales y gr&aacute;ficos en sus perfiles, dado que en este caso pueden estar poniendo en riesgo la privacidad e intimidad de personas de su entorno.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda revisar y leer, tanto en el momento previo al registro de usuario, como posteriormente, las condiciones generales de uso y la pol&iacute;tica de privacidad que la plataforma pone a su disposici&oacute;n en sus sitios web.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda configurar adecuadamente el grado de privacidad del perfil de usuario en la red social, de tal forma que &eacute;ste no sea completamente p&uacute;blico, sino que &uacute;nicamente tengan acceso a la informaci&oacute;n publicada en el perfil aquellas personas que hayan sido catalogadas como &quot;amigos&quot; o &quot;contactos directos&quot; previamente por el usuario.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda aceptar como contacto &uacute;nicamente a aquellas personas conocidas o con las que mantiene alguna relaci&oacute;n previa, no aceptando de forma compulsiva todas las solicitudes de contacto que recibe e investigando siempre que fuera posible y necesario, qui&eacute;n es la persona que solicita su contacto a trav&eacute;s de la red social.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda no publicar en el perfil de usuario informaci&oacute;n de contacto f&iacute;sico, que permita a cualquier persona conocer d&oacute;nde vive, d&oacute;nde trabaja o estudia diariamente o los lugares de ocio que suele frecuentar.<br />
+              &nbsp;&nbsp;&nbsp; &bull; A los usuarios de herramientas de microblogging se recomienda tener especial cuidado respecto a la publicaci&oacute;n de informaci&oacute;n relativa a los lugares en que se encuentra en todo momento.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda utilizar y publicar &uacute;nicamente contenidos respecto a los que se cuente con los derechos de propiedad intelectual suficientes. En caso contrario, el usuario estar&aacute; cometiendo un il&iacute;cito civil protegible por parte de los tribunales nacionales.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda a los usuarios emplear diferentes nombres de usuario y contrase&ntilde;as para entrar en las distintas redes sociales de las que sea miembro.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda utilizar contrase&ntilde;as con una extensi&oacute;n m&iacute;nima de 8 caracteres, alfanum&eacute;ricos y con uso de may&uacute;sculas y min&uacute;sculas.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se recomienda a todos los usuarios disponer en sus equipos de software antivirus instalado y debidamente actualizado.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Los menores no deben revelar datos personales excesivos. Nunca se deben suministrar los datos a desconocidos.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se debe leer toda la informaci&oacute;n concerniente a la p&aacute;gina web. En ella se explica qui&eacute;nes son los titulares de la misma y la finalidad para la que se solicitan los datos.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Si el usuario es menor de catorce a&ntilde;os, se necesita tambi&eacute;n el consentimiento de los padres tutores. En estos casos, siempre que se soliciten datos por parte de una red social debe preguntarse a los padres o tutores para ver si ellos aprueban la suscripci&oacute;n o no.<br />
+              &nbsp;&nbsp;&nbsp; &bull; No deben comunicarse a terceros los nombres de usuario y contrase&ntilde;a, ni compartirlos entre amigos o compa&ntilde;eros de clase. Estos datos son privados y no deben ser comunicados a terceros y/o desconocidos.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Siempre que se tenga cualquier duda respecto a alguna situaci&oacute;n que se derive del uso de las redes sociales y herramientas colaboradoras, debe preguntarse a los padres o tutores.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se debe mantener el ordenador en una zona com&uacute;n de la casa.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Se deben establecer reglas sobre el uso de Internet en casa.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Los padres deben conocer el funcionamiento y las posibilidades de este tipo de plataformas, tanto positivas como negativas.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Activar el control parental y las herramientas de control de la plataforma, as&iacute; como establecer el correo del padre o tutor como correo de contacto secundario.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurarse de que los controles de verificaci&oacute;n de la edad est&aacute;n implementados.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurar la correcta instalaci&oacute;n del bloqueador de contenidos.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Concienciar e informar a los menores sobre aspectos relativos a la seguridad.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Explicar a los menores que nunca han de quedar con personas que hayan conocido en el mundo online y que si lo hacen debe ser siempre en compa&ntilde;&iacute;a de sus padres o tutores.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurarse de que los menores conocen los riesgos e implicaciones de alojar contenidos como v&iacute;deos y fotograf&iacute;as, as&iacute; como el uso de c&aacute;maras web a trav&eacute;s de las redes sociales.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Controlar el perfil de usuario del menor.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurarse de que el menor s&oacute;lo accede a las p&aacute;ginas recomendadas para su edad.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Asegurarse de que los menores no utilizan su nombre completo.<br />
+              La presente pol&iacute;tica de privacidad podr&aacute; variar con el tiempo debido a los posibles cambios legislativos, jurisprudenciales o de los criterios seguidos por la Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos y/o la autoridad competente en cada momento. Es por ello por lo que VIATGES PLANA se reserva el derecho a modificar el presente aviso legal. En este caso, VIATGES PLANA anunciar&aacute; en la presente Web, los cambios introducidos con la suficiente antelaci&oacute;n a su puesta en pr&aacute;ctica.</p>
+
+              <p>POL&Iacute;TICA DE USO COOKIES<br />
+              Definici&oacute;n y funci&oacute;n de las cookies<br />
+              De conformidad con lo establecido en la Ley 34/2002 de Servicios de la Sociedad de la Informaci&oacute;n y Comercio Electr&oacute;nico, le informamos que este sitio web almacena informaci&oacute;n de las direcciones IP de los ordenadores, y utiliza Cookies con el objetivo de prestar un mejor servicio y ofrecerle una mejor experiencia en su navegaci&oacute;n.<br />
+              Las Cookies son peque&ntilde;os archivos de texto que contienen informaci&oacute;n, y que se generan en el ordenador o terminal del Usuario cuando navega por el sitio web. Con la navegaci&oacute;n por esta web usted presta su consentimiento para recibir dichas Cookies. Por medio de ellas TERESA Y JOS&Eacute; PLANA EMPRESA PLANA, S.L. (en adelante, EMPRESA PLANA) s&oacute;lo obtiene y conserva la informaci&oacute;n bajo las condiciones descritas en la presente Pol&iacute;tica de cookies:<br />
+              &iquest;Qu&eacute; tipos de cookies utilizamos?<br />
+              Seg&uacute;n el plazo de tiempo que permanecen activas:<br />
+              &nbsp;&nbsp;&nbsp; &bull; Cookies de sesi&oacute;n: Son un tipo de cookies dise&ntilde;adas para recabar y almacenar datos mientras accede a nuestra web y permanecen en el archivo de cookies de su navegador hasta que abandone la p&aacute;gina. Como por ejemplo las cookies de identificaci&oacute;n.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Cookies persistentes: Son un tipo de cookies en el que los datos siguen almacenados en el terminal y pueden ser accedidos y tratados durante un periodo determinado de tiempo.<br />
+              Seg&uacute;n su finalidad y la entidad que las gestiona:<br />
+              &nbsp;&nbsp;&nbsp; &bull; Cookies propias: Son aquellas que enviamos a su ordenador o terminal desde nuestra p&aacute;gina web.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Cookies de terceros: Son aquellas que se env&iacute;an a su ordenador o terminal desde un dominio o una p&aacute;gina web que no es gestionada por nosotros, sino por una entidad colaboradora. Por ejemplo, las usadas por Google, quien instala cookies que nos ayudan a analizar el funcionamiento de nuestro sitio web, y mejorar la efectividad de nuestras campa&ntilde;as de marketing.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Cookies t&eacute;cnicas: son aquellas necesarias para la navegaci&oacute;n y el buen funcionamiento de nuestra web. Por ejemplo, permiten realizar el proceso de compra, controlar los aspectos de seguridad de la web, compartir contenidos a trav&eacute;s de redes sociales&hellip;<br />
+              &nbsp;&nbsp;&nbsp; &bull; Cookies de an&aacute;lisis: Son aqu&eacute;llas que bien tratadas por nosotros o por terceros, nos permiten cuantificar el n&uacute;mero de usuarios y realizar la medici&oacute;n y an&aacute;lisis estad&iacute;stico de la utilizaci&oacute;n que hacen los usuarios de nuestra web. Para ello analizamos la navegaci&oacute;n en nuestra p&aacute;gina web con el fin de mejorar la oferta de productos o servicios que ofrecemos. Ejemplo de ello son:<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ? El n&uacute;mero de visitantes &uacute;nicos de cada p&aacute;gina / secci&oacute;n, que se utiliza para hacer un recuento de las veces en que el sitio es visitado por un usuario, as&iacute; como la primera y &uacute;ltima vez de dicha visita. Esto ayuda a conocer las &aacute;reas de m&aacute;s &eacute;xito y aumentar y mejorar el contenido, con el resultado de que los usuarios obtengan una experiencia y servicio m&aacute;s satisfactorios.<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ? La fecha y hora de acceso a nuestra web, con el fin de permitir averiguar las horas de m&aacute;s afluencia, y hacer los ajustes precisos para evitar problemas de saturaci&oacute;n en nuestras horas punta.<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ? La fuente de tr&aacute;fico, que registra el origen del usuario, es decir, la direcci&oacute;n de Internet desde la que parte el link que dirige a nuestra web, con el fin de potenciar los distintos enlaces y banners que apuntan a nuestro servidor y que ofrecen mejores resultados.<br />
+              &nbsp;&nbsp;&nbsp; &bull; Cookies publicitarias y de publicidad comportamental: Las cookies publicitarias son aqu&eacute;llas que permiten la gesti&oacute;n, de la forma m&aacute;s eficaz posible, de los espacios publicitarios que se pudieran incluir en nuestra p&aacute;gina web en base a criterios como el contenido editado o la frecuencia en la que se muestran los anuncios.<br />
+              Las Cookies de publicidad comportamental act&uacute;an en funci&oacute;n del comportamiento (preferencias y elecciones personales) de los usuarios obtenidos a trav&eacute;s de la observaci&oacute;n continuada de sus h&aacute;bitos de navegaci&oacute;n, lo que permite desarrollar un perfil espec&iacute;fico para mostrarle anuncios personalizados en otros sitios web.<br />
+              &iquest;C&oacute;mo puedo configurar o deshabilitar las cookies?<br />
+              Puede configurar su navegador para ser avisado de la recepci&oacute;n de cookies y negarse a aceptarlas activando la configuraci&oacute;n en el navegador que permite rechazarlas. No obstante, le advertimos que la desactivaci&oacute;n de las Cookies puede provocar la limitaci&oacute;n, o incluso imposibilidad de acceso a algunas de las funcionalidades de nuestra web, as&iacute; como algunos de los servicios pueden dejar de funcionar correctamente.<br />
+              Para m&aacute;s detalle sobre la configuraci&oacute;n de las cookies en su navegador, consulte el men&uacute; &ldquo;Ayuda&rdquo; del mismo.<br />
+              Tambi&eacute;n le proponemos consultar los siguientes sitios web: Aboutcookies, youronlinechoices, Network Advertising Initiative o Digital Advertising Alliance donde encontrar&aacute; explicaciones detalladas sobre c&oacute;mo eliminar las cookies de su ordenador y m&aacute;s informaci&oacute;n general sobre las mismas.<br />
+              Cookies de terceros / empresas colaboradoras<br />
+              <br />
+              &nbsp;&nbsp;&nbsp; &bull; Google: Google ofrece un gran n&uacute;mero de productos para ayudarnos a administrar nuestros anuncios y sitios web; entre los que se incluyen Google Analytics. Al visitar nuestro sitio web pueden enviarse algunas cookies a su navegador.<br />
+              <br />
+              Estas cookies pueden habilitarse desde una serie de dominios diferentes, incluidos www.google.com, y www.doubleclick.net para permitirnos usar servicios conjuntos al servicio de Google, como un servicio de medici&oacute;n y elaboraci&oacute;n de informes de anuncios. Consulte m&aacute;s informaci&oacute;n sobre los tipos de cookies que utiliza Google.<br />
+              <br />
+              Google Analytics es la herramienta de anal&iacute;tica que ayuda a nuestro sitio web http://empresaplana.cat/ a entender el modo en que los usuarios interact&uacute;an con sus propiedades. Puede utilizar un conjunto de cookies para recopilar informaci&oacute;n e informar de las estad&iacute;sticas de uso de los sitios web sin identificar personalmente a los visitantes de Google. Consulte m&aacute;s informaci&oacute;n sobre las cookies de Google Analytics.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal privacidad -->        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://empresaplana.cat/js/bootstrap.min.js"></script>
+        <script src="https://empresaplana.cat/js/sweetalert.min.js"></script>
+        <script src="https://empresaplana.cat/js/moment.js"></script>
+        <script src="https://empresaplana.cat/js/js.cookie.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/es.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.44/js/bootstrap-datetimepicker.min.js"></script>
+        
+
+        <script charset="utf-8">
+        $(function(){
+            $("body").on('focus','.datepiker',function(){
+              $(this).datetimepicker({
+                format: 'DD/MM/YY',
+                minDate: new Date()
+
+                });
+            });
+            $("body").on('focus','.time',function(){
+              $(this).datetimepicker({
+                format: 'HH:mm'
+                });
+            });
+        });
+        </script>
+
+        <script type="text/javascript">
+            if(typeof Cookies.get('mostrar_alerta_flotante') === 'undefined' ){
+                $('#floating-advice-alert').css('display', '');
+            } else {
+                $('#floating-advice-alert').css('display', 'none');
+            }
+        </script>
+
+        <script type="text/javascript">
+            function closeAlertServiceFloat() {
+                Cookies.set('mostrar_alerta_flotante', '1', { expires: 7, path: '/' });
+                $('#floating-advice-alert').css('display', 'none');
+                console.log('entro en cerrar aviso');
+            }
+        </script>
+
+            <script src="https://empresaplana.cat/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="https://empresaplana.cat/js/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js"></script>
+    <script src="https://empresaplana.cat/js/contacta.js"></script>
+    <script src="https://empresaplana.cat/js/llamada.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/i18n/es.js"></script>
+    <script type="text/javascript">
+    // Initialises the Leaflet object and calls startMap()
+    document.addEventListener('DOMContentLoaded', function() {
+        mymap = L.map('google-maps-modal');
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 20,
+            attribution: 'Map data &copy; <a class="leaflet-link" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            tileSize: 512,
+            detectRetina: true,
+            zoomOffset: -1
+        }).addTo(mymap);
+        mymap.scrollWheelZoom.disable();
+    });
+
+    // recreates map every time a new route stop is selected
+    function initMap(latitud, longitud, texto = '') {
+        mymap.setView([parseFloat(latitud), parseFloat(longitud)], 17);
+        L.marker([parseFloat(latitud), parseFloat(longitud)]).addTo(mymap);
+        var texto_indicador = ''   
+
+        if (texto != '') {
+            texto_indicador += '<p>' + texto + '</p>';
+        }
+
+        if (texto_indicador != '') {
+            L.marker.bindPopup(texto_indicador);
+        }
+    }
+
+    function deleteSession() {
+        // $.ajax({
+        //     method: 'POST',
+        //     url: '/borrar-sesion',
+        //     data: {'session_name': 'rutas_directas_buscadas'},
+        //     success: function(data) {
+        //         if($('.btn-temporal').hasClass('custom')) {
+        //             $('#btn-buscar-lineas').html('<i class="fa fa-search" aria-hidden="true"></i> <br>BUSCADOR_BUSCAR_LÍNEAS');
+        //         } else {
+        //             $('#btn-buscar-lineas').html('<i class="fa fa-search" aria-hidden="true"></i>BUSCADOR_BUSCAR_LÍNEAS');
+        //         }
+        //     },
+        //     error: function(data) {
+        //         
+        //         $('#modal-loader').modal('hide');
+        //     }
+        // });
+    }
+
+    function checkParadas() {
+        $('#mensaje-info').addClass('hide').html('');
+        var idOrigen = $('#origenSelect').val();
+        var idDestino = $('#llegadaSelect').val();
+        var fecha = $('#fecha').val();
+        var horario = $('#horario').val();
+
+        
+        $('#parada_origen').html('');
+        $('#parada_destino').html('');
+
+        if(fecha != '' && idOrigen == idDestino) {
+            $('#mensaje-info-origin').text('<p>Debes seleccionar un destino diferente al origen.</p>').removeClass('hide');
+        }else if(idOrigen != idDestino && fecha != '') {
+            $('#modal-loader').modal('show');
+            $.ajax({
+                method: 'POST',
+                url: "/buscar-paradas-origen",
+                data: {'ciudad_origen': idOrigen, 'ciudad_destino': idDestino, 'fecha': fecha, 'horario': horario},
+                success: function(data) {
+                    $('#modal-loader').modal('hide');
+                    if(data.retCode == '0') {
+                        if(!data.rutasDirectas) {
+                            $('#mensaje-info').text('No hay ruta directa, por favor pincha en "BUSCAR LÍNEAS" para ver las opciones con trasbordo.').addClass('alert-warning').removeClass('alert-danger').removeClass('hide');
+                            $('#parada_origen').attr('disabled', true);
+                            $('#parada_destino').attr('disabled', true);
+                        } else {
+                            $('#parada_origen').attr('disabled', false);
+                        }
+
+                        $('#parada_origen').html(data.html);
+                    } else {
+                        
+                    }
+                },
+                error: function(data) {
+                    
+                    $('#modal-loader').modal('hide');
+                }
+            });
+        }
+    }
+
+    function invertirParadas(idParadaOrigen, idParadaDestino) {        
+        var idOrigen = $('#origenSelect').val();
+        var idDestino = $('#llegadaSelect').val();
+        var fecha = $('#fecha').val();
+        var horario = $('#horario').val();
+
+        $('#parada_destino').val(idParadaOrigen);
+        $('#parada_origen').val(idParadaDestino);
+
+        $('#buscadorHorarios').submit();
+        // 
+        // $('#parada_origen').html('');
+        // $('#parada_destino').html('');
+
+        // if(idOrigen != idDestino && fecha != '') {
+        //     $.ajax({
+        //         method: 'POST',
+        //         url: '/invertir-paradas-buscador',
+        //         data: {'ciudad_origen': idOrigen, 'ciudad_destino': idDestino, 'fecha': fecha, 'horario': horario,'parada_origen':idParadaDestino },
+        //         success: function(data) {
+        //             $('#modal-loader').modal('hide');
+        //             if(data.retCode == '0') {
+        //                 $('#parada_origen').html(data.htmlOrigen);
+        //                 $('#parada_destino').html(data.htmlDestino);
+        //                 $('#parada_destino').val(idParadaOrigen);
+        //                 $('#parada_origen').val(idParadaDestino);
+        //                 $('#buscadorHorarios').submit();
+        //             } else {
+        //                 
+        //             }
+        //         },
+        //         error: function(data) {
+        //             
+        //             $('#modal-loader').modal('hide');
+        //         }
+        //     });
+        // }
+    }
+
+    function getParadasDestino() {        
+        var idOrigen = $('#origenSelect').val();
+        var idDestino = $('#llegadaSelect').val();
+        var fecha = $('#fecha').val();
+        var paradaOrigen = $('#parada_origen').val();
+        $('#parada_destino').html('');        
+        if(idOrigen != idDestino && fecha != '') {
+            $('#modal-loader').modal('show');
+            $.ajax({
+                method: 'POST',
+                url: "/buscar-paradas-destino",
+                data: {'parada_origen': paradaOrigen},
+                success: function(data) {
+                    $('#modal-loader').modal('hide');
+                    if(data.retCode == '0') {
+                        $('#parada_destino').attr('disabled', false);
+                        $('#parada_destino').html(data.html);
+                    } else {
+                        
+                    }
+                },
+                error: function(data) {
+                    $('#modal-loader').modal('hide');
+                    
+                }
+            });
+        }
+    }
+
+    $( document ).ready(function() {
+        $('#fecha').datepicker({
+            format: "dd/mm/yyyy",
+            language: 'es',
+            autoclose: true,
+            startDate: new Date(),
+            todayHighlight: true,
+            setDate: new Date()
+        }).datepicker("setDate",'now');
+        
+        $(document).on('change','.selectCiudad', function(e){
+            deleteSession();
+        });
+
+        $(document).on('changeDate','#fecha', function(e){
+            deleteSession();
+        });
+
+        $(document).on('change','#parada_origen', function(e){
+            getParadasDestino();
+        });
+
+        $(document).on('change','#horario', function(e){
+            deleteSession();
+        });
+
+        $(document).on('click','.mostrar-mapa', function(e){
+            e.preventDefault();
+            latitud = $(this).data('latitud');
+            longitud = $(this).data('longitud');
+            nombreParada = $(this).data('nombre');
+            $("#modal-mapa-horarios").attr('data-latitud',latitud);
+            $("#modal-mapa-horarios").attr('data-longitud',longitud);
+            $("#modal-mapa-horarios").attr('data-nombre',nombreParada);
+            $('#modal-mapa-horarios').modal('show');
+        });
+
+        
+        $("#modal-mapa-horarios").on("shown.bs.modal", function () {
+            latitud = $("#modal-mapa-horarios").attr('data-latitud');
+            longitud = $("#modal-mapa-horarios").attr('data-longitud');
+            nombreParada = $("#modal-mapa-horarios").attr('data-nombre');
+            initMap( latitud, longitud, nombreParada );
+        });
+
+        $('#myModal').on('hidden.bs.modal', function () {
+            $("#modal-mapa-horarios").attr('data-latitud','');
+            $("#modal-mapa-horarios").attr('data-longitud','');
+            $("#modal-mapa-horarios").attr('data-nombre','');
+        })
+
+        $(document).on('click','#invertir-ruta', function(e){
+            e.preventDefault();
+            $('#modal-loader').modal('show');
+            var idOrigen = $('#origenSelect').val();
+            var idDestino = $('#llegadaSelect').val();
+            var paradaOrigen = $('#parada_origen').val();
+            var paradaDestino = $('#parada_destino').val();
+            $('#origenSelect').val(idDestino);
+            $('#llegadaSelect').val(idOrigen);
+            invertirParadas(paradaOrigen, paradaDestino);
+        });
+
+        $(document).on('click','#btn-buscar-lineas', function(e){
+            e.preventDefault();
+            $('#mensaje-info-origin').addClass('hide');
+            $('#mensaje-info-date').addClass('hide');
+            var idOrigen = $('#origenSelect').val();
+            var idDestino = $('#llegadaSelect').val();
+            var fecha = $('#fecha').val();
+
+            errores = new Array();
+            // if(idOrigen == idDestino) {
+            //     $('#mensaje-info-origin').html('<p>Debes seleccionar un destino diferente al origen.</p>').removeClass('hide');
+            //     errores.push('<p>Debes seleccionar un destino diferente al origen.</p>'); 
+            // }
+
+            if(fecha == '') {
+                $('#mensaje-info-date').html('<p>FECHA_ERROR.</p>').removeClass('hide');
+                errores.push('<p>FECHA_ERROR.</p>');                
+            }
+
+            if(!errores.length) {
+                $('#modal-loader').modal('show');
+                $('#buscadorHorarios').submit();
+            } else {
+                // $('#mensaje-info-origin').html('<p>Debes seleccionar un destino diferente al origen.</p>').removeClass('hide');
+                // $('#mensaje-info-date').html('<p>Debes seleccionar una fecha.</p>').removeClass('hide');
+            }
+        });        
+    });
+</script>
+<script type="text/javascript">
+$( document ).ready(function() {
+   $('#origenSelect').select2({
+    language: 'es',
+        placeholder: 'Introduce la salida',
+        dropdownParent: $('#origin')
+        // minimumInputLength: 2,
+        // ajax: {
+        //     url: 'https://empresaplana.cat/buscar-select',
+        //     dataType: 'json',
+        //     delay: 250,
+        //     type: 'POST',
+        //     processResults: function (data) {
+        //         return {
+        //             results: $.map(data, function(obj) {
+        //                 return {id: obj.nombre, text: obj.nombre};
+        //             })
+        //         };
+        //     },
+        //     cache: true
+        // }
+   });
+
+   $('#llegadaSelect').select2({
+    language: 'es',
+        placeholder: 'Introduce la llegada',
+        dropdownParent: $('#destiny')
+        // minimumInputLength: 2,
+        // ajax: {
+        //     url: 'https://empresaplana.cat/buscar-select',
+        //     dataType: 'json',
+        //     delay: 250,
+        //     type: 'POST',
+        //     processResults: function (data) {
+        //         return {
+        //             results: $.map(data, function(obj) {
+        //                 return {id: obj.nombre, text: obj.nombre};
+        //             })
+        //         };
+        //     },
+        //     cache: true
+        // }
+   });
+});
+</script>
+
+        <style>
+    #sgcookies {
+        position: fixed;
+        bottom: 0px;
+        background: #252525bf;
+        z-index: 999;
+        width: 100%;
+        padding: 15px;
+    }
+
+    #sgcookies p {
+        text-align: left;
+        padding: 0px;
+        font-size: 13px;
+        color: #FFF;
+        margin-bottom: 0px;
+    }
+
+    #cookiesettings p {
+        font-size: 13px;
+    }
+
+    #cookies p a {
+        color: #263f58;
+        font-weight: bold;
+    }
+
+    #cookiesettings {
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        padding: 20px;
+        z-index: 9996;
+        flex-wrap: wrap;
+        background-color: #FFF;
+        border-radius: 6px;
+        color: #555;
+        display: none;
+        width: 95%;
+        max-height: 80%;
+        max-width: 1024px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .cookiebg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9994;
+        top: 0px;
+        opacity: 0.5;
+        display: none;
+    }
+
+    .btn-cookie {
+        color: #000;
+        font-size: .85rem;
+        text-shadow: 0px 0px;
+        font-weight: normal;
+    }
+
+    .card-header-cookie {
+        font-size: .65rem;
+        padding: 0.25rem 3px;
+    }
+
+    #butcookies .btn,
+    .btnformcookies {
+        font-size: .90rem;
+    }
+
+    .cookiecont {
+        max-height: 300px;
+        overflow-y: scroll;
+        border: 1px dashed #CCC;
+        padding: 10px;
+    }
+
+    @media (max-width: 767px) {
+        #cookiesettings {
+            max-height: 95%;
+            overflow-y: scroll;
+        }
+
+        .cookiecont {
+            max-height: 100%;
+            overflow-y: auto;
+        }
+    }
+
+    @media (max-width: 991px) {
+
+        #sgcookies p,
+        #cookiesettings p {
+            font-size: 12px;
+        }
+    }
+</style>
+<div id="sgcookies">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-sm-12" style="float: inherit;margin: 0 auto;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="mb-2">
+                        El sitio web utiliza cookies propias y de terceros con fines analíticos y técnicos para mejorar la experiencia de navegación. Puede aceptarlas todas o cambiar las preferencias de sus cookies en el botón de Configuración. Mas información en
+
+                        <a
+                           href="#"  data-toggle="modal" data-target="#modal-cookies">Política de cookies.</a>
+                    </p>
+                </div>
+            </div>
+            <div id="butcookies" class="row text-center">
+                <div class="col-12 col-sm-4">
+                    <button type="button" id="fastokcookies" class="btn btn-primary btn-block btn-sm mb-2"
+                        data-cookiel="sg-cookies-cookie">Aceptar cookies</button>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <button type="button" id="kocookies" class="btn btn-danger btn-block btn-sm mb-2" onclick="euCookieConsentUnsetCheckboxesByClassName('sg-cookies-cookie');">Denegar</button>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <button type="button" id="configcookies"
+                        class="btn btn-secondary btn-block btn-sm mb-2">Configuración</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cookiesettings" style=""
+    class="cookie-popup">
+    <div class="row">
+        
+        <div class="col-12">
+                        <h5>
+                
+
+                Su privacidad es importante para nosotros
+
+            </h5>
+                        
+                        <p>
+
+                Las cookies son archivos de texto muy pequeños que se almacenan en su computadora cuando visita un sitio web. Usamos cookies para una variedad de propósitos y para mejorar su experiencia en línea en nuestro sitio web (por ejemplo, para recordar los detalles de inicio de sesión de su cuenta).
+
+            </p>
+                        
+                        <p>
+
+                Puede cambiar sus preferencias y rechazar ciertos tipos de cookies para que se almacenen en su computadora mientras navega por nuestro sitio web. También puede eliminar las cookies que ya estén almacenadas en su computadora, pero tenga en cuenta que eliminar las cookies puede impedirle utilizar partes de nuestro sitio web.
+
+            </p>
+                    </div>
+
+        <div class="col-12">
+            
+            <form id="cookiesCheck" action="/save-cookie-settings" method="POST">
+                <div class="cookiecont col-12 mt-3">
+                    <div id="accordion">
+                        <div class="card">
+
+                                                                                                <div class="card-header card-header-cookie" id="headingessential">
+      <div class="mb-0">
+        <button type="button" class="text-left btn btn-link btn-block btn-cookie" data-toggle="collapse" data-target="#collapseessential" aria-expanded="true" aria-controls="collapseessential">
+                Técnicas (esenciales)
+            
+        </button>
+      </div>
+    </div>
+
+    <div id="collapseessential" class="collapse" aria-labelledby="headingessential" data-parent="#accordion">
+      <div class="card-body">
+            
+           
+            <p class="mb-3">
+              
+                    Estas cookies son esenciales para que pueda moverse por el sitio web y utilizar sus funciones. Sin estas cookies, los servicios que ha solicitado no se pueden proporcionar.
+                
+            </p>
+       
+
+        
+                    <div>
+    
+ 
+        <div class="mb-3">
+   
+                cookies.
+          
+        </div>
+  
+
+    <div class="form-check mb-3">
+        <label class="form-check-label" for="session">
+            <input type="checkbox" id="session" name="session" class="form-check-input sg-cookies-category-essential " value="1"  checked="checked" disabled="disabled" >
+                    <input type="hidden" name="session" value="1">
+                    <span class="checkmark"></span>
+            <span class="small text-muted">
+                    &lt;strong&gt;Session cookie:&lt;/strong&gt; El lenguaje de programación para el desarrollo web utiliza una cookie para identificar las sesiones de los usuarios.
+              
+            </span>
+        </label>
+    </div>
+
+</div>
+                    <div>
+    
+ 
+        <div class="mb-3">
+   
+                cookies.
+          
+        </div>
+  
+
+    <div class="form-check mb-3">
+        <label class="form-check-label" for="xsrf-token">
+            <input type="checkbox" id="xsrf-token" name="xsrf-token" class="form-check-input sg-cookies-category-essential " value="1"  checked="checked" disabled="disabled" >
+                    <input type="hidden" name="xsrf-token" value="1">
+                    <span class="checkmark"></span>
+            <span class="small text-muted">
+                    &lt;strong&gt;XSRF-Token cookie:&lt;/strong&gt; El framework usado genera automáticamente un token CSRF para cada sesión de usuario activo, se usa para verificar que el usuario es quien realiza las solicitudes de formulario desde la web.
+              
+            </span>
+        </label>
+    </div>
+
+</div>
+              </div>
+    </div>                                                                    <div class="card-header card-header-cookie" id="headinganalytics">
+      <div class="mb-0">
+        <button type="button" class="text-left btn btn-link btn-block btn-cookie" data-toggle="collapse" data-target="#collapseanalytics" aria-expanded="true" aria-controls="collapseanalytics">
+                Analítica
+            
+        </button>
+      </div>
+    </div>
+
+    <div id="collapseanalytics" class="collapse" aria-labelledby="headinganalytics" data-parent="#accordion">
+      <div class="card-body">
+            
+           
+            <p class="mb-3">
+              
+                    Permiten conocer el comportamiento y actividad de los usuarios en el sitio web para la elaboración de perfiles de navegación de sus usuarios con el fin de mejorar en base al análisis de los datos de uso que hacen los usuarios del servicio.
+                
+            </p>
+       
+
+        
+                    <div>
+    
+ 
+        <div class="mb-3">
+   
+                cookies.
+          
+        </div>
+  
+
+    <div class="form-check mb-3">
+        <label class="form-check-label" for="_ga">
+            <input type="checkbox" id="_ga" name="_ga" class="form-check-input sg-cookies-category-analytics  sg-cookies-cookie " value="1" >
+                    <span class="checkmark"></span>
+            <span class="small text-muted">
+                    &lt;strong&gt;Google Analytics cookie:&lt;/strong&gt; Abre una identificación única que se utiliza para generar estadísticas sobre cómo el visitante usa el sitio web.
+              
+            </span>
+        </label>
+    </div>
+
+</div>
+              </div>
+    </div>                                                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-right mt-1" style="margin-right: 24px;">
+                        <p class="mb-2"><span class="small text-muted">Última revisión::
+                                18-01-2021</span></p>
+                                                <button type="button" id="refuse-cookies" class="btn btn-dark btn-sm btnformcookies"
+                            data-cookiel="sg-cookies-cookie">
+
+                            Rechazar todo
+
+                        </button>
+                        <button type="button" id="okcookies" class="btn btn-success btn-sm btnformcookies"
+                            data-cookiel="sg-cookies-cookie">
+
+                            Aceptar todo
+
+                        </button>
+                                                <button id="savecookies" type="submit" class="ml-3 btn btn-default btn-sm btnformcookies">
+
+                            Guardar
+
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="cookiebg"></div>
+<script>
+    var popupCookie = "cookie-popup";
+        function euCookieConsentSetCheckboxesByClassName(classname) {
+            checkboxes = document.getElementsByClassName(classname);
+            for (i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].setAttribute('checked', 'checked');
+                checkboxes[i].checked = true;
+            }
+        }
+
+        function euCookieConsentUnsetCheckboxesByClassName(classname) {
+            checkboxes = document.getElementsByClassName(classname);
+            for (i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].removeAttribute('checked');
+                checkboxes[i].checked = false;
+            }
+            document.getElementById("cookiesCheck").submit();
+
+        }
+
+        $('#configcookies').on('click', function() {
+            $('.'+popupCookie).fadeIn();
+            $('.cookiebg').show();
+        });
+
+        $('#fastokcookies, #okcookies').on('click', function() {
+            var classname = $(this).data('cookiel');
+            euCookieConsentSetCheckboxesByClassName(classname);
+            document.getElementById("cookiesCheck").submit();
+        });
+
+        
+        $('#refuse-cookies').on('click', function() {
+            var classname = $(this).data('cookiel');
+            euCookieConsentUnsetCheckboxesByClassName(classname);
+            document.getElementById("cookiesCheck").submit();
+        });
+</script>
+    </body>
+</html>
