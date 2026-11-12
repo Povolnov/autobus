@@ -97,6 +97,12 @@ def build(feeds, today):
             la, lo = coords[st]
             return ((la - home[0]) * 111) ** 2 + ((lo - home[1]) * 83) ** 2 <= RADIUS_KM ** 2
         services = [(n, l, [x for x in seq if near(x[0])], d) for n, l, seq, d in services]
+    # The Cercanias feed also lists regional trains on the Casetas-Miraflores stretch: drop those copies.
+    at = lambda seq: next((h for st, h in seq if st == CASETAS), None)
+    regional = {(d, at(seq)) for n, l, seq, ds in services if l == "Regional" for d in ds}
+    services = [(n, l, seq, ds if l == "Regional" else {d for d in ds if (d, at(seq)) not in regional})
+                for n, l, seq, ds in services]
+    services = [x for x in services if x[3] and len(x[2]) > 1]
     last = max((max(d) for *_, d in services), default=today)
     days = max(1, min((last - today).days + 1, 120))
     merged = {}

@@ -14,6 +14,6 @@ jobs:
           mkdir -p out && cd out && python3 ../casetas-tool/update_trains.py && ls -la
       - name: Commit
         run: |
-          mkdir -p casetas-src5 && cp -r out/* casetas-src5/
+          mkdir -p casetas-src6 && cp -r out/* casetas-src5/
           git config user.name github-actions && git config user.email actions@github.com
-          git add casetas-src5 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
+          git add casetas-src6 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
