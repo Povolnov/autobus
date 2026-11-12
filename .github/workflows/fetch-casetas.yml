@@ -14,19 +14,17 @@ jobs:
           mkdir -p out && cd out
           UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
           get(){ curl -sSL -A "$UA" --retry 3 -o "$1" "$2" || echo "FAIL $1" >> fails.txt; }
-          get m603.json "https://www.ctaz.es/wp-json/wp/v2/media?search=603&per_page=50"
-          get m613.json "https://www.ctaz.es/wp-json/wp/v2/media?search=613&per_page=50"
-          get m619.json "https://www.ctaz.es/wp-json/wp/v2/media?search=619&per_page=50"
-          get m611.json "https://www.ctaz.es/wp-json/wp/v2/media?search=611&per_page=50"
-          get mpdf.json "https://www.ctaz.es/wp-json/wp/v2/media?mime_type=application/pdf&per_page=100"
-          get tp.html "https://www.ctaz.es/servicios/transporte-publico-ctaz-2/"
-          get casetero2.html "https://www.soydezaragoza.es/horarios-recorrido-casetero"
-          get t619.html "https://www.ctaz.es/l619-l620-traslado-de-terminal-a-av-madrid-33-frente-a-aljaferia-desde-el-miercoles-28-de-octubre-por-obras-en-el-entorno-de-portillo/"
-          get t619b.html "https://www.ctaz.es/l619-l620-las-lineas-zaragoza-la-joyosa-alagon-figueruelas-pedrola-trasladan-su-terminal-en-zaragoza-a-la-calle-marie-curie/"
-          get moovit603.pdf "https://appassets.mvtdev.com/map/149/l/3201/351322.pdf"
+          get t603.pdf "https://www.ctaz.es/wp-content/uploads/2026/05/C19_603-613_Triptico_TRZ_270526-1.pdf"
+          get h603.png "https://www.ctaz.es/wp-content/uploads/2026/05/Horarios-L603-L613-1.png"
+          get t619.pdf "https://www.ctaz.es/wp-content/uploads/2025/05/C19_619AB-620AB_Triptico_TRZ_260526-1.pdf"
+          get h619.png "https://www.ctaz.es/wp-content/uploads/2026/05/Horarios-619-620.png"
+          get v619_2508.pdf "https://www.ctaz.es/wp-content/uploads/2025/05/Zaragoza_C19_619AB-620AB_130825_V2.pdf"
+          get obras619.jpg "https://www.ctaz.es/wp-content/uploads/2026/10/L619_620_OBRAS_202610.jpg"
+          get obras619b.jpg "https://www.ctaz.es/wp-content/uploads/2026/10/L619_620_OBRAS_202610_2.jpg"
+          get t611.pdf "https://www.ctaz.es/wp-content/uploads/2025/05/C19_611_Diptico_OK_280125.pdf"
           ls -la
       - name: Commit
         run: |
-          mkdir -p casetas-src2 && cp -r out/* casetas-src2/
+          mkdir -p casetas-src3 && cp -r out/* casetas-src3/
           git config user.name github-actions && git config user.email actions@github.com
-          git add casetas-src2 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
+          git add casetas-src3 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
