@@ -9,18 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download
+      - name: Build trains
         run: |
-          mkdir -p out && cd out
-          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
-          get(){ curl -sSL -A "$UA" --retry 3 -o "$1" "$2" || echo "FAIL $1" >> fails.txt; }
-          Q='[out:json][timeout:60];(node["highway"="bus_stop"](41.63,-1.07,41.74,-0.86);node["public_transport"="platform"]["bus"="yes"](41.63,-1.07,41.74,-0.86););out;'
-          curl -sS --retry 3 -A "casetas-app/1.0 (andres@idaa.uk)" -H "Accept: application/json" -o stops.json "https://overpass-api.de/api/interpreter" --data-urlencode "data=$Q" || echo "FAIL stops" >> fails.txt
-          Q2='[out:json][timeout:60];relation["route"="bus"]["ref"~"^(603|613)$"](41.5,-1.2,41.8,-0.8);out body;>;out skel qt;'
-          curl -sS --retry 3 -A "casetas-app/1.0 (andres@idaa.uk)" -H "Accept: application/json" -o route603.json "https://overpass-api.de/api/interpreter" --data-urlencode "data=$Q2" || echo "FAIL route" >> fails.txt
-          ls -la
+          mkdir -p out && cd out && python3 ../casetas-tool/update_trains.py && ls -la
       - name: Commit
         run: |
-          mkdir -p casetas-src4 && cp -r out/* casetas-src4/
+          mkdir -p casetas-src5 && cp -r out/* casetas-src5/
           git config user.name github-actions && git config user.email actions@github.com
-          git add casetas-src4 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
+          git add casetas-src5 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
