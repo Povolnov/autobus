@@ -14,17 +14,13 @@ jobs:
           mkdir -p out && cd out
           UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
           get(){ curl -sSL -A "$UA" --retry 3 -o "$1" "$2" || echo "FAIL $1" >> fails.txt; }
-          get t603.pdf "https://www.ctaz.es/wp-content/uploads/2026/05/C19_603-613_Triptico_TRZ_270526-1.pdf"
-          get h603.png "https://www.ctaz.es/wp-content/uploads/2026/05/Horarios-L603-L613-1.png"
-          get t619.pdf "https://www.ctaz.es/wp-content/uploads/2025/05/C19_619AB-620AB_Triptico_TRZ_260526-1.pdf"
-          get h619.png "https://www.ctaz.es/wp-content/uploads/2026/05/Horarios-619-620.png"
-          get v619_2508.pdf "https://www.ctaz.es/wp-content/uploads/2025/05/Zaragoza_C19_619AB-620AB_130825_V2.pdf"
-          get obras619.jpg "https://www.ctaz.es/wp-content/uploads/2026/10/L619_620_OBRAS_202610.jpg"
-          get obras619b.jpg "https://www.ctaz.es/wp-content/uploads/2026/10/L619_620_OBRAS_202610_2.jpg"
-          get t611.pdf "https://www.ctaz.es/wp-content/uploads/2025/05/C19_611_Diptico_OK_280125.pdf"
+          Q='[out:json][timeout:60];(node["highway"="bus_stop"](41.63,-1.07,41.74,-0.86);node["public_transport"="platform"]["bus"="yes"](41.63,-1.07,41.74,-0.86););out;'
+          curl -sS --retry 3 -A "casetas-app/1.0 (andres@idaa.uk)" -H "Accept: application/json" -o stops.json "https://overpass-api.de/api/interpreter" --data-urlencode "data=$Q" || echo "FAIL stops" >> fails.txt
+          Q2='[out:json][timeout:60];relation["route"="bus"]["ref"~"^(603|613)$"](41.5,-1.2,41.8,-0.8);out body;>;out skel qt;'
+          curl -sS --retry 3 -A "casetas-app/1.0 (andres@idaa.uk)" -H "Accept: application/json" -o route603.json "https://overpass-api.de/api/interpreter" --data-urlencode "data=$Q2" || echo "FAIL route" >> fails.txt
           ls -la
       - name: Commit
         run: |
-          mkdir -p casetas-src3 && cp -r out/* casetas-src3/
+          mkdir -p casetas-src4 && cp -r out/* casetas-src4/
           git config user.name github-actions && git config user.email actions@github.com
-          git add casetas-src3 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
+          git add casetas-src4 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
