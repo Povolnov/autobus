@@ -79,6 +79,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="places" id="places" hidden><button type="button" data-d="toZ">Estoy en Alagón</button><button type="button" data-d="toA">Estoy en Zaragoza</button></div>
   <div class="actions"><button class="primary" id="locate" type="button">Dónde estoy / Actualizar</button><a class="btn ghost" id="maps" target="_blank" rel="noopener">Ruta en Google Maps</a></div>
   <a class="btn ghost" id="adif" href="https://www.adif.es/" target="_blank" rel="noopener" hidden>Comprobar retraso del tren en Adif</a>
+  <a class="btn ghost" id="call" href="tel:+34912320320" hidden>Llamar a Renfe: 912 320 320 (24 h)</a>
   <div class="install" id="install" hidden>
     <div class="inst-row"><strong>Tenla siempre a mano</strong><button class="inst-x" id="instX" type="button" aria-label="Cerrar">×</button></div>
     <p id="instT"></p>
@@ -191,7 +192,7 @@ function render(){const n=madrid(),now=n.hour*60+n.minute,{list,today,t0}=servic
   const b=$("locate");b.textContent=S.loc==="loading"?"Localizando…":"Dónde estoy / Actualizar";b.disabled=S.loc==="loading";
   const st=h.p.stop;
   $("maps").href="https://www.google.com/maps/dir/?api=1"+(S.pos?`&origin=${S.pos.lat},${S.pos.lng}`:"")+`&destination=${st.lat},${st.lng}&travelmode=walking`;
-  $("adif").hidden=h.mode!=="train"&&!ALERTS.some(x=>x.date<=todayKey&&todayKey<=(x.until||x.date));
+  $("adif").hidden=h.mode!=="train"&&!ALERTS.some(x=>x.date<=todayKey&&todayKey<=(x.until||x.date));$("call").hidden=$("adif").hidden;
   $("list").innerHTML=fut.slice(i,i+6).map((x,k)=>`<li${k===0?' class="cur"':""}><b>${fmt(x.p.dep)}</b><span class="stop">${x.p.stop.s}</span><span class="ln">${x.line}</span><span class="r">${x.tag?x.tag+(showAll(x)?"":", "):""}${showAll(x)?"":arrText(x)}</span>${showAll(x)?`<span class="st">Llega a: ${allStops(x)}</span>`:""}</li>`).join("");
   $("dayt").textContent="Autobús hoy: "+(t0==="fest"?"domingos y festivos":"lunes a sábado")+".";
   $("flip").textContent=t0==="fest"?"Ver lunes a sábado":"Ver domingos y festivos";
