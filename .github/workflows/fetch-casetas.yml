@@ -14,46 +14,19 @@ jobs:
           mkdir -p out && cd out
           UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
           get(){ curl -sSL -A "$UA" --retry 3 -o "$1" "$2" || echo "FAIL $1" >> fails.txt; }
-          get l603.pdf "https://pinseque.es/wp-content/uploads/2025/06/Linea-603-Casetas-Zaragoza.pdf"
-          get l619_620.pdf "https://consorciozaragoza.es/sites/default/files/L619_L620_202503.pdf"
-          get n61.pdf "https://www.consorciozaragoza.es/sites/default/files/N61_202502_v1.pdf"
-          get pasantes.html "https://soydezaragoza.es/horarios-buses-pasantes-alagon-pedrola/"
-          get casetero.html "https://www.soydezaragoza.es/conoce-cambios-casetero-zaragoza"
-          get flag.svg "https://commons.wikimedia.org/wiki/Special:FilePath/Bandera_de_Zaragoza.svg"
-          get flagpage.html "https://commons.wikimedia.org/wiki/File:Bandera_de_Zaragoza.svg"
-          get flagcat.html "https://commons.wikimedia.org/wiki/Category:Flags_of_Zaragoza"
-          get cer.zip "https://ssl.renfe.com/ftransit/Fichero_CER_FOMENTO/fomento_transit.zip"
-          get ld.zip "https://ssl.renfe.com/gtransit/Fichero_AV_LD/google_transit.zip"
-          curl -sS --retry 3 -o stops.json "https://overpass-api.de/api/interpreter" --data-urlencode 'data=[out:json];(node["highway"="bus_stop"](41.69,-1.06,41.735,-0.99);node["public_transport"="platform"](41.69,-1.06,41.735,-0.99);node["railway"~"station|halt"](41.69,-1.06,41.735,-0.99););out;' || echo "FAIL stops" >> fails.txt
+          get m603.json "https://www.ctaz.es/wp-json/wp/v2/media?search=603&per_page=50"
+          get m613.json "https://www.ctaz.es/wp-json/wp/v2/media?search=613&per_page=50"
+          get m619.json "https://www.ctaz.es/wp-json/wp/v2/media?search=619&per_page=50"
+          get m611.json "https://www.ctaz.es/wp-json/wp/v2/media?search=611&per_page=50"
+          get mpdf.json "https://www.ctaz.es/wp-json/wp/v2/media?mime_type=application/pdf&per_page=100"
+          get tp.html "https://www.ctaz.es/servicios/transporte-publico-ctaz-2/"
+          get casetero2.html "https://www.soydezaragoza.es/horarios-recorrido-casetero"
+          get t619.html "https://www.ctaz.es/l619-l620-traslado-de-terminal-a-av-madrid-33-frente-a-aljaferia-desde-el-miercoles-28-de-octubre-por-obras-en-el-entorno-de-portillo/"
+          get t619b.html "https://www.ctaz.es/l619-l620-las-lineas-zaragoza-la-joyosa-alagon-figueruelas-pedrola-trasladan-su-terminal-en-zaragoza-a-la-calle-marie-curie/"
+          get moovit603.pdf "https://appassets.mvtdev.com/map/149/l/3201/351322.pdf"
           ls -la
-      - name: Extract trains
-        run: |
-          cd out && python3 - <<'PY'
-          import zipfile,io,csv,json
-          res={}
-          for f in ("cer.zip","ld.zip"):
-              try: z=zipfile.ZipFile(f)
-              except Exception as e: res[f]=str(e); continue
-              def t(n):
-                  r=csv.reader(io.StringIO(z.read(n).decode("utf-8-sig")));h=[x.strip() for x in next(r)]
-                  return [dict(zip(h,[v.strip() for v in row])) for row in r]
-              stops={s["stop_id"]:s for s in t("stops.txt")}
-              cas=[k for k,s in stops.items() if "casetas" in s["stop_name"].lower()]
-              st=t("stop_times.txt");trips={x["trip_id"]:x for x in t("trips.txt")};routes={x["route_id"]:x for x in t("routes.txt")}
-              tids={x["trip_id"] for x in st if x["stop_id"] in cas}
-              seq={}
-              for x in st:
-                  if x["trip_id"] in tids: seq.setdefault(x["trip_id"],[]).append((int(x["stop_sequence"]),stops[x["stop_id"]]["stop_name"],x["departure_time"]))
-              names=sorted({n for v in seq.values() for _,n,_ in v})
-              sample={k:sorted(v) for k,v in list(seq.items())[:12]}
-              res[f]={"casetas_ids":[(k,stops[k]["stop_name"],stops[k]["stop_lat"],stops[k]["stop_lon"]) for k in cas],"ntrips":len(tids),
-                "routes":sorted({routes[trips[k]["route_id"]].get("route_short_name","")+" "+routes[trips[k]["route_id"]].get("route_long_name","") for k in tids}),
-                "stations":[(n,)+tuple(next((s["stop_lat"],s["stop_lon"]) for s in stops.values() if s["stop_name"]==n)) for n in names],"sample":sample}
-          json.dump(res,open("trains_probe.json","w"),ensure_ascii=False,indent=1)
-          PY
-          rm -f cer.zip ld.zip
       - name: Commit
         run: |
-          mkdir -p casetas-src && cp -r out/* casetas-src/
+          mkdir -p casetas-src2 && cp -r out/* casetas-src2/
           git config user.name github-actions && git config user.email actions@github.com
-          git add casetas-src && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
+          git add casetas-src2 && git commit -m "Casetas sources" && for i in 1 2 3; do git push && break; sleep 5; done
