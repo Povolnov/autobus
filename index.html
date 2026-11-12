@@ -64,6 +64,7 @@ li .r{text-align:right;color:var(--muted);font-size:.9rem}
 .status label{display:flex;gap:6px;align-items:center}
 select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px}
 .link{background:none;border:0;color:var(--accent);min-height:36px;padding:4px 0;text-decoration:underline}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.duo>.btn{margin:0;padding-inline:8px;font-size:.92rem;line-height:1.2}.duo:not(:has(>a:not([hidden]))){display:none}.nw{white-space:nowrap;display:block}.duo>.btn{flex-direction:column;align-items:center;justify-content:center;text-align:center}
 </style>
 <main>
   <div class="route"><img class="flag" src="flag.png" alt="Bandera de Alagón" width="48" height="32" onerror="this.hidden=true"><h1 id="route"></h1><button class="swap" id="swap" type="button">⇄ Invertir</button></div>
@@ -78,8 +79,7 @@ select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid v
   <div class="note" id="note" hidden></div>
   <div class="places" id="places" hidden><button type="button" data-d="toZ">Estoy en Alagón</button><button type="button" data-d="toA">Estoy en Zaragoza</button></div>
   <div class="actions"><button class="primary" id="locate" type="button">Dónde estoy / Actualizar</button><a class="btn ghost" id="maps" target="_blank" rel="noopener">Ruta en Google Maps</a></div>
-  <a class="btn ghost" id="adif" href="https://www.adif.es/" target="_blank" rel="noopener" hidden>Comprobar retraso del tren en Adif</a>
-  <a class="btn ghost" id="call" href="tel:+34912320320" hidden>Llamar a Renfe: 912 320 320 (24 h)</a>
+  <div class="duo"><a class="btn ghost" id="adif" href="https://www.adif.es/" target="_blank" rel="noopener" hidden>Retrasos en Adif</a><a class="btn ghost" id="call" href="tel:+34912320320" hidden>Llamar a Renfe <span class="nw">912 320 320</span></a></div>
   <div class="install" id="install" hidden>
     <div class="inst-row"><strong>Tenla siempre a mano</strong><button class="inst-x" id="instX" type="button" aria-label="Cerrar">×</button></div>
     <p id="instT"></p>
