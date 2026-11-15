@@ -1,0 +1,25 @@
+name: Check N61 timetable
+on:
+  schedule:
+    - cron: "43 5 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Look for changes in the N61 timetable
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/check_n61.py
+      - name: Save state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/n61_state.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update N61 watch state"
+          git push || (git pull --rebase origin main && git push)
