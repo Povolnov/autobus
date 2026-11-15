@@ -65,9 +65,17 @@ li .r{text-align:right;color:var(--muted);font-size:.9rem}
 select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px}
 .link{background:none;border:0;color:var(--accent);min-height:36px;padding:4px 0;text-decoration:underline}
 .duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.duo>.btn{margin:0;padding-inline:8px;font-size:.92rem;line-height:1.2}.duo:not(:has(>a:not([hidden]))){display:none}.nw{white-space:nowrap;display:block}.duo>.btn{flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.news{display:flex;align-items:center;gap:6px;background:var(--board);color:var(--board-fg);border-radius:10px;padding:0 4px 0 12px;min-height:40px;font-size:.92rem;overflow:hidden}
+.news .mq{flex:1;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.news .mq span{display:inline-block;padding-left:100%;animation:mq var(--dur,20s) linear infinite}
+.news b{color:var(--amber)}
+.news button{min-height:36px;width:36px;padding:0;background:none;border:0;color:var(--board-fg);font-size:1.2rem;flex:none}
+@keyframes mq{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.news .mq{white-space:normal}.news .mq span{animation:none;padding:6px 0}}
 </style>
 <main>
   <div class="route"><img class="flag" src="flag.png" alt="Bandera de Alagón" width="48" height="32" onerror="this.hidden=true"><h1 id="route"></h1><button class="swap" id="swap" type="button">⇄ Invertir</button></div>
+  <div class="news" id="news" hidden><div class="mq"><span id="newsT"></span></div><button type="button" id="newsX" aria-label="Cerrar aviso">×</button></div>
   <section class="board" aria-live="polite">
     <div class="toprow"><div class="lab" id="heroLab"></div><div class="temp" id="temp" hidden></div></div>
     <div class="timerow"><div class="time" id="time"></div><div class="meta"><span class="chip" id="line"></span><span id="arr"></span></div></div>
@@ -119,12 +127,17 @@ const T={lab:{toA:[["619B","7:15","8:00"],["620","7:30","8:10"],["620","9:00","9
 toZ:[["619","6:50","7:30"],["620B","8:10","8:55"],["619","8:40","9:20"],["620","9:40","10:20"],["620B","11:00","11:45"],["619","13:05","13:45"],["619","14:05","14:45"],["620B","15:15","16:00"],["619","16:50","17:30"],["620","18:00","18:40"],["620B","19:30","20:15"],["620","20:30","21:10"],["619","21:35","22:15"],["620","22:00","22:40"]]},
 fest:{toA:[["620B","8:00","8:45"],["619","9:30","10:10"],["620B","11:30","12:10"],["619","13:00","13:40"],["619B","15:00","15:40"],["619","17:00","17:40"],["620","19:00","19:40"],["620B","20:30","21:10"],["619","22:00","22:40"]],
 toZ:[["620B","8:45","9:30"],["619B","10:50","11:30"],["620","12:15","12:55"],["619","14:20","15:00"],["619B","16:20","17:00"],["619","18:20","19:00"],["620B","19:40","20:25"],["620","21:15","21:55"],["619","23:20","0:00"]]}};
+// Búho N61 (CTAZ): sale de madrugada los sábados, domingos y festivos (noches de viernes a sábado, sábado a domingo y vísperas de festivo).
+// Alagón (C/ Mayor) 4:20 -> Pinseque 4:27 -> Casetas 4:37 -> Zaragoza 4:55; Zaragoza (Pº Mª Agustín 2-4) 3:30 -> Casetas 3:44 -> Pinseque 3:57 -> Alagón 4:05.
+const N61={toZ:[["4:20","4:55"]],toA:[["3:30","4:05"]]};
+const N61S={toZ:{"C/ Mayor":0},toA:{"Pº María Agustín 2-4":0,"Av. Navarra":5}};
+const runs61=(d,ov)=>ov?ov==="fest":(d.getUTCDay()===6||dayType(d)==="fest");
 // off = minutes after the listed time. Av. Navarra is the 2nd stop after Mª Agustín; +3 is a cautious estimate.
 // Renfe Data GTFS, updated 2026-11-02. m = runs on day N from 2026-11-02 to 2026-12-12
 let TRAIN_BASE=Date.UTC(2026,10,2),TRAIN_DAYS=41,TRAIN_UPDATED="2026-11-02";
 let TRAINS=[{"n":"16020","d":"toZ","t":{"Alagón":"11:15","Delicias":"11:35","Portillo":"11:38","Goya":"11:40","Miraflores":"11:43"},"m":"00000110000011000001100000110000011000001"},{"n":"16070","d":"toZ","t":{"Alagón":"18:56","Delicias":"19:17","Portillo":"19:20","Goya":"19:22","Miraflores":"19:26"},"m":"10001110000111000011100001110000111110011"},{"n":"18019","d":"toA","t":{"Miraflores":"9:17","Goya":"9:20","Portillo":"9:22","Delicias":"9:26","Alagón":"9:41"},"m":"11111001111100111110011111001111100111110"},{"n":"18021","d":"toA","t":{"Miraflores":"12:58","Goya":"13:01","Portillo":"13:03","Delicias":"13:07","Alagón":"13:26"},"m":"11111111111111111111111111111111111111111"},{"n":"18022","d":"toZ","t":{"Alagón":"20:41","Delicias":"21:00","Portillo":"21:11","Goya":"21:13","Miraflores":"21:16"},"m":"10000010000001000000100000010000000010000"},{"n":"18023","d":"toA","t":{"Miraflores":"16:43","Goya":"16:46","Portillo":"16:48","Delicias":"16:52","Alagón":"17:06"},"m":"11111001111100111110011111001111100111110"},{"n":"18029","d":"toZ","t":{"Alagón":"18:47","Delicias":"19:10","Portillo":"19:13","Goya":"19:15","Miraflores":"19:20"},"m":"11111111111111111111111111111111111111111"},{"n":"18048","d":"toZ","t":{"Alagón":"15:11","Delicias":"15:27","Portillo":"15:30","Goya":"15:32","Miraflores":"15:35"},"m":"11111001111100111110011111001111100111110"},{"n":"18068","d":"toZ","t":{"Alagón":"6:54","Delicias":"7:16","Portillo":"7:19","Goya":"7:21","Miraflores":"7:25"},"m":"11111000011100001110000111000011100001110"},{"n":"18071","d":"toA","t":{"Miraflores":"5:55","Goya":"5:58","Portillo":"6:00","Delicias":"6:06","Alagón":"6:25"},"m":"11111101111110111111011111101111110111111"},{"n":"18072","d":"toZ","t":{"Alagón":"8:06","Delicias":"8:43","Portillo":"8:47","Goya":"8:51","Miraflores":"8:55"},"m":"11111001111100111110011111001111100111110"},{"n":"18073","d":"toA","t":{"Miraflores":"14:30","Goya":"14:33","Portillo":"14:36","Delicias":"14:43","Alagón":"15:00"},"m":"11111111111111111111111111111111111111111"},{"n":"18074","d":"toZ","t":{"Alagón":"9:38","Delicias":"9:57","Portillo":"10:00","Goya":"10:02","Miraflores":"10:05"},"m":"11111111111111111111111111111111111111110"},{"n":"18075","d":"toA","t":{"Miraflores":"17:32","Goya":"17:35","Portillo":"17:37","Delicias":"17:42","Alagón":"17:59"},"m":"11111111111111111111111111111111111111111"},{"n":"18076","d":"toZ","t":{"Alagón":"16:55","Delicias":"17:12","Portillo":"17:15","Goya":"17:17","Miraflores":"17:20"},"m":"11111111111111111111111111111111111111111"},{"n":"18077","d":"toA","t":{"Miraflores":"19:34","Goya":"19:37","Portillo":"19:39","Delicias":"19:43","Alagón":"20:02"},"m":"11111000011100001110000111000011100001110"},{"n":"18078","d":"toZ","t":{"Alagón":"22:42","Delicias":"23:01","Portillo":"23:04","Goya":"23:06","Miraflores":"23:09"},"m":"11111111111111111111111111111111111111111"},{"n":"18079","d":"toA","t":{"Miraflores":"21:00","Goya":"21:03","Portillo":"21:05","Delicias":"21:09","Alagón":"21:26"},"m":"11111111111111111111111111111111111111111"}];
 const STOPS={toZ:[{n:"Plaza Fueros de Aragón",s:"Plaza Fueros",lat:41.7664374,lng:-1.126042,off:0,mode:"bus"},{n:"C/ Mayor esq. Fernando el Católico",s:"C/ Mayor",lat:41.7692772,lng:-1.1195697,off:0,mode:"bus"},{n:"Estación de Alagón",s:"Estación de Alagón",k:"Alagón",lat:41.771422,lng:-1.112771,mode:"train"}],
-toA:[{n:"Pº María Agustín, 50",s:"Pº María Agustín",lat:41.6536809,lng:-0.8925917,off:0,mode:"bus"},{n:"Av. Navarra, 54",s:"Av. Navarra",lat:41.6556185,lng:-0.9064294,off:3,mode:"bus"},{n:"Estación Zaragoza-Delicias",s:"Delicias",k:"Delicias",lat:41.6586576,lng:-0.9112693,mode:"train"},{n:"Estación Zaragoza-Portillo",s:"Portillo",k:"Portillo",lat:41.6527361,lng:-0.8958759,mode:"train"},{n:"Estación Zaragoza-Goya",s:"Goya",k:"Goya",lat:41.6438779,lng:-0.8912574,mode:"train"},{n:"Estación Zaragoza-Miraflores",s:"Miraflores",k:"Miraflores",lat:41.6334311,lng:-0.8681653,mode:"train"}]};
+toA:[{n:"Pº María Agustín, 2-4 (búho N61)",s:"Pº María Agustín 2-4",lat:41.650372,lng:-0.888623,off:0,mode:"bus",only61:1},{n:"Pº María Agustín, 50",s:"Pº María Agustín",lat:41.6536809,lng:-0.8925917,off:0,mode:"bus"},{n:"Av. Navarra, 54",s:"Av. Navarra",lat:41.6556185,lng:-0.9064294,off:3,mode:"bus"},{n:"Estación Zaragoza-Delicias",s:"Delicias",k:"Delicias",lat:41.6586576,lng:-0.9112693,mode:"train"},{n:"Estación Zaragoza-Portillo",s:"Portillo",k:"Portillo",lat:41.6527361,lng:-0.8958759,mode:"train"},{n:"Estación Zaragoza-Goya",s:"Goya",k:"Goya",lat:41.6438779,lng:-0.8912574,mode:"train"},{n:"Estación Zaragoza-Miraflores",s:"Miraflores",k:"Miraflores",lat:41.6334311,lng:-0.8681653,mode:"train"}]};
 const ZST=["Delicias","Portillo","Goya","Miraflores"];
 const NAME={toZ:"Alagón → Zaragoza",toA:"Zaragoza → Alagón"},FAR_M=3500;
 const $=id=>document.getElementById(id);
@@ -160,8 +173,9 @@ let ALERTS=[];
 function services(n){const today=new Date(Date.UTC(n.year,n.month-1,n.day)),tom=new Date(today.getTime()+864e5),t0=S.override||dayType(today);
   const bus=(tp,add,tag)=>T[tp][S.dir].map(([l,d,a])=>({mode:"bus",line:"Bus "+l,dep:toMin(d)+add,arr:toMin(a)+add+(toMin(a)<toMin(d)?1440:0),tag}));
   const train=(day,add,tag)=>{const i=Math.round((day.getTime()-TRAIN_BASE)/864e5);return TRAINS.filter(x=>x.d===S.dir&&x.m[i]==="1").map(x=>{const times={};for(const k in x.t)times[k]=toMin(x.t[k])+add;return{mode:"train",line:"Tren "+x.n,times,arr:times[arrAt(x)],arrAt:arrAt(x),tag}})};
-  return{list:[...bus(t0,0,""),...bus(dayType(tom),1440,"mañana"),...train(today,0,""),...train(tom,1440,"mañana")],today,t0}}
-function plan(b,walks){let best=null;STOPS[S.dir].forEach((s,i)=>{if(s.mode!==b.mode)return;const dep=b.mode==="bus"?b.dep+s.off:b.times[s.k];if(dep==null)return;const w=walks?walks[i]:null,leave=w?dep-w.min-S.margin:dep;if(!best||(walks&&leave>best.leave))best={leave,dep,stop:s,walk:w?w.min:null,meth:w?w.meth:null}});return best}
+  const n61=(d,add,tag,ov)=>runs61(d,ov)?N61[S.dir].map(([a,b])=>({mode:"bus",line:"Bus N61 (búho)",dep:toMin(a)+add,arr:toMin(b)+add,tag,stops:N61S[S.dir]})):[];
+  return{list:[...bus(t0,0,""),...bus(dayType(tom),1440,"mañana"),...n61(today,0,"",S.override),...n61(tom,1440,"mañana"),...train(today,0,""),...train(tom,1440,"mañana")],today,t0}}
+function plan(b,walks){let best=null;STOPS[S.dir].forEach((s,i)=>{if(s.mode!==b.mode)return;if(b.mode==="bus"&&(b.stops?b.stops[s.s]==null:s.only61))return;const dep=b.mode==="bus"?b.dep+(b.stops?b.stops[s.s]:s.off):b.times[s.k];if(dep==null)return;const w=walks?walks[i]:null,leave=w?dep-w.min-S.margin:dep;if(!best||(walks&&leave>best.leave))best={leave,dep,stop:s,walk:w?w.min:null,meth:w?w.meth:null}});return best}
 const nearby=()=>S.walk&&S.walk[S.dir]&&S.walk[S.dir].some(w=>w.m<=FAR_M);
 const allStops=x=>ZST.filter(k=>x.times[k]!=null).map(k=>k+" "+fmt(x.times[k])).join(" · ");
 const showAll=x=>x.mode==="train"&&S.dir==="toZ";
@@ -229,6 +243,13 @@ showTrainInfo();render();setInterval(render,20000);locate();
 if("serviceWorker" in navigator){const had=!!navigator.serviceWorker.controller;let done=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(had&&!done){done=true;location.reload()}});navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{})}loadTrains();
 async function loadAlerts(){try{const r=await fetch("alerts.json",{cache:"no-cache"});if(!r.ok)return;const j=await r.json();if(Array.isArray(j.alerts)){ALERTS=j.alerts;render()}}catch(e){}}
 loadAlerts();
+let NEWS=[];
+function showNews(){const el=$("news");if(!el)return;const n0=madrid(),k=`${n0.year}-${String(n0.month).padStart(2,"0")}-${String(n0.day).padStart(2,"0")}`;
+  const it=NEWS.find(n=>n.id&&n.text&&n.date<=k&&k<=(n.until||n.date)&&store.get("news_"+n.id)!=="1");
+  el.hidden=!it;if(!it)return;el.dataset.id=it.id;const t=$("newsT");t.innerHTML="<b>Novedad:</b> "+it.text.replace(/</g,"&lt;");t.parentNode.style.setProperty("--dur",Math.max(14,Math.round(it.text.length*.2))+"s")}
+async function loadNews(){try{const r=await fetch("news.json",{cache:"no-cache"});if(!r.ok)return;const j=await r.json();if(Array.isArray(j.news)){NEWS=j.news;showNews()}}catch(e){}}
+$("newsX").onclick=()=>{store.set("news_"+$("news").dataset.id,"1");showNews()};
+loadNews();
 let installEvent=null;
 function setupInstall(){const box=$("install"),text=$("instT"),btn=$("instB"),chrome=$("instC"),ua=navigator.userAgent;chrome.hidden=true;
   if(openMode==="app"||store.get("installHidden")){box.hidden=true;return}
