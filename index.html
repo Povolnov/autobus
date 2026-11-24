@@ -254,7 +254,7 @@ loadAlerts();
 let NEWS=[];
 function showNews(){const el=$("news");if(!el)return;const n0=madrid(),k=`${n0.year}-${String(n0.month).padStart(2,"0")}-${String(n0.day).padStart(2,"0")}`;
   const it=NEWS.find(n=>n.id&&n.text&&n.date<=k&&k<=(n.until||n.date)&&store.get("news_"+n.id)!=="1");
-  el.hidden=!it;if(!it)return;el.dataset.id=it.id;const t=$("newsT");t.innerHTML="<b>Novedad:</b> "+it.text.replace(/</g,"&lt;");t.parentNode.style.setProperty("--dur",Math.max(14,Math.round(it.text.length*.2))+"s")}
+  el.hidden=!it;if(!it)return;el.dataset.id=it.id;const t=$("newsT");t.innerHTML="<b>"+(it.label==="aviso"?"Aviso":"Novedad")+":</b> "+it.text.replace(/</g,"&lt;");t.parentNode.style.setProperty("--dur",Math.max(14,Math.round(it.text.length*.2))+"s")}
 async function loadNews(){try{const r=await fetch("news.json",{cache:"no-cache"});if(!r.ok)return;const j=await r.json();if(Array.isArray(j.news)){NEWS=j.news;showNews()}}catch(e){}}
 $("newsX").onclick=()=>{store.set("news_"+$("news").dataset.id,"1");showNews()};
 loadNews();

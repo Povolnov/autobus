@@ -1,1 +1,17 @@
-{"news":[{"id":"n61-therpasa-2026-11","date":"2026-11-15","until":"2026-12-15","text":"añadidos el búho nocturno N61 (de madrugada, sábados, domingos y festivos) y los autobuses Therpasa de Ejea, Sádaba, Sos, Tarazona y otros hacia Zaragoza."}]}
+{
+ "news": [
+  {
+   "id": "lazo-therpasa-2026-11",
+   "label": "aviso",
+   "date": "2026-11-24",
+   "until": "2026-12-24",
+   "text": "algunos autobuses de Therpasa (p. ej. Sádaba–Zaragoza, línea T15.03) no han admitido la tarjeta Lazo en Alagón. Lleva efectivo por si acaso. El Consorcio aún está integrando todas las líneas en Lazo."
+  },
+  {
+   "id": "n61-therpasa-2026-11",
+   "date": "2026-11-15",
+   "until": "2026-12-15",
+   "text": "añadidos el búho nocturno N61 (de madrugada, sábados, domingos y festivos) y los autobuses Therpasa de Ejea, Sádaba, Sos, Tarazona y otros hacia Zaragoza."
+  }
+ ]
+}
